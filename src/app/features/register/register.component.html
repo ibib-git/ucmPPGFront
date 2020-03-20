@@ -1,0 +1,23 @@
+<div style="display: flex;">
+    <nb-card>
+        <nb-card-header>
+            <p>Enregistrement</p>
+        </nb-card-header>
+        <nb-card-body>
+            <form (ngSubmit)="validate()" [formGroup]="userform">
+                <div>
+                    <input nbInput type="text" formControlName="email" placeholder="email *">
+                    <input nbInput type="password" formControlName="password" placeholder="Mot de passe *">
+                    <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *">
+                </div>
+                <div>
+                    <input nbInput type="text" formControlName="nom" placeholder="nom *">
+                    <input nbInput type="text" formControlName="prenom" placeholder="prenom *">
+                    <input nbInput type="text" formControlName="telephone" placeholder="telephone">
+                </div>
+                <button nbButton type="submit">Enregistrement</button>
+                <p> * Liste des champs obligatoires</p>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</div>
