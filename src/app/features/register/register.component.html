@@ -5,15 +5,18 @@
         </nb-card-header>
         <nb-card-body>
             <form (ngSubmit)="validate()" [formGroup]="userform">
-                <div>
+                    <div class="carte">
                     <input nbInput type="text" formControlName="email" placeholder="email *">
                     <input nbInput type="password" formControlName="password" placeholder="Mot de passe *">
                     <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *">
-                </div>
-                <div>
-                    <input nbInput type="text" formControlName="nom" placeholder="nom *">
-                    <input nbInput type="text" formControlName="prenom" placeholder="prenom *">
+                    </div>
+                <div class="carte">
+
+                <input nbInput type="text" formControlName="pseudo" placeholder="pseudo *">
+                    <input nbInput type="text" formControlName="nom" placeholder="nom">
+                    <input nbInput type="text" formControlName="prenom" placeholder="prenom">
                     <input nbInput type="text" formControlName="telephone" placeholder="telephone">
+                    <textarea rows="5" cols="20" nbInput type="text" formControlName="infoSuppl" placeholder="Info supplémentaires"></textarea>
                 </div>
                 <button nbButton type="submit">Enregistrement</button>
                 <p> * Liste des champs obligatoires</p>

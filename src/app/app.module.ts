@@ -15,7 +15,7 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RegisterComponent } from './features/register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CoreModuleModule} from './core/core-module/core-module.module';
+import {CoreModule} from './core/core.module';
 import {DefaultModuleModule} from './features/default-module/default-module.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
@@ -40,7 +40,7 @@ import {HttpClientModule} from '@angular/common/http';
     NbButtonModule,
       RouterModule,
     ReactiveFormsModule,
-      CoreModuleModule,
+      CoreModule,
       DefaultModuleModule,
   ],
   providers: [],
