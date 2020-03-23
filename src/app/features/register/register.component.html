@@ -8,6 +8,10 @@
                     <div class="carte">
                     <input nbInput type="text" formControlName="email" placeholder="email *"
                     [status]="userform.get('email') | inputColor">
+<!--                        <div *ngIf="form.email.errors">{{form.email.getError('email')}}</div>-->
+                        <app-inputs-errors [formControlInput]="form.email"></app-inputs-errors>
+
+
                     <input nbInput type="password" formControlName="password" placeholder="Mot de passe *"
                            [status]="userform.get('password') | inputColor">
                     <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *"

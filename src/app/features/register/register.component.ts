@@ -13,16 +13,23 @@ import {CustomValidators} from '../../shared/_validators/custom-validators';
 })
 export class RegisterComponent implements OnInit {
 
-  userform: FormGroup;
-  usermodel: UserRegisterModel;
-
   constructor(
       private userServ: UserService,
       private routServ: Router,
       private toastrServ: NbToastrService,
   ) { }
 
+  @Output() inputSelect: EventEmitter<any> = new EventEmitter<any>();
+
+  userform: FormGroup;
+  usermodel: UserRegisterModel;
+  submitted: boolean;
+
+  get form() {return this.userform.controls; }
+
+
   ngOnInit(): void {
+    this.submitted = false;
     this.userform = new FormGroup( {
       email: new FormControl(null, Validators.compose([
           Validators.email,
@@ -65,6 +72,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validate() {
+    this.submitted = true;
     this.usermodel = this.userform.value;
     console.log(this.userform.value);
 
@@ -79,8 +87,5 @@ export class RegisterComponent implements OnInit {
     );
     this.routServ.navigateByUrl('/home');
   }
-
-  @Output()
-  errorEvent = new EventEmitter();
 
 }
