@@ -4,21 +4,29 @@
             <p>Enregistrement</p>
         </nb-card-header>
         <nb-card-body>
-            <form (ngSubmit)="validate()" [formGroup]="userform">
+            <form [formGroup]="userform" (ngSubmit)="validate()">
                     <div class="carte">
-                    <input nbInput type="text" formControlName="email" placeholder="email *">
-                    <input nbInput type="password" formControlName="password" placeholder="Mot de passe *">
-                    <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *">
+                    <input nbInput type="text" formControlName="email" placeholder="email *"
+                    [status]="userform.get('email') | inputColor">
+                    <input nbInput type="password" formControlName="password" placeholder="Mot de passe *"
+                           [status]="userform.get('password') | inputColor">
+                    <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *"
+                           [status]="userform.get('checkPassword') | inputColor">
                     </div>
                 <div class="carte">
 
-                <input nbInput type="text" formControlName="pseudo" placeholder="pseudo *">
-                    <input nbInput type="text" formControlName="nom" placeholder="nom">
-                    <input nbInput type="text" formControlName="prenom" placeholder="prenom">
-                    <input nbInput type="text" formControlName="telephone" placeholder="telephone">
-                    <textarea rows="5" cols="20" nbInput type="text" formControlName="infoSuppl" placeholder="Info supplémentaires"></textarea>
+                <input nbInput type="text" formControlName="pseudo" placeholder="pseudo *"
+                       [status]="userform.get('pseudo') | inputColor" >
+                    <input nbInput type="text" formControlName="nom" placeholder="nom"
+                           [status]="userform.get('nom') | inputColor">
+                    <input nbInput type="text" formControlName="prenom" placeholder="prenom"
+                           [status]="userform.get('prenom') | inputColor">
+                    <input nbInput type="text" formControlName="telephone" placeholder="telephone"
+                           [status]="userform.get('telephone') | inputColor">
+                    <textarea rows="5" cols="20" nbInput type="text" formControlName="infoSuppl" placeholder="Info supplémentaires"
+                              [status]="userform.get('infoSuppl') | inputColor"></textarea>
                 </div>
-                <button nbButton type="submit">Enregistrement</button>
+                <button nbButton type="submit" [disabled]="!userform.valid">Enregistrement</button>
                 <p> * Liste des champs obligatoires</p>
             </form>
         </nb-card-body>

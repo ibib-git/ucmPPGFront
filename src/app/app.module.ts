@@ -19,30 +19,32 @@ import {CoreModule} from './core/core.module';
 import {DefaultModuleModule} from './features/default-module/default-module.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NbThemeModule.forRoot({name: 'cosmic'}),
-    NbLayoutModule,
-    NbEvaIconsModule,
-    FormsModule,
-    NbToastrModule.forRoot(),
-    NbCardModule,
-      NbInputModule,
-      HttpClientModule,
-    NbButtonModule,
-      RouterModule,
-    ReactiveFormsModule,
-      CoreModule,
-      DefaultModuleModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({name: 'cosmic'}),
+        NbLayoutModule,
+        NbEvaIconsModule,
+        FormsModule,
+        NbToastrModule.forRoot(),
+        NbCardModule,
+        NbInputModule,
+        HttpClientModule,
+        NbButtonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        CoreModule,
+        DefaultModuleModule,
+        SharedModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
