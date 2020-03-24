@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {UserRegisterModel} from '../models/userRegisterModel';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
+import {UserDetailsModel} from '../models/userDetailsModel';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class UserService {
       private httpClient: HttpClient
   ) { }
 
-  register(model: UserRegisterModel): Observable<string> {
-    return this.httpClient.post<string>(environment.apiEndPoint + 'user/register', model);
+  register(model: UserRegisterModel): Observable<UserDetailsModel> {
+    return this.httpClient.post<UserDetailsModel>(environment.apiEndPoint + 'user/register', model);
   }
 }

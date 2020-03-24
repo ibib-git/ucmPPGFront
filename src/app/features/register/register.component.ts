@@ -23,13 +23,11 @@ export class RegisterComponent implements OnInit {
 
   userform: FormGroup;
   usermodel: UserRegisterModel;
-  submitted: boolean;
 
   get form() {return this.userform.controls; }
 
 
   ngOnInit(): void {
-    this.submitted = false;
     this.userform = new FormGroup( {
       email: new FormControl(null, Validators.compose([
           Validators.email,
@@ -46,7 +44,7 @@ export class RegisterComponent implements OnInit {
         Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$'),
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(255),
+        Validators.maxLength(150),
           ])),
       pseudo: new FormControl(null, Validators.compose([
       Validators.required,
@@ -60,6 +58,8 @@ export class RegisterComponent implements OnInit {
           Validators.minLength(2),
       Validators.maxLength(255),
     ])),
+      urlPhoto: new FormControl(null, Validators.compose([
+      ])),
       infoSuppl: new FormControl(null, Validators.compose([
     ])),
       telephone: new FormControl(null, Validators.compose([
@@ -73,9 +73,8 @@ export class RegisterComponent implements OnInit {
   }
 
   validate() {
-    this.submitted = true;
+    this.userform.removeControl('checkPassword');
     this.usermodel = this.userform.value;
-    console.log(this.userform.value);
 
     this.userServ.register(this.usermodel).subscribe(
         (model) => {
@@ -88,5 +87,6 @@ export class RegisterComponent implements OnInit {
     );
     this.routServ.navigateByUrl('/home');
   }
+
 
 }

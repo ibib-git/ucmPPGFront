@@ -1,7 +1,7 @@
 <div style="display: flex;">
     <nb-card>
         <nb-card-header>
-            <p>Enregistrement</p>
+            <h3>Enregistrement</h3>
         </nb-card-header>
         <nb-card-body>
             <form [formGroup]="userform" (ngSubmit)="validate()">
@@ -17,6 +17,8 @@
                         <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *"
                            [status]="userform.get('checkPassword') | inputColor">
                         <div *ngIf="!form.checkPassword.valid">{{form.checkPassword | inputErrors}}</div>
+                        <div *ngIf="!userform.valid">{{userform | inputErrors}}</div>
+
 
                     </div>
                 <div class="carte">
@@ -36,6 +38,10 @@
                     <input nbInput type="text" formControlName="telephone" placeholder="telephone"
                            [status]="userform.get('telephone') | inputColor">
                     <div *ngIf="!form.telephone.valid">{{form.telephone | inputErrors}}</div>
+
+                    <input nbInput type="text" formControlName="urlPhoto" placeholder="lien de l'image profile"
+                           [status]="userform.get('urlPhoto') | inputColor">
+                    <div *ngIf="!form.urlPhoto.valid">{{form.urlPhoto | inputErrors}}</div>
 
                     <textarea rows="5" cols="20" nbInput type="text" formControlName="infoSuppl" placeholder="Info supplémentaires"
                               [status]="userform.get('infoSuppl') | inputColor"></textarea>

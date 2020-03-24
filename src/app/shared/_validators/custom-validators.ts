@@ -9,7 +9,7 @@ export class CustomValidators {
 
             if (!first || !second) { return null; }
             if (first.value !== second.value) {
-                return {matchError : 'Not match'};
+                return {matchError : true};
             } else { return null; }
         };
     }
