@@ -8,27 +8,39 @@
                     <div class="carte">
                     <input nbInput type="text" formControlName="email" placeholder="email *"
                     [status]="userform.get('email') | inputColor">
-<!--                        <div *ngIf="form.email.errors">{{form.email.getError('email')}}</div>-->
-                        <app-inputs-errors [formControlInput]="form.email"></app-inputs-errors>
-
+                        <div *ngIf="!form.email.valid">{{form.email | inputErrors}}</div>
 
                     <input nbInput type="password" formControlName="password" placeholder="Mot de passe *"
                            [status]="userform.get('password') | inputColor">
-                    <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *"
+                        <div *ngIf="!form.password.valid">{{form.password | inputErrors}}</div>
+
+                        <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *"
                            [status]="userform.get('checkPassword') | inputColor">
+                        <div *ngIf="!form.checkPassword.valid">{{form.checkPassword | inputErrors}}</div>
+
                     </div>
                 <div class="carte">
 
                 <input nbInput type="text" formControlName="pseudo" placeholder="pseudo *"
                        [status]="userform.get('pseudo') | inputColor" >
+                    <div *ngIf="!form.pseudo.valid">{{form.pseudo | inputErrors}}</div>
+
                     <input nbInput type="text" formControlName="nom" placeholder="nom"
                            [status]="userform.get('nom') | inputColor">
+                    <div *ngIf="!form.nom.valid">{{userform.get('nom') | inputErrors}}</div>
+
                     <input nbInput type="text" formControlName="prenom" placeholder="prenom"
                            [status]="userform.get('prenom') | inputColor">
+                    <div *ngIf="!form.prenom.valid">{{form.prenom | inputErrors}}</div>
+
                     <input nbInput type="text" formControlName="telephone" placeholder="telephone"
                            [status]="userform.get('telephone') | inputColor">
+                    <div *ngIf="!form.telephone.valid">{{form.telephone | inputErrors}}</div>
+
                     <textarea rows="5" cols="20" nbInput type="text" formControlName="infoSuppl" placeholder="Info supplémentaires"
                               [status]="userform.get('infoSuppl') | inputColor"></textarea>
+                    <div *ngIf="!form.infoSuppl.valid">{{form.infoSuppl | inputErrors}}</div>
+
                 </div>
                 <button nbButton type="submit" [disabled]="!userform.valid">Enregistrement</button>
                 <p> * Liste des champs obligatoires</p>

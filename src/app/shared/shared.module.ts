@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputColorPipe } from './_pipes/input-color.pipe';
-import { InputsErrorsComponent } from './_components/inputs-errors/inputs-errors.component';
+import { InputErrorsPipe } from './_pipes/input-errors.pipe';
 
 
 
 @NgModule({
-    declarations: [InputColorPipe, InputsErrorsComponent],
+    declarations: [InputColorPipe, InputErrorsPipe],
     exports: [
         InputColorPipe,
-        InputsErrorsComponent
+        InputErrorsPipe
     ],
     imports: [
         CommonModule

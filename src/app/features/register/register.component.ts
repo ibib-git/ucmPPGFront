@@ -37,13 +37,13 @@ export class RegisterComponent implements OnInit {
           Validators.maxLength(150),
       ])),
       password: new FormControl(null, Validators.compose([
-         // Validators.pattern(''),
+         Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$'),
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(150),
       ])),
       checkPassword: new FormControl(null, Validators.compose([
-        // Validators.pattern(''),
+        Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$'),
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(255),
@@ -64,7 +64,8 @@ export class RegisterComponent implements OnInit {
     ])),
       telephone: new FormControl(null, Validators.compose([
       Validators.maxLength(15),
-        //   Validators.pattern('')
+        Validators.minLength(10),
+        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[0-9]*$')
     ]))
     }, Validators.compose([
         CustomValidators.compare('password', 'checkPassword')
