@@ -20,11 +20,16 @@ import {DefaultModuleModule} from './features/default-module/default-module.modu
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
+import { AffichageErreurComponent } from './features/erreurs/affichage-erreur/affichage-erreur.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+     AffichageErreurComponent
   ],
     imports: [
         BrowserModule,
@@ -45,7 +50,15 @@ import {SharedModule} from './shared/shared.module';
         DefaultModuleModule,
         SharedModule,
     ],
-  providers: [],
+
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: ErreursInterceptor,
+      multi: true
+    }
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
