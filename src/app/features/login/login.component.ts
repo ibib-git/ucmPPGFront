@@ -44,12 +44,13 @@ export class LoginComponent implements OnInit {
 
     this.userServ.login(this.userModel).subscribe(
         (model) => {
-          this.toastrServ.success('Bonjour ', 'Enregistrement', {[status]: 'success'});
+          this.toastrServ.success('Bonjour ' + model.pseudo, 'Connexion', {[status]: 'success'});
           this.routServ.navigateByUrl('/home');
           console.log(model);
         },
         () => {
-          this.toastrServ.danger('Erreur de connexion ', 'Enregistrement', {[status]: 'danger'});
+          this.toastrServ.danger('Erreur de connexion ', 'Connexion', {[status]: 'danger'});
+          this.routServ.navigateByUrl('/login');
         },
         () => {},
     );

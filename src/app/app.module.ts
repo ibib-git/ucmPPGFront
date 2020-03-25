@@ -52,11 +52,11 @@ import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
     ],
 
   providers: [
-    {
+   /* {
       provide: HTTP_INTERCEPTORS,
       useClass: ErreursInterceptor,
       multi: true
-    }
+    }*/
   ],
 
   bootstrap: [AppComponent]
