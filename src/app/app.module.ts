@@ -20,6 +20,7 @@ import {DefaultModuleModule} from './features/default-module/default-module.modu
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
+import { LoginComponent } from './features/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 
@@ -28,6 +29,7 @@ import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
   declarations: [
     AppComponent,
     RegisterComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,

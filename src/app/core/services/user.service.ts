@@ -4,6 +4,7 @@ import {UserRegisterModel} from '../models/userRegisterModel';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {UserDetailsModel} from '../models/userDetailsModel';
+import {UserLoginModel} from '../models/userLoginModel';
 
 
 @Injectable({
@@ -16,6 +17,11 @@ export class UserService {
   ) { }
 
   register(model: UserRegisterModel): Observable<UserDetailsModel> {
+    console.log('coucou');
     return this.httpClient.post<UserDetailsModel>(environment.apiEndPoint + 'user/register', model);
+  }
+
+  login(model: UserLoginModel): Observable<UserDetailsModel> {
+    return this.httpClient.post<UserDetailsModel>(environment.apiEndPoint + 'user/login', model);
   }
 }
