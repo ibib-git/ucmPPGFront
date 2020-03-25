@@ -4,28 +4,53 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbToastrModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbCardModule,
+  NbToastrModule,
+  NbButtonModule,
+  NbInputModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { RegisterComponent } from './features/register/register.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CoreModule} from './core/core.module';
+import {DefaultModuleModule} from './features/default-module/default-module.module';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import {SharedModule} from './shared/shared.module';
 import { AffichageErreurComponent } from './features/erreurs/affichage-erreur/affichage-erreur.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
-import { CoreModule } from './core/core.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AffichageErreurComponent
+    RegisterComponent,
+     AffichageErreurComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'cosmic' }),
-    NbLayoutModule,
-    NbEvaIconsModule,
-    CoreModule,
-    NbToastrModule.forRoot()
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        NbThemeModule.forRoot({name: 'cosmic'}),
+        NbLayoutModule,
+        NbEvaIconsModule,
+        FormsModule,
+        NbToastrModule.forRoot(),
+        NbCardModule,
+        NbInputModule,
+        HttpClientModule,
+        NbButtonModule,
+        RouterModule,
+        ReactiveFormsModule,
+        CoreModule,
+        DefaultModuleModule,
+        SharedModule,
+    ],
+
   providers: [
     { 
       provide: HTTP_INTERCEPTORS, 
@@ -33,6 +58,7 @@ import { CoreModule } from './core/core.module';
       multi: true
     }
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
