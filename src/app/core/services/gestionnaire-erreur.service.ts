@@ -5,14 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class GestionnaireErreurService {
 
-  private codeErreurVersMessage:{[code:number]:String}={
-    0:"La Requête ne peut pas s'envoyer",
-    404:"page non trouvée"
-  }
+  private codeErreurVersMessage: {[code: number]: string} = {
+    0: 'La Requête ne peut pas s\'envoyer',
+    404: 'page non trouvée'
+  };
 
   constructor() { }
 
-  getMessagePourCode(code:number){
-    return this.codeErreurVersMessage[code] || "erreur non documentée";
+  getMessagePourCode(code: number) {
+    return this.codeErreurVersMessage[code] || 'erreur non documentée';
   }
 }

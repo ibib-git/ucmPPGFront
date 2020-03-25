@@ -20,7 +20,6 @@ import {DefaultModuleModule} from './features/default-module/default-module.modu
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
-import { AffichageErreurComponent } from './features/erreurs/affichage-erreur/affichage-erreur.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 
@@ -29,7 +28,6 @@ import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
   declarations: [
     AppComponent,
     RegisterComponent,
-     AffichageErreurComponent
   ],
     imports: [
         BrowserModule,
@@ -52,8 +50,8 @@ import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
     ],
 
   providers: [
-    { 
-      provide: HTTP_INTERCEPTORS, 
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: ErreursInterceptor,
       multi: true
     }
