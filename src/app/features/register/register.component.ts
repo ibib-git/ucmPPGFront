@@ -78,14 +78,15 @@ export class RegisterComponent implements OnInit {
 
     this.userServ.register(this.usermodel).subscribe(
         (model) => {
-          this.toastrServ.success('Bienvenu chez PPG corporation ' + this.usermodel.pseudo, 'Enregistrement', {[status]: 'success'});
+          this.toastrServ.success('Bienvenu chez PPG corporation ', 'Enregistrement', {[status]: 'success'});
+          this.routServ.navigateByUrl('/home');
         },
         () => {
           this.toastrServ.danger('Erreur dans l"enregistrement ', 'Enregistrement', {[status]: 'danger'});
+          this.routServ.navigateByUrl('/home');
         },
         () => {},
     );
-    this.routServ.navigateByUrl('/home');
   }
 
 

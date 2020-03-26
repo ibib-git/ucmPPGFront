@@ -1,0 +1,24 @@
+<div style="display: flex;">
+    <nb-card>
+        <nb-card-header>
+            <h3>Enregistrement</h3>
+        </nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="carte">
+                    <input nbInput type="text" formControlName="email" placeholder="email"
+                           [status]="loginForm.get('email') | inputColor">
+                    <div *ngIf="!form.email.valid">{{form.email | inputErrors}}</div>
+
+                    <input nbInput type="password" formControlName="password" placeholder="Mot de passe"
+                           [status]="loginForm.get('password') | inputColor">
+                    <div *ngIf="!form.password.valid">{{form.password | inputErrors}}</div>
+
+                </div>
+
+                <button nbButton type="submit" [disabled]="!loginForm.valid">Connexion</button>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</div>
+
