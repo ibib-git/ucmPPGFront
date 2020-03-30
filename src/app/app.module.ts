@@ -5,12 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  NbThemeModule,
-  NbLayoutModule,
-  NbCardModule,
-  NbToastrModule,
-  NbButtonModule,
-  NbInputModule
+    NbThemeModule,
+    NbLayoutModule,
+    NbCardModule,
+    NbToastrModule,
+    NbButtonModule,
+    NbInputModule, NbProgressBarModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RegisterComponent } from './features/register/register.component';
@@ -24,6 +24,7 @@ import { LoginComponent } from './features/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
+import { WorkflowComponent } from './features/workflow/workflow.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    CreerUnProjetComponent
+    CreerUnProjetComponent,
+    WorkflowComponent
   ],
     imports: [
         BrowserModule,
@@ -51,6 +53,7 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
         CoreModule,
         DefaultModuleModule,
         SharedModule,
+        NbProgressBarModule
     ],
 
   providers: [
