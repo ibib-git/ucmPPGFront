@@ -1,9 +1,22 @@
-<nb-card>
-    <nb-card-header>
-        Création du Projet
-    </nb-card-header>
-    <nb-card-body>
-        <input type="text" placeholder="Nom de projet">
-        <input type="text" placeholder="description du projet">
-    </nb-card-body>
-</nb-card>
+<div style="display: flex;">
+    <nb-card>
+        <nb-card-header>
+            Création du Projet
+        </nb-card-header>
+        <nb-card-body>
+            <div>
+                <h4>Un projet par défaut</h4>
+                <p> Pour chaque projet crée, Il y a 3 colonne "to do", "doing", "done" </p>
+                <p> et il y a aussi 3 rôle de base " administrateur", "modérateur", "membre"</p>
+            </div>
+            <form [formGroup]="projetCreer" (ngSubmit)="validation()">
+                <div class="description">
+                    <input nbInput formControlName="nom" type="text" placeholder="Nom de projet" > 
+                    <input nbInput formControlName="description" type="text" placeholder="description du projet">
+                    <button nbButton type="submit" [disabled]="!projetCreer.valid">Créer le projet</button>
+                </div>
+            </form>
+        </nb-card-body>
+    </nb-card>
+</div>
+
