@@ -23,13 +23,15 @@ import {SharedModule} from './shared/shared.module';
 import { LoginComponent } from './features/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
+import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    CreerUnProjetComponent
   ],
     imports: [
         BrowserModule,
