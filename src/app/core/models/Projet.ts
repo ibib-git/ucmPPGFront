@@ -7,5 +7,5 @@ export interface Projet {
     description : string;
     createurDuProjet : Utilisateur;
     participationAuProjet : Participation[];
-    etapeWorkflow : EtapeWorkflow;
+    etapeWorkflow : EtapeWorkflow[];
 }

@@ -1,0 +1,15 @@
+.tacheHeader{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+}
+
+.tacheHeader:hover{
+  background-color: darkslateblue;
+  cursor: pointer;
+}
+
+nb-icon{
+  margin-right: 5%;
+  margin-left: 5%;
+}

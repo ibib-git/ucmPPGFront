@@ -11,11 +11,30 @@ button{
   text-align: center;
 }
 
-.etapeClass{
-  margin: 2%;
-}
+
 
 .bodyClass{
   display: flex;
 }
 
+.tacheHeader{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+}
+
+.tacheHeader:hover{
+  background-color: darkslateblue;
+  cursor: pointer;
+}
+
+nb-icon{
+ margin-right: 5%;
+  margin-left: 5%;
+}
+
+.etapeHeader{
+  display: flex;
+  flex-direction: row;
+  margin: 2%;
+}

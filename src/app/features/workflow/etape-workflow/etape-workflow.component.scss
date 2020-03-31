@@ -1,0 +1,30 @@
+nb-icon{
+  margin: 5%;
+}
+
+nb-icon:hover {
+  background-color: darkslateblue;
+  cursor: pointer;
+}
+
+nb-toggle{
+  margin: 5%;
+}
+
+.etapeHeader{
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+}
+
+.etapeClass{
+  margin: 2%;
+  background-color: darkslateblue;
+  border-color: purple;
+  border-style: solid ;
+  border-width: medium;
+}
+
+
+
+

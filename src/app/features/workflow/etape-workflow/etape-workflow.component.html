@@ -1,0 +1,21 @@
+<!--        1 colonne-->
+<nb-card class="etapeClass">
+    <nb-card-header>
+        <div class="etapeHeader">
+            <h5>{{etape.nom}}</h5>
+            <nb-toggle [checked]="true" (checkedChange)="toggle($event)" status="success">Progression</nb-toggle>
+            <nb-icon *ngIf="!allDetails" (click)="clickAllDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+            <nb-icon *ngIf="allDetails" (click)="clickAllDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <div *ngIf="etape.TacheParColonne != null">
+            <div *ngFor="let t of etape.TacheParColonne">
+                <app-tache-etape-workflow [tache]="t" [estProgression]="estProgression" [estDetail]="allDetails"></app-tache-etape-workflow>
+            </div>
+        </div>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton>Créer une tache</button>
+    </nb-card-footer>
+</nb-card>

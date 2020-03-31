@@ -10,7 +10,7 @@ import {
     NbCardModule,
     NbToastrModule,
     NbButtonModule,
-    NbInputModule, NbProgressBarModule
+    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RegisterComponent } from './features/register/register.component';
@@ -25,6 +25,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import { WorkflowComponent } from './features/workflow/workflow.component';
+import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
+import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { WorkflowComponent } from './features/workflow/workflow.component';
     RegisterComponent,
     LoginComponent,
     CreerUnProjetComponent,
-    WorkflowComponent
+    WorkflowComponent,
+    EtapeWorkflowComponent,
+    TacheEtapeWorkflowComponent
   ],
     imports: [
         BrowserModule,
@@ -53,7 +57,10 @@ import { WorkflowComponent } from './features/workflow/workflow.component';
         CoreModule,
         DefaultModuleModule,
         SharedModule,
-        NbProgressBarModule
+        NbProgressBarModule,
+        NbIconModule,
+        NbCheckboxModule,
+        NbToggleModule
     ],
 
   providers: [

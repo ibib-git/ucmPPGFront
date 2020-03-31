@@ -1,0 +1,20 @@
+<!--                1 tache-->
+<nb-card>
+    <nb-card-header>
+        <div class="tacheHeader">
+            <h6>{{tache.nom}}</h6>
+            <nb-icon *ngIf="!estDetail" (click)="clickDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+            <nb-icon *ngIf="estDetail" (click)="clickDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <p>{{tache.utilisateurDeTache.pseudo}}</p>
+        <p>{{tache.estimation_temps}} /{{tache.uniteDetemps}}</p>
+        <div *ngIf="estDetail">
+            <p>{{tache.description_tache}}</p>
+        </div>
+    </nb-card-body>
+    <nb-card-footer *ngIf="estProgression">
+        <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+    </nb-card-footer>
+</nb-card>
