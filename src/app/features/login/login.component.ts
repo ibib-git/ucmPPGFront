@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
         (model) => {
           this.toastrServ.success('Bonjour ' + model.pseudo, 'Connexion', {[status]: 'success'});
           this.routServ.navigateByUrl('/home');
-          console.log(model);
         },
         () => {
           this.toastrServ.danger('Erreur de connexion ', 'Connexion', {[status]: 'danger'});

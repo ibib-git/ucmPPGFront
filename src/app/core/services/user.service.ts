@@ -17,7 +17,6 @@ export class UserService {
   ) { }
 
   register(model: UserRegisterModel): Observable<UserDetailsModel> {
-    console.log('coucou');
     return this.httpClient.post<UserDetailsModel>(environment.apiEndPoint + 'user/register', model);
   }
 
