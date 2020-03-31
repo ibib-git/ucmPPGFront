@@ -1,29 +1,31 @@
-<nb-card>
-    <nb-card-header>
-        Gestion de Projet
-    </nb-card-header>
-    <nb-card-body>
-        <div>
-            <nb-card>
-                <nb-card-header>
-                    Ajouter des membres
-                </nb-card-header>
-                <nb-card-body>
-                    <p>Liste de participant</p>
-                    <div>
-                        <nb-list *ngFor='let participation of projet.participationAuProjet'>
-                            <nb-list-item>{{participation.utilisateurParticpant.Email}}</nb-list-item>
-                        </nb-list>
-                    </div>
-                    <div [formGroup]="controleDeMail">
-                        <input nbInput type="text" placeholder="Ajouter collaborateur" [(ngModel)]="nouveauMail" formControlName="mail" >
-                        <input nbButton type="button" value="Ajouter le collaborateur" [disabled]="nouveauMail == null" (click)="ajouterDesCollaborateur()">
-                    </div>
-                </nb-card-body>
-            </nb-card>
-        </div>
-        <div>
-            Ajouter des Etapes Workflows
-        </div>
-    </nb-card-body>
-</nb-card>
+<div style="display: flex;">
+    <nb-card>
+        <nb-card-header>
+            Gestion de Projet
+        </nb-card-header>
+        <nb-card-body>
+            <div>
+                <nb-card>
+                    <nb-card-header>
+                        Ajouter des membres
+                    </nb-card-header>
+                    <nb-card-body>
+                        <p>Liste de participant</p>
+                        <div>
+                            <nb-list *ngFor='let participation of projet.participationAuProjet'>
+                                <nb-list-item>{{participation.utilisateurParticpant.Email}}</nb-list-item>
+                            </nb-list>
+                        </div>
+                        <div [formGroup]="controleDeMail">
+                            <input nbInput type="text" placeholder="Ajouter collaborateur" [(ngModel)]="nouveauMail" formControlName="mail" >
+                            <input nbButton type="button" value="Ajouter le collaborateur" [disabled]="nouveauMail == null" (click)="ajouterDesCollaborateur()">
+                        </div>
+                    </nb-card-body>
+                </nb-card>
+            </div>
+            <div>
+                Ajouter des Etapes Workflows
+            </div>
+        </nb-card-body>
+    </nb-card>
+</div>  

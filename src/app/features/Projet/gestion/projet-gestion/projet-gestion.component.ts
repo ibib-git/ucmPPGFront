@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EtapeWorkflow } from 'src/app/core/models/EtapeWorkflow';
 import { ModifierprojetService } from 'src/app/core/services/projet/gestion/modifierprojet.service';
 import { Projet } from 'src/app/core/models/Projet';
-import { Participation } from 'src/app/core/models/Participation';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Utilisateur } from 'src/app/core/models/Utilisateur';
-import { gestionProjet } from 'src/app/core/models/gestionProjet';
+import { UtilisateurAjouter } from 'src/app/core/models/UtilisateurAjouter';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -17,9 +15,9 @@ export class ProjetGestionComponent implements OnInit {
   projet : Projet
   nouveauMail : string;
   controleDeMail : FormGroup;
-  gestion : gestionProjet
+  ajouterUtilisateur : UtilisateurAjouter
 
-  constructor(private serviceProjetGestion : ModifierprojetService) { }
+  constructor(private serviceProjetGestion : ModifierprojetService, private toastservice : NbToastrService) { }
 
   ngOnInit(): void {
     this.controleDeMail = new FormGroup({
@@ -29,10 +27,25 @@ export class ProjetGestionComponent implements OnInit {
       ]))
     });
     this.nouveauMail = null;
+    this.ajouterUtilisateur = null;
+    this.projet = null;
   }
 
   ajouterDesCollaborateur(){
-    console.log(this.nouveauMail)
+    this.ajouterUtilisateur.projet = this.projet;
+    this.ajouterUtilisateur.mail = this.nouveauMail;
+    this.serviceProjetGestion.ajouterCollaborateur(this.ajouterUtilisateur).subscribe(
+      (model) => {
+        this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});
+        console.log(model);
+      },
+      () => {
+        this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
+      },
+      () => {},
+      
+    )
+
   }
 
 }
