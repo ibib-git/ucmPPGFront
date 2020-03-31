@@ -14,6 +14,6 @@ export class CreationProjetService {
    // Renvoie un projet avec une liste de String (EMAIL) et un utilisateur
    creationP(projet : ProjetCreation) : Observable<ProjetCreation> {
     console.log("Renvoie du projet")
-    return this.Httpclient.post<ProjetCreation>(environment.creationProjet + '/enregistrementProjet', projet);
+    return this.Httpclient.post<ProjetCreation>(environment.projet + '/enregistrementProjet', projet);
   }
 }

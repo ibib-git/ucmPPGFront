@@ -4,14 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  NbThemeModule,
-  NbLayoutModule,
-  NbCardModule,
-  NbToastrModule,
-  NbButtonModule,
-  NbInputModule
-} from '@nebular/theme';
+import {NbThemeModule,NbLayoutModule,NbCardModule,NbToastrModule,NbButtonModule,NbInputModule,NbSelectModule, NbListModule} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { RegisterComponent } from './features/register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -21,9 +14,8 @@ import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
 import { LoginComponent } from './features/login/login.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
+import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 
 
 @NgModule({
@@ -31,7 +23,8 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    CreerUnProjetComponent
+    CreerUnProjetComponent,
+    ProjetGestionComponent,
   ],
     imports: [
         BrowserModule,
@@ -51,6 +44,8 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
         CoreModule,
         DefaultModuleModule,
         SharedModule,
+        NbSelectModule,
+        NbListModule
     ],
 
   providers: [
@@ -58,6 +53,7 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
       provide: HTTP_INTERCEPTORS,
       useClass: ErreursInterceptor,
       multi: true
+      Bob moranne
     }*/
   ],
 
