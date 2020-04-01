@@ -6,11 +6,12 @@
             <nb-toggle [checked]="true" (checkedChange)="toggle($event)" status="success">Progression</nb-toggle>
             <nb-icon *ngIf="!allDetails" (click)="clickAllDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
             <nb-icon *ngIf="allDetails" (click)="clickAllDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
+            <label>Details</label>
         </div>
     </nb-card-header>
     <nb-card-body>
-        <div *ngIf="etape.TacheParColonne != null">
-            <div *ngFor="let t of etape.TacheParColonne">
+        <div *ngIf="etape.taches != null">
+            <div *ngFor="let t of etape.taches">
                 <app-tache-etape-workflow [tache]="t" [estProgression]="estProgression" [estDetail]="allDetails"></app-tache-etape-workflow>
             </div>
         </div>

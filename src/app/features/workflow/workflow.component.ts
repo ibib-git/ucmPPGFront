@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Projet} from '../../core/models/Projet';
+import {ProjetModel} from '../../core/models/ProjetModel';
 import {RecuperationProjetService} from '../../core/services/projet/récuperation/recuperation-projet.service';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
@@ -11,7 +11,7 @@ import {NbToastrService} from '@nebular/theme';
 })
 export class WorkflowComponent implements OnInit {
 
-  projet: Projet;
+  projet: ProjetModel;
 
   constructor(
       private projetService: RecuperationProjetService,
@@ -21,7 +21,7 @@ export class WorkflowComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.projet = {} as Projet;
+    this.projet = {} as ProjetModel;
     this.getProjet(1);
   }
 

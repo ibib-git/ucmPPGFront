@@ -8,10 +8,10 @@
         </div>
     </nb-card-header>
     <nb-card-body>
-        <p>{{tache.utilisateurDeTache.pseudo}}</p>
-        <p>{{tache.estimation_temps}} /{{tache.uniteDetemps}}</p>
+        <p>{{tache.utilisateurAffecte.pseudo}}</p>
+        <p>{{tache.estimationTemps}} /{{tache.uniteDeTemps}}</p>
         <div *ngIf="estDetail">
-            <p>{{tache.description_tache}}</p>
+            <p>{{tache.description}}</p>
         </div>
     </nb-card-body>
     <nb-card-footer *ngIf="estProgression">

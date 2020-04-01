@@ -1,10 +1,10 @@
-export interface UserRegisterModel {
+export interface UtilisateurEnregistrementModel {
 
-    email: string;
+    mail: string;
     nom: string;
     prenom: string;
     pseudo: string;
-    password: string;
+    motDePasse: string;
     telephone: string;
     infoSuppl: string;
     urlPhoto: string;

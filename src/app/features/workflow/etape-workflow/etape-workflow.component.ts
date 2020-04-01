@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {EtapeWorkflow} from '../../../core/models/EtapeWorkflow';
+import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -7,7 +7,7 @@ import {EtapeWorkflow} from '../../../core/models/EtapeWorkflow';
   styleUrls: ['./etape-workflow.component.scss']
 })
 export class EtapeWorkflowComponent implements OnInit {
-  @Input() etape: EtapeWorkflow;
+  @Input() etape: EtapeWorkflowModel;
 
   allDetails: boolean;
   estProgression: boolean;

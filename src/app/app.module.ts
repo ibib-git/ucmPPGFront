@@ -13,14 +13,14 @@ import {
     NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { RegisterComponent } from './features/register/register.component';
+import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CoreModule} from './core/core.module';
 import {DefaultModuleModule} from './features/default-module/default-module.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
-import { LoginComponent } from './features/login/login.component';
+import { ConnexionComponent } from './features/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
@@ -32,8 +32,8 @@ import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
+    EnregistrementComponent,
+    ConnexionComponent,
     CreerUnProjetComponent,
     WorkflowComponent,
     EtapeWorkflowComponent,

@@ -2,19 +2,19 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
-import {UserService} from '../../core/services/user.service';
-import {UserRegisterModel} from '../../core/models/userRegisterModel';
+import {UtilisateurService} from '../../core/services/utilisateur.service';
+import {UtilisateurEnregistrementModel} from '../../core/models/UtilisateurEnregistrementModel';
 import {CustomValidators} from '../../shared/_validators/custom-validators';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  templateUrl: './enregistrement.component.html',
+  styleUrls: ['./enregistrement.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class EnregistrementComponent implements OnInit {
 
   constructor(
-      private userServ: UserService,
+      private userServ: UtilisateurService,
       private routServ: Router,
       private toastrServ: NbToastrService,
   ) { }
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   @Output() inputSelect: EventEmitter<any> = new EventEmitter<any>();
 
   userform: FormGroup;
-  usermodel: UserRegisterModel;
+  usermodel: UtilisateurEnregistrementModel;
 
   get form() {return this.userform.controls; }
 

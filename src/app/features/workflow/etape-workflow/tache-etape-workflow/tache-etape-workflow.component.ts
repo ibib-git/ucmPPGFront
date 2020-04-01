@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Tache} from '../../../../core/models/Tache';
+import {TacheModel} from '../../../../core/models/TacheModel';
 
 @Component({
   selector: 'app-tache-etape-workflow',
@@ -9,7 +9,7 @@ import {Tache} from '../../../../core/models/Tache';
 export class TacheEtapeWorkflowComponent implements OnInit {
   @Input() estDetail: boolean;
   @Input() estProgression: boolean;
-  @Input() tache: Tache;
+  @Input() tache: TacheModel;
 
   constructor() { }
 

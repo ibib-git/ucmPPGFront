@@ -1,28 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterComponent } from './register.component';
+import { EnregistrementComponent } from './enregistrement.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {UserService} from '../../core/services/user.service';
-import {UserDetailsModel} from '../../core/models/userDetailsModel';
+import {UtilisateurService} from '../../core/services/utilisateur.service';
+import {UtilisateurDetailsModel} from '../../core/models/UtilisateurDetailsModel';
 import {CoreModule} from '../../core/core.module';
 
 describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
-  let service: UserService;
+  let component: EnregistrementComponent;
+  let fixture: ComponentFixture<EnregistrementComponent>;
+  let service: UtilisateurService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ],
+      declarations: [ EnregistrementComponent ],
       imports: [HttpClientTestingModule],
-      providers: [UserService]
+      providers: [UtilisateurService]
     })
     .compileComponents();
-    service = TestBed.inject(UserService);
+    service = TestBed.inject(UtilisateurService);
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(EnregistrementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

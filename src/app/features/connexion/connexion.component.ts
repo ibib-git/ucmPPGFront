@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserLoginModel} from '../../core/models/userLoginModel';
-import {UserService} from '../../core/services/user.service';
+import {UtilisateurConnexionModel} from '../../core/models/UtilisateurConnexionModel';
+import {UtilisateurService} from '../../core/services/utilisateur.service';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
-import {UserDetailsModel} from '../../core/models/userDetailsModel';
+import {UtilisateurDetailsModel} from '../../core/models/UtilisateurDetailsModel';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  templateUrl: './connexion.component.html',
+  styleUrls: ['./connexion.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ConnexionComponent implements OnInit {
 
   loginForm: FormGroup;
-  userModel: UserLoginModel;
+  userModel: UtilisateurConnexionModel;
 
   get form() {return this.loginForm.controls; }
 
   constructor(
-      private userServ: UserService,
+      private userServ: UtilisateurService,
       private routServ: Router,
       private toastrServ: NbToastrService) { }
 
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         },
         () => {
           this.toastrServ.danger('Erreur de connexion ', 'Connexion', {[status]: 'danger'});
-          this.routServ.navigateByUrl('/login');
+          this.routServ.navigateByUrl('/connexion');
         },
         () => {},
     );

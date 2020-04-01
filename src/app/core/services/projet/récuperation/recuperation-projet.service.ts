@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UserRegisterModel} from '../../../models/userRegisterModel';
+import {UtilisateurEnregistrementModel} from '../../../models/UtilisateurEnregistrementModel';
 import {Observable} from 'rxjs';
-import {UserDetailsModel} from '../../../models/userDetailsModel';
+import {UtilisateurDetailsModel} from '../../../models/UtilisateurDetailsModel';
 import {environment} from '../../../../../environments/environment';
-import {Projet} from '../../../models/Projet';
+import {ProjetModel} from '../../../models/ProjetModel';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class RecuperationProjetService {
   constructor(
       private httpClient: HttpClient) { }
 
-  getProject(id: bigint): Observable<Projet> {
-    return this.httpClient.get<Projet>(environment.apiEndPoint + '/projet/' + id);
+  getProject(id: bigint): Observable<ProjetModel> {
+    return this.httpClient.get<ProjetModel>(environment.apiEndPoint + '/projet/' + id);
   }
 }
