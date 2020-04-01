@@ -2,14 +2,33 @@
   display: flex;
   flex-direction: row;
   margin: 2%;
+  text-transform: capitalize;
+
 }
 
-.tacheHeader:hover{
+.tacheNomClass:hover{
   background-color: darkslateblue;
   cursor: pointer;
 }
 
+
 nb-icon{
   margin-right: 5%;
   margin-left: 5%;
+}
+
+.tacheClass{
+  border-color: aqua;
+}
+
+.tacheResponsableClass{
+  color: chocolate;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.tacheAucunResponsableClass{
+  color: red;
+  font-weight: bold;
+  text-transform: capitalize;
 }
