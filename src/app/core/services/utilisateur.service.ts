@@ -17,11 +17,10 @@ export class UtilisateurService {
   ) { }
 
   register(model: UtilisateurEnregistrementModel): Observable<UtilisateurDetailsModel> {
-    console.log('coucou');
-    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'user/enregistrement', model);
+    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'utilisateur/enregistrement', model);
   }
 
   login(model: UtilisateurConnexionModel): Observable<UtilisateurDetailsModel> {
-    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'user/connexion', model);
+    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'utilisateur/connexion', model);
   }
 }

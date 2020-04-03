@@ -6,13 +6,13 @@
         <nb-card-body>
             <form [formGroup]="userform" (ngSubmit)="validate()">
                     <div class="carte">
-                    <input nbInput type="text" formControlName="email" placeholder="email *"
-                    [status]="userform.get('email') | inputColor">
-                        <div *ngIf="!form.email.valid">{{form.email | inputErrors}}</div>
+                    <input nbInput type="text" formControlName="mail" placeholder="mail *"
+                    [status]="userform.get('mail') | inputColor">
+                        <div *ngIf="!form.mail.valid">{{form.mail | inputErrors}}</div>
 
-                    <input nbInput type="password" formControlName="password" placeholder="Mot de passe *"
-                           [status]="userform.get('password') | inputColor">
-                        <div *ngIf="!form.password.valid">{{form.password | inputErrors}}</div>
+                    <input nbInput type="password" formControlName="motDePasse" placeholder="Mot de passe *"
+                           [status]="userform.get('motDePasse') | inputColor">
+                        <div *ngIf="!form.motDePasse.valid">{{form.motDePasse | inputErrors}}</div>
 
                         <input nbInput type="password" formControlName="checkPassword" placeholder="Verification mot de passe *"
                            [status]="userform.get('checkPassword') | inputColor">
