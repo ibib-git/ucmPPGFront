@@ -12,7 +12,7 @@ export class ModifierprojetService {
   constructor(private httpclient: HttpClient) { }
 
   public ajouterCollaborateur(model : UtilisateurAjouter) : Observable<UtilisateurAjouter>{
-    return this.httpclient.post<UtilisateurAjouter>(environment.projet + 'ajoutCollaborateur' , model)
+    return this.httpclient.post<UtilisateurAjouter>(environment + '/projet/ajoutCollaborateur' , model)
   }
 
 }

@@ -23,12 +23,11 @@ import {SharedModule} from './shared/shared.module';
 import { ConnexionComponent } from './features/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
-import { LoginComponent } from './features/login/login.component';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
-import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 
 
 @NgModule({

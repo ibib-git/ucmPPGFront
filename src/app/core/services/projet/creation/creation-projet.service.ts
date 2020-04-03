@@ -13,6 +13,6 @@ export class CreationProjetService {
 
    // Renvoie un projet avec une liste de String (EMAIL) et un utilisateur
    creationP(projet : ProjetCreationModel) : Observable<ProjetCreationModel> {
-    return this.Httpclient.post<ProjetCreationModel>(environment.creationProjet + '/enregistrementProjet', projet);
+    return this.Httpclient.post<ProjetCreationModel>(environment.apiEndPoint + '/projet/enregistrementProjet', projet);
   }
 }
