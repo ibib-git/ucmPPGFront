@@ -1,6 +1,7 @@
-import { Projet } from './Projet';
+import {ProjetModel} from './ProjetModel';
+
 
 export interface UtilisateurAjouter {
-    projet: Projet;
+    projet: ProjetModel;
     mail: string;
 }

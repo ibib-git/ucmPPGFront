@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModifierprojetService } from 'src/app/core/services/projet/gestion/modifierprojet.service';
-import { Projet } from 'src/app/core/models/Projet';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilisateurAjouter } from 'src/app/core/models/UtilisateurAjouter';
 import { NbToastrService } from '@nebular/theme';
+import {ProjetModel} from '../../../../core/models/ProjetModel';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -12,10 +12,10 @@ import { NbToastrService } from '@nebular/theme';
 })
 export class ProjetGestionComponent implements OnInit {
 
-  projet : Projet
+  projet : ProjetModel;
   nouveauMail : string;
   controleDeMail : FormGroup;
-  ajouterUtilisateur : UtilisateurAjouter
+  ajouterUtilisateur : UtilisateurAjouter;
 
   constructor(private serviceProjetGestion : ModifierprojetService, private toastservice : NbToastrService) { }
 

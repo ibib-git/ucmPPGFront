@@ -4,27 +4,42 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NbThemeModule,NbLayoutModule,NbCardModule,NbToastrModule,NbButtonModule,NbInputModule,NbSelectModule, NbListModule} from '@nebular/theme';
+import {
+    NbThemeModule,
+    NbLayoutModule,
+    NbCardModule,
+    NbToastrModule,
+    NbButtonModule,
+    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule,NbSelectModule, NbListModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { RegisterComponent } from './features/register/register.component';
+import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CoreModule} from './core/core.module';
 import {DefaultModuleModule} from './features/default-module/default-module.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
-import { LoginComponent } from './features/login/login.component';
+import { ConnexionComponent } from './features/connexion/connexion.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
-import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import { WorkflowComponent } from './features/workflow/workflow.component';
+import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
+import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
+import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    LoginComponent,
+    EnregistrementComponent,
+    ConnexionComponent,
     CreerUnProjetComponent,
-    ProjetGestionComponent,
+    WorkflowComponent,
+    EtapeWorkflowComponent,
+    TacheEtapeWorkflowComponent,
+      ProjetGestionComponent,
   ],
     imports: [
         BrowserModule,
@@ -44,6 +59,10 @@ import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion
         CoreModule,
         DefaultModuleModule,
         SharedModule,
+        NbProgressBarModule,
+        NbIconModule,
+        NbCheckboxModule,
+        NbToggleModule,
         NbSelectModule,
         NbListModule
     ],
@@ -53,7 +72,6 @@ import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion
       provide: HTTP_INTERCEPTORS,
       useClass: ErreursInterceptor,
       multi: true
-      Bob moranne
     }*/
   ],
 

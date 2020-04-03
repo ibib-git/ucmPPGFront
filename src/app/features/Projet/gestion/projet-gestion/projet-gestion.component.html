@@ -12,8 +12,8 @@
                     <nb-card-body>
                         <p>Liste de participant</p>
                         <div>
-                            <nb-list *ngFor='let participation of projet.participationAuProjet'>
-                                <nb-list-item>{{participation.utilisateurParticpant.Email}}</nb-list-item>
+                            <nb-list *ngFor='let participation of projet.utilisateurMembres'>
+                                <nb-list-item>{{participation.utilisateur.pseudo}}</nb-list-item>
                             </nb-list>
                         </div>
                         <div [formGroup]="controleDeMail">

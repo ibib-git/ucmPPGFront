@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreationProjetService } from 'src/app/core/services/projet/creation/creation-projet.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProjetCreation } from 'src/app/core/models/projetCreation';
+import { ProjetCreationModel } from 'src/app/core/models/ProjetCreationModel';
 
 @Component({
   selector: 'app-creer-un-projet',
@@ -13,7 +13,7 @@ export class CreerUnProjetComponent implements OnInit {
   
   projetCreer: FormGroup;
   valide : boolean;
-  projet : ProjetCreation;
+  projet : ProjetCreationModel;
 
 
   constructor(private serviceCreation : CreationProjetService, private route : Router) { }

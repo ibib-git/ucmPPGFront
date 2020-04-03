@@ -1,0 +1,133 @@
+<div class="optionClass">
+    <button nbButton>Gestion du projet</button>
+</div>
+
+<nb-card>
+    <nb-card-header  class="buttonsHead">
+        <button nbButton>Passer en vue déroulante</button>
+        <button nbButton>Voir le chemin critique</button>
+    </nb-card-header>
+    <nb-card-body class="bodyClass" >
+
+<!--        1 colonne-->
+        <!--<nb-card class="etapeClass">
+            <nb-card-header>
+                <div class="etapeHeader">
+                    <h5>Etape workflow</h5>
+                    <nb-toggle [checked]="true" (checkedChange)="toggle($event)" status="success">Progression</nb-toggle>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+&lt;!&ndash; region               1 tache&ndash;&gt;
+                <nb-card>
+                    <nb-card-header>
+                        <div class="tacheHeader">
+                            <h6>prestation de la tache</h6>
+                            <nb-icon *ngIf="!estDetail" (click)="clickDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+                            <nb-icon *ngIf="estDetail" (click)="clickDetails(false)" status="info" icon="arrow-circle-up-outline"></nb-icon>
+                        </div>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <p>prestataire</p>
+                        <p>priorité</p>
+                        <div *ngIf="estDetail">
+                            &lt;!&ndash;                1 tache&ndash;&gt;
+                            <nb-card>
+                                <nb-card-header>
+                                    <div class="tacheHeader">
+                                        <h6>prestation de la tache</h6>
+                                        <nb-icon *ngIf="!estDetail" (click)="clickDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+                                        <nb-icon *ngIf="estDetail" (click)="clickDetails(false)" status="info" icon="arrow-circle-up-outline"></nb-icon>
+                                    </div>
+                                </nb-card-header>
+                                <nb-card-body>
+                                    <p>prestataire</p>
+                                    <p>priorité</p>
+                                </nb-card-body>
+                                <nb-card-footer *ngIf="estProgression">
+                                    <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+                                </nb-card-footer>
+                            </nb-card>
+
+                        </div>
+                    </nb-card-body>
+                    <nb-card-footer *ngIf="estProgression">
+                        <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+                    </nb-card-footer>
+                </nb-card>
+
+                &lt;!&ndash;                1 tache&ndash;&gt;
+                <nb-card>
+                    <nb-card-header>
+                        <div class="tacheHeader">
+                            <h6>prestation de la tache</h6>
+                            <nb-icon *ngIf="!estDetail" (click)="clickDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+                            <nb-icon *ngIf="estDetail" (click)="clickDetails(false)" status="info" icon="arrow-circle-up-outline"></nb-icon>
+                        </div>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <p>prestataire</p>
+                        <p>priorité</p>
+                    </nb-card-body>
+                    <nb-card-footer *ngIf="estProgression">
+                        <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+                    </nb-card-footer>
+                </nb-card>
+
+                <nb-card>
+                    <nb-card-header>
+                        <h6>prestation de la tache</h6>
+                    </nb-card-header>
+                    <nb-card-body>
+                        <p>prestataire</p>
+                        <p>priorité</p>
+                    </nb-card-body>
+                    <nb-card-footer>
+                        <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+                    </nb-card-footer>
+                </nb-card>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton>Créer une tache</button>
+            </nb-card-footer>
+        </nb-card>
+
+        <nb-card class="etapeClass">
+            <nb-card-header>
+                <div class="etapeHeader">
+                    <h5>Etape workflow</h5>
+                    <nb-toggle [checked]="true" (checkedChange)="toggle($event)" status="success">Progression</nb-toggle>
+                </div>
+            </nb-card-header>
+            <nb-card-body>
+                <div *ngFor="let t of taches; ">
+                    &lt;!&ndash;                1 tache&ndash;&gt;
+                    <nb-card>
+                        <nb-card-header>
+                            <div class="tacheHeader">
+                                <h6>prestation de la tache</h6>
+                                <nb-icon *ngIf="!estDetail" (click)="clickDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+                                <nb-icon *ngIf="estDetail" (click)="clickDetails(false)" status="info" icon="arrow-circle-up-outline"></nb-icon>
+                            </div>
+                        </nb-card-header>
+                        <nb-card-body>
+                            <p>prestataire</p>
+                            <p>priorité</p>
+                        </nb-card-body>
+                        <nb-card-footer *ngIf="estProgression">
+                            <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+                        </nb-card-footer>
+                    </nb-card>
+                </div>
+            </nb-card-body>
+            <nb-card-footer>
+                <button nbButton>Créer</button>
+            </nb-card-footer>
+        </nb-card>-->
+        <div *ngIf="projet.etapeWorkflows!= null">
+            <div class="etape" >
+                <app-etape-workflow *ngFor="let e of projet.etapeWorkflows"  [etape]="e"></app-etape-workflow>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
