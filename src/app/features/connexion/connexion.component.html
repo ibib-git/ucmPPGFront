@@ -1,18 +1,18 @@
 <div style="display: flex;">
     <nb-card>
         <nb-card-header>
-            <h3>Enregistrement</h3>
+            <h3>Connexion</h3>
         </nb-card-header>
         <nb-card-body>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="carte">
-                    <input nbInput type="text" formControlName="email" placeholder="email"
-                           [status]="loginForm.get('email') | inputColor">
-                    <div *ngIf="!form.email.valid">{{form.email | inputErrors}}</div>
+                    <input nbInput type="text" formControlName="mail" placeholder="email"
+                           [status]="loginForm.get('mail') | inputColor">
+                    <div *ngIf="!form.mail.valid">{{form.mail | inputErrors}}</div>
 
-                    <input nbInput type="password" formControlName="password" placeholder="Mot de passe"
-                           [status]="loginForm.get('password') | inputColor">
-                    <div *ngIf="!form.password.valid">{{form.password | inputErrors}}</div>
+                    <input nbInput type="password" formControlName="motDePasse" placeholder="Mot de passe"
+                           [status]="loginForm.get('motDePasse') | inputColor">
+                    <div *ngIf="!form.motDePasse.valid">{{form.motDePasse | inputErrors}}</div>
 
                 </div>
 

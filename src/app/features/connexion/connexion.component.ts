@@ -25,12 +25,12 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl(null, Validators.compose([
+      mail: new FormControl(null, Validators.compose([
         Validators.email,
         Validators.required,
         Validators.maxLength(150),
       ])),
-      password: new FormControl(null, Validators.compose([
+      motDePasse: new FormControl(null, Validators.compose([
         Validators.pattern('^(?=.*[\\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\\w!@#$%^&*]{8,}$'),
         Validators.required,
         Validators.minLength(8),
