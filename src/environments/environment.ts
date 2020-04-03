@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiEndPoint: 'http://localhost:8085/',
-  creationProjet: 'http://localhost:8085/'
+  projet: 'http://localhost:8085/projet'
 };
 
 /*
