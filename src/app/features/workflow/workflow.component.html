@@ -126,7 +126,7 @@
         </nb-card>-->
         <div *ngIf="projet.etapeWorkflows!= null">
             <div class="etape" >
-                <app-etape-workflow *ngFor="let e of projet.etapeWorkflows"  [etape]="e"></app-etape-workflow>
+                <app-etape-workflow *ngFor="let e of projet.etapeWorkflows | ordreEtape"  [etape]="e"></app-etape-workflow>
             </div>
         </div>
     </nb-card-body>
