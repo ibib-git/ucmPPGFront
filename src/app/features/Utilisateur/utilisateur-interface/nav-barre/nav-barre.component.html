@@ -1,0 +1,7 @@
+<nb-list>
+    <nb-list-item *ngFor="let a of participations">
+        {{a.role.nom}}
+        <app-projet-nv [projet]="a.projet"></app-projet-nv>
+        <button>lien</button>
+    </nb-list-item>
+</nb-list>

@@ -25,8 +25,7 @@ export class UtilisateurService {
     return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'utilisateur/connexion', model);
   }
 
-  recuperation(id: bigint) : Observable<UtilisateurModel>{
-    console.log("Test")
-    return this.httpClient.get<UtilisateurModel>(environment.apiEndPoint + 'utilisateur/'+ id);
+  getUtilisateur(id: bigint) : Observable<UtilisateurModel>{
+    return this.httpClient.get<UtilisateurModel>(environment.utilisateur + '/' + id);
   }
 }

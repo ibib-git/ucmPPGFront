@@ -1,3 +1,9 @@
-<nb-card>
-    <nb-card-header> Utilisateur</nb-card-header>
-</nb-card>
+<nb-layout>
+    <nb-sidebar>
+        <nb-sidebar-header><h5>Projet et Role</h5></nb-sidebar-header>
+        <app-nav-barre [participations]="utilisateur.participations"></app-nav-barre>
+    </nb-sidebar>
+    <nb-layout-column>
+        <button (click)="valid()">Appuyer sur Moi </button>
+    </nb-layout-column>
+</nb-layout>

@@ -6,7 +6,6 @@ import {UtilisateurService} from '../../core/services/utilisateur.service';
 import {UtilisateurEnregistrementModel} from '../../core/models/UtilisateurEnregistrementModel';
 import {CustomValidators} from '../../shared/_validators/custom-validators';
 import {ErreurModel} from '../../core/models/ErreurModel';
-import {log} from 'util';
 
 @Component({
   selector: 'app-register',

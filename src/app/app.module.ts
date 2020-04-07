@@ -29,7 +29,8 @@ import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
 import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
-import { ProjetUtilisateurComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/projet-utilisateur/projet-utilisateur.component';
+import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
+import { ProjetNvComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/projet-nv/projet-nv.component';
 
 
 @NgModule({
@@ -41,9 +42,10 @@ import { ProjetUtilisateurComponent } from './features/Utilisateur/utilisateur-i
     WorkflowComponent,
     EtapeWorkflowComponent,
     TacheEtapeWorkflowComponent,
-      ProjetGestionComponent,
-      UtilisateurInterfaceComponent,
-      ProjetUtilisateurComponent,
+    ProjetGestionComponent,
+    UtilisateurInterfaceComponent,
+    NavBarreComponent,
+    ProjetNvComponent,
   ],
     imports: [
         BrowserModule,
@@ -69,7 +71,7 @@ import { ProjetUtilisateurComponent } from './features/Utilisateur/utilisateur-i
         NbToggleModule,
         NbSelectModule,
         NbListModule,
-        NbSidebarModule
+        NbSidebarModule.forRoot(),
     ],
 
   providers: [

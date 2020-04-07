@@ -4,7 +4,6 @@ import {UtilisateurConnexionModel} from '../../core/models/UtilisateurConnexionM
 import {UtilisateurService} from '../../core/services/utilisateur.service';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
-import {UtilisateurDetailsModel} from '../../core/models/UtilisateurDetailsModel';
 
 @Component({
   selector: 'app-login',

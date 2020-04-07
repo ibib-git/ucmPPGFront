@@ -20,7 +20,6 @@ export class WorkflowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
     this.projet = {} as ProjetModel;
     this.getProjet(1);
   }
