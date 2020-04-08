@@ -4,6 +4,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilisateurAjouter } from 'src/app/core/models/UtilisateurAjouter';
 import { NbToastrService } from '@nebular/theme';
 import {ProjetModel} from '../../../../core/models/ProjetModel';
+import { RecuperationProjetService } from 'src/app/core/services/projet/récuperation/recuperation-projet.service';
+import { UtilisateurSupprimer } from 'src/app/core/models/UtilisateurSupprimer';
+import { UtilisateurDetailsModel } from 'src/app/core/models/UtilisateurDetailsModel';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -16,8 +19,13 @@ export class ProjetGestionComponent implements OnInit {
   nouveauMail : string;
   controleDeMail : FormGroup;
   ajouterUtilisateur : UtilisateurAjouter;
+  supprimerUtilisateur: UtilisateurSupprimer;
 
-  constructor(private serviceProjetGestion : ModifierprojetService, private toastservice : NbToastrService) { }
+  constructor(
+      private serviceProjetGestion : ModifierprojetService,
+      private toastservice : NbToastrService,
+      private serviceRecuperation : RecuperationProjetService,
+      private toast : NbToastrService) { }
 
   ngOnInit(): void {
     this.controleDeMail = new FormGroup({
@@ -26,9 +34,23 @@ export class ProjetGestionComponent implements OnInit {
         Validators.email,
       ]))
     });
-    this.nouveauMail = null;
-    this.ajouterUtilisateur = null;
-    this.projet = null;
+    this.getProjet(1);
+    this.supprimerUtilisateur.idProjet = this.projet.id;
+  }
+
+  supprimer(utilisateur : UtilisateurDetailsModel){
+    console.log(this.supprimerUtilisateur.idProjet)
+    this.supprimerUtilisateur.mail = utilisateur.mail;
+  }
+
+  getProjet(id : any){
+    this.serviceRecuperation.getProject(id).subscribe(
+      (model) => {
+        this.projet = model;
+      },
+      () =>{
+        this.toast.danger('Erreur lors de récupération', 'Projet', {[status]: 'danger'});
+      });
   }
 
   ajouterDesCollaborateur(){
@@ -37,7 +59,6 @@ export class ProjetGestionComponent implements OnInit {
     this.serviceProjetGestion.ajouterCollaborateur(this.ajouterUtilisateur).subscribe(
       (model) => {
         this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});
-        console.log(model);
       },
       () => {
         this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
