@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ParticipationDetailModel } from 'src/app/core/models/ParticipationDetailModel';
 import { ProjetDetailModel } from 'src/app/core/models/ProjetDetailModel';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,6 +19,6 @@ export class NavBarreComponent implements OnInit {
   }
 
   vue(projet: ProjetDetailModel){
-    this.route.navigateByUrl(environment.apiEndPoint + "/dashboard/Workflow/" + projet.id);
+    this.route.navigateByUrl('/dashboard/Workflow/' + projet.id);
   }
 }
