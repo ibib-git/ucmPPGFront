@@ -1,4 +1,5 @@
 export interface UtilisateurDetailsModel {
+    
     mail: string;
     nom: string;
     prenom: string;

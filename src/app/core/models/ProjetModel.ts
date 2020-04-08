@@ -1,13 +1,14 @@
-import { UtilisateurModel } from './UtilisateurModel';
-import { ParticipationModel } from './ParticipationModel';
 import { EtapeWorkflowModel } from './EtapeWorkflowModel';
 import {MembreProjetModel} from './MembreProjetModel';
 import {UtilisateurDetailsModel} from './UtilisateurDetailsModel';
+import { RoleModel } from './RoleModel';
 
 export interface ProjetModel {
+    
     nom: string;
     description: string;
-    utilisateurCreateur: UtilisateurDetailsModel;
+    createurUtilisateur: UtilisateurDetailsModel;
     utilisateurMembres: MembreProjetModel[];
     etapeWorkflows: EtapeWorkflowModel[];
+    roles: RoleModel[];
 }
