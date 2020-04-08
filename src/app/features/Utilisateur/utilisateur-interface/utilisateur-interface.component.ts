@@ -27,7 +27,6 @@ export class UtilisateurInterfaceComponent implements OnInit {
   getUtilisateur(id: any){
     this.utilisateurService.getUtilisateur(id).subscribe(
       (model) => {
-        console.log(model)
         this.utilisateur = model;
       },  
       () => {
