@@ -30,8 +30,6 @@ import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/
 import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
-import { ProjetNvComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/projet-nv/projet-nv.component';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +43,6 @@ import { ProjetNvComponent } from './features/Utilisateur/utilisateur-interface/
     ProjetGestionComponent,
     UtilisateurInterfaceComponent,
     NavBarreComponent,
-    ProjetNvComponent,
   ],
     imports: [
         BrowserModule,
@@ -72,6 +69,7 @@ import { ProjetNvComponent } from './features/Utilisateur/utilisateur-interface/
         NbSelectModule,
         NbListModule,
         NbSidebarModule.forRoot(),
+        RouterModule,
     ],
 
   providers: [

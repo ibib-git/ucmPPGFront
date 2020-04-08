@@ -10,14 +10,14 @@ import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateu
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent},
-  { path: 'register', component: EnregistrementComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'register', component: EnregistrementComponent},
   {path: 'login', component: ConnexionComponent},
   {path: 'projet/creation', component: CreerUnProjetComponent},
-  {path: 'dashboard/Workflow', component: WorkflowComponent},
+  {path: 'dashboard/Workflow/:id', component: WorkflowComponent},
   {path: 'projet/gestion', component: ProjetGestionComponent},
-  {path: 'utilisateur',component: UtilisateurInterfaceComponent},
+  {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
 ];
 
 @NgModule({

@@ -7,8 +7,8 @@ export interface ProjetModel {
     
     nom: string;
     description: string;
-    utilisateurCreateur: UtilisateurDetailsModel;
+    createurUtilisateur: UtilisateurDetailsModel;
     utilisateurMembres: MembreProjetModel[];
     etapeWorkflows: EtapeWorkflowModel[];
-    role: RoleModel[];
+    roles: RoleModel[];
 }
