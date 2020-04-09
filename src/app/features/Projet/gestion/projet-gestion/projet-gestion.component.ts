@@ -3,10 +3,9 @@ import { ModifierprojetService } from 'src/app/core/services/projet/gestion/modi
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UtilisateurAjouter } from 'src/app/core/models/UtilisateurAjouter';
 import { NbToastrService } from '@nebular/theme';
-import {ProjetModel} from '../../../../core/models/ProjetModel';
+import { ProjetModel } from '../../../../core/models/ProjetModel';
 import { RecuperationProjetService } from 'src/app/core/services/projet/récuperation/recuperation-projet.service';
 import { UtilisateurSupprimer } from 'src/app/core/models/UtilisateurSupprimer';
-import { UtilisateurDetailsModel } from 'src/app/core/models/UtilisateurDetailsModel';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -24,8 +23,7 @@ export class ProjetGestionComponent implements OnInit {
   constructor(
       private serviceProjetGestion : ModifierprojetService,
       private toastservice : NbToastrService,
-      private serviceRecuperation : RecuperationProjetService,
-      private toast : NbToastrService) { }
+      private serviceRecuperation : RecuperationProjetService) { }
 
   ngOnInit(): void {
     this.controleDeMail = new FormGroup({
@@ -35,12 +33,21 @@ export class ProjetGestionComponent implements OnInit {
       ]))
     });
     this.getProjet(1);
-    this.supprimerUtilisateur.idProjet = this.projet.id;
+    this.supprimerUtilisateur = {} as UtilisateurSupprimer;
+    this.ajouterUtilisateur = {} as UtilisateurAjouter;
   }
 
-  supprimer(utilisateur : UtilisateurDetailsModel){
-    console.log(this.supprimerUtilisateur.idProjet)
-    this.supprimerUtilisateur.mail = utilisateur.mail;
+  supprimer(mail: string){
+    this.supprimerUtilisateur.idProjet = this.projet.id;
+    this.supprimerUtilisateur.mail = mail;
+    this.serviceProjetGestion.supprimerCollaborateur(this.supprimerUtilisateur).subscribe(
+      (model) => {
+        this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});        },
+      () => {
+        this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
+      }
+    );
+    this.refresh();
   }
 
   getProjet(id : any){
@@ -49,7 +56,7 @@ export class ProjetGestionComponent implements OnInit {
         this.projet = model;
       },
       () =>{
-        this.toast.danger('Erreur lors de récupération', 'Projet', {[status]: 'danger'});
+        this.toastservice.danger('Erreur lors de récupération', 'Projet', {[status]: 'danger'});
       });
   }
 
@@ -63,10 +70,11 @@ export class ProjetGestionComponent implements OnInit {
       () => {
         this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
       },
-      () => {},
-      
+      () => {}, 
     )
-
   }
+    refresh(){
+      // Encore à terminer;
+    }
 
 }

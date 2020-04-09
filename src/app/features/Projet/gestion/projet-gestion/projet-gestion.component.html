@@ -15,7 +15,7 @@
                             <nb-list *ngFor='let participation of projet.utilisateurMembres'>
                                 <nb-list-item>
                                     {{participation.utilisateur.pseudo}}
-                                    <button nbButton (click)="supprimer(participation.utilisateur)">Supprimer</button>
+                                    <input nbButton type="submit" value="Supprimer" (click)="supprimer(participation.utilisateur.mail)">
                                 </nb-list-item>
                             </nb-list>
                         </div>
