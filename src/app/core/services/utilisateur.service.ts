@@ -12,6 +12,7 @@ import { UtilisateurModel } from '../models/UtilisateurModel';
   providedIn: 'root'
 })
 export class UtilisateurService {
+  [x: string]: any;
 
   constructor(
       private httpClient: HttpClient
@@ -26,6 +27,6 @@ export class UtilisateurService {
   }
 
   getUtilisateur(id: bigint) : Observable<UtilisateurModel>{
-    return this.httpClient.get<UtilisateurModel>(environment.utilisateur + '/' + id);
+    return this.httpClient.get<UtilisateurModel>(environment.apiEndPoint + '/utilisateur/' + id);
   }
 }

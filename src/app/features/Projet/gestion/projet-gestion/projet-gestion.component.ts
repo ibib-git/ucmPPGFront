@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModifierprojetService } from 'src/app/core/services/projet/gestion/modifierprojet.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UtilisateurAjouter } from 'src/app/core/models/UtilisateurAjouter';
+import { UtilisateurAjouterModel } from 'src/app/core/models/UtilisateurAjouterModel';
 import { NbToastrService } from '@nebular/theme';
 import { ProjetModel } from '../../../../core/models/ProjetModel';
 import { RecuperationProjetService } from 'src/app/core/services/projet/récuperation/recuperation-projet.service';
-import { UtilisateurSupprimer } from 'src/app/core/models/UtilisateurSupprimer';
+import { UtilisateurSupprimerModel } from 'src/app/core/models/UtilisateurSupprimerModel';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -17,8 +17,8 @@ export class ProjetGestionComponent implements OnInit {
   projet : ProjetModel;
   nouveauMail : string;
   controleDeMail : FormGroup;
-  ajouterUtilisateur : UtilisateurAjouter;
-  supprimerUtilisateur: UtilisateurSupprimer;
+  ajouterUtilisateur : UtilisateurAjouterModel;
+  supprimerUtilisateur: UtilisateurSupprimerModel;
 
   constructor(
       private serviceProjetGestion : ModifierprojetService,
@@ -33,8 +33,8 @@ export class ProjetGestionComponent implements OnInit {
       ]))
     });
     this.getProjet(1);
-    this.supprimerUtilisateur = {} as UtilisateurSupprimer;
-    this.ajouterUtilisateur = {} as UtilisateurAjouter;
+    this.supprimerUtilisateur = {} as UtilisateurSupprimerModel;
+    this.ajouterUtilisateur = {} as UtilisateurAjouterModel;
   }
 
   supprimer(mail: string){
