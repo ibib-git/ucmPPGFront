@@ -4,7 +4,7 @@ import {UtilisateurDetailsModel} from './UtilisateurDetailsModel';
 import { RoleModel } from './RoleModel';
 
 export interface ProjetModel {
-    
+    id: bigint;
     nom: string;
     description: string;
     createurUtilisateur: UtilisateurDetailsModel;
