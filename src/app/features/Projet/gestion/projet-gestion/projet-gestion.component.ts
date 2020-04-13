@@ -37,7 +37,6 @@ export class ProjetGestionComponent implements OnInit {
     this.serviceProjetGestion.ajouterCollaborateur(this.ajouterUtilisateur).subscribe(
       (model) => {
         this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});
-        console.log(model);
       },
       () => {
         this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});

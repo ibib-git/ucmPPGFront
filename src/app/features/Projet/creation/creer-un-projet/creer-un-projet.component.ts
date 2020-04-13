@@ -36,7 +36,6 @@ export class CreerUnProjetComponent implements OnInit {
     this.serviceCreation.creationP(this.projet).subscribe(
       () => {
         this.route.navigateByUrl('/home');
-        console.log(this.projet);
       },
       () => {
         this.route.navigateByUrl('/projet/creation');

@@ -28,6 +28,7 @@ import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
 import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/p
         NbCheckboxModule,
         NbToggleModule,
         NbSelectModule,
-        NbListModule
+        NbListModule,
+        DragDropModule
     ],
 
   providers: [

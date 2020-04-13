@@ -4,9 +4,11 @@
         <div class="etapeHeader">
             <h5>{{etape.nom}}</h5>
             <nb-toggle [checked]="true" (checkedChange)="toggle($event)" status="success">Progression</nb-toggle>
-            <nb-icon *ngIf="!allDetails" (click)="clickAllDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
-            <nb-icon *ngIf="allDetails" (click)="clickAllDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
-            <label>Details</label>
+            <div>
+                <nb-icon *ngIf="!allDetails" (click)="clickAllDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+                <nb-icon *ngIf="allDetails" (click)="clickAllDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
+                <label> Details</label>
+            </div>
         </div>
     </nb-card-header>
     <nb-card-body>
@@ -16,5 +18,7 @@
     </nb-card-body>
     <nb-card-footer>
         <button nbButton>Créer une tache</button>
+<!--        TODO: Damien a supprimer-->
+        <button (click)="dragOrdre(etape)" nbButton>Changer Ordre</button>
     </nb-card-footer>
 </nb-card>
