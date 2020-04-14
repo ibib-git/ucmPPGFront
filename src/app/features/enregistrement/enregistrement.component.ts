@@ -6,7 +6,6 @@ import {UtilisateurService} from '../../core/services/utilisateur.service';
 import {UtilisateurEnregistrementModel} from '../../core/models/UtilisateurEnregistrementModel';
 import {CustomValidators} from '../../shared/_validators/custom-validators';
 import {ErreurModel} from '../../core/models/ErreurModel';
-import {log} from 'util';
 
 @Component({
   selector: 'app-register',
@@ -79,7 +78,7 @@ export class EnregistrementComponent implements OnInit {
     this.userform.removeControl('checkPassword');
     this.usermodel = this.userform.value;
 
-    this.userServ.register(this.usermodel).subscribe(
+    this.userServ.enregistrement(this.usermodel).subscribe(
         (model) => {
           this.toastrServ.success('Bienvenu chez PPG corporation ', 'Enregistrement', {[status]: 'success'});
           this.routServ.navigateByUrl('/home');

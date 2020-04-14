@@ -1,7 +1,7 @@
-import {UtilisateurModel} from './UtilisateurModel';
 import {RoleModel} from './RoleModel';
+import { UtilisateurDetailsModel } from './UtilisateurDetailsModel';
 
 export interface MembreProjetModel {
-    utilisateur: UtilisateurModel;
+    utilisateur: UtilisateurDetailsModel;
     role: RoleModel;
 }

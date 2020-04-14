@@ -10,7 +10,7 @@ import {
     NbCardModule,
     NbToastrModule,
     NbButtonModule,
-    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule,NbSelectModule, NbListModule
+    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule,NbSelectModule, NbListModule, NbSidebarModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
@@ -28,7 +28,8 @@ import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
 import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
-
+import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
+import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/p
     WorkflowComponent,
     EtapeWorkflowComponent,
     TacheEtapeWorkflowComponent,
-      ProjetGestionComponent,
+    ProjetGestionComponent,
+    UtilisateurInterfaceComponent,
+    NavBarreComponent,
   ],
     imports: [
         BrowserModule,
@@ -64,7 +67,9 @@ import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/p
         NbCheckboxModule,
         NbToggleModule,
         NbSelectModule,
-        NbListModule
+        NbListModule,
+        NbSidebarModule.forRoot(),
+        RouterModule,
     ],
 
   providers: [

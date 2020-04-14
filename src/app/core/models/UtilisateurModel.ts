@@ -1,12 +1,15 @@
-import {ParticipationModel} from './ParticipationModel';
+import { ParticipationDetailModel } from './ParticipationDetailModel';
 
 export interface UtilisateurModel {
-    pseudo: string;
+
+    id: bigint;
+    motDePasse: string;
+    mail: string;
     nom: string;
     prenom: string;
-    urlPhoto: string;
-    mail: string;
-    infoSuppl: string;
+    pseudo: string;
     telephone: string;
-    participations: ParticipationModel[];
+    infoSuppl: string;
+    urlPhoto: string;
+    participations : ParticipationDetailModel[];
 }

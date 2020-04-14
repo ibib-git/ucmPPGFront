@@ -13,7 +13,10 @@
                         <p>Liste de participant</p>
                         <div>
                             <nb-list *ngFor='let participation of projet.utilisateurMembres'>
-                                <nb-list-item>{{participation.utilisateur.pseudo}}</nb-list-item>
+                                <nb-list-item>
+                                    {{participation.utilisateur.pseudo}}
+                                    <input nbButton type="submit" value="Supprimer" (click)="supprimer(participation.utilisateur.mail)">
+                                </nb-list-item>
                             </nb-list>
                         </div>
                         <div [formGroup]="controleDeMail">
@@ -24,8 +27,20 @@
                 </nb-card>
             </div>
             <div>
-                Ajouter des Etapes Workflows
+               <nb-card>
+                   <nb-card-header>
+                    Ajouter des Etapes Workflows
+                   </nb-card-header>
+                   <nb-card-body>
+                       <nb-list>
+                           <nb-list-item *ngFor="let worflow of projet.etapeWorkflows">
+                                {{worflow.nom}}
+                           </nb-list-item>
+                       </nb-list>
+                   </nb-card-body>
+               </nb-card>
             </div>
+            
         </nb-card-body>
     </nb-card>
 </div>  

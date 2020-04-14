@@ -1,0 +1,9 @@
+<nb-list>
+    <nb-list-item *ngFor="let a of participations">
+        Projet : {{a.projet.nom}}
+        <br>
+        Role : {{a.role.nom}}
+        <br>
+        <button (click)="vue(a.projet)">Lien</button>
+    </nb-list-item>
+</nb-list>
