@@ -10,7 +10,7 @@ import {
     NbCardModule,
     NbToastrModule,
     NbButtonModule,
-    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule, NbSelectModule, NbListModule
+    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule, NbSelectModule, NbListModule, NbSidebarModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
