@@ -10,7 +10,7 @@ import {
     NbCardModule,
     NbToastrModule,
     NbButtonModule,
-    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule,NbSelectModule, NbListModule, NbSidebarModule
+    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule, NbSelectModule, NbListModule, NbSidebarModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
@@ -28,6 +28,8 @@ import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
 import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
 
@@ -70,6 +72,8 @@ import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/
         NbListModule,
         NbSidebarModule.forRoot(),
         RouterModule,
+        NbListModule,
+        DragDropModule
     ],
 
   providers: [

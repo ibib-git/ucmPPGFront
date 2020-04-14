@@ -4,9 +4,11 @@
         <div class="etapeHeader">
             <h5>{{etape.nom}}</h5>
             <nb-toggle [checked]="true" (checkedChange)="toggle($event)" status="success">Progression</nb-toggle>
-            <nb-icon *ngIf="!allDetails" (click)="clickAllDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
-            <nb-icon *ngIf="allDetails" (click)="clickAllDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
-            <label>Details</label>
+            <div>
+                <nb-icon *ngIf="!allDetails" (click)="clickAllDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
+                <nb-icon *ngIf="allDetails" (click)="clickAllDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
+                <label> Details</label>
+            </div>
         </div>
     </nb-card-header>
     <nb-card-body>
@@ -14,7 +16,15 @@
             <app-tache-etape-workflow *ngFor="let t of etape.taches" [tache]="t" [estProgression]="estProgression" [estDetail]="allDetails"></app-tache-etape-workflow>
         </div>
     </nb-card-body>
-    <nb-card-footer>
-        <button nbButton>Créer une tache</button>
+    <nb-card-footer >
+        <div class="etapeFooter">
+            <button nbButton>Créer une tache</button>
+    <!--        TODO: Damien a supprimer au changement drag-and-drop-->
+            <div>
+                <button nbButton (click)="dragOrdre(etape,-1)"><nb-icon icon="minus-square-outline"></nb-icon></button>
+                <label>Changer Ordre</label>
+                <button nbButton (click)="dragOrdre(etape,1)"><nb-icon icon="plus-square-outline"></nb-icon></button>
+            </div>
+        </div>
     </nb-card-footer>
 </nb-card>
