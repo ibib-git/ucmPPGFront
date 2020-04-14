@@ -30,6 +30,8 @@ import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/
 import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
+import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
+import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     WorkflowComponent,
     EtapeWorkflowComponent,
     TacheEtapeWorkflowComponent,
-      ProjetGestionComponent,
+    ProjetGestionComponent,
+    UtilisateurInterfaceComponent,
+    NavBarreComponent,
   ],
     imports: [
         BrowserModule,
@@ -65,6 +69,9 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
         NbCheckboxModule,
         NbToggleModule,
         NbSelectModule,
+        NbListModule,
+        NbSidebarModule.forRoot(),
+        RouterModule,
         NbListModule,
         DragDropModule
     ],

@@ -6,19 +6,18 @@ import {ConnexionComponent} from './features/connexion/connexion.component';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import {WorkflowComponent} from './features/workflow/workflow.component';
 import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent},
-  { path: 'register', component: EnregistrementComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: 'register', component: EnregistrementComponent},
   {path: 'login', component: ConnexionComponent},
   {path: 'projet/creation', component: CreerUnProjetComponent},
-  {path: 'dashboard/Workflow', component: WorkflowComponent},
-  {path: 'projet/gestion', component: ProjetGestionComponent}
-
-
-
+  {path: 'dashboard/Workflow/:id', component: WorkflowComponent},
+  {path: 'projet/gestion', component: ProjetGestionComponent},
+  {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
 ];
 
 @NgModule({

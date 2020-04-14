@@ -11,4 +11,5 @@ export interface EtapeWorkflowModel {
     roleAffectables: RoleModel[];
     contrainte: ConstrainteDAffectation;
     taches: TacheModel[];
+
 }
