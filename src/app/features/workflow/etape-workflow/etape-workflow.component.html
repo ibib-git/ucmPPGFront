@@ -16,9 +16,15 @@
             <app-tache-etape-workflow *ngFor="let t of etape.taches" [tache]="t" [estProgression]="estProgression" [estDetail]="allDetails"></app-tache-etape-workflow>
         </div>
     </nb-card-body>
-    <nb-card-footer>
-        <button nbButton>Créer une tache</button>
-<!--        TODO: Damien a supprimer-->
-        <button (click)="dragOrdre(etape)" nbButton>Changer Ordre</button>
+    <nb-card-footer >
+        <div class="etapeFooter">
+            <button nbButton>Créer une tache</button>
+    <!--        TODO: Damien a supprimer au changement drag-and-drop-->
+            <div>
+                <button nbButton (click)="dragOrdre(etape,-1)"><nb-icon icon="minus-square-outline"></nb-icon></button>
+                <label>Changer Ordre</label>
+                <button nbButton (click)="dragOrdre(etape,1)"><nb-icon icon="plus-square-outline"></nb-icon></button>
+            </div>
+        </div>
     </nb-card-footer>
 </nb-card>

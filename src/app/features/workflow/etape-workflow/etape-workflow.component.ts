@@ -43,9 +43,8 @@ export class EtapeWorkflowComponent implements OnInit {
     this.allDetails = clicked;
   }
 
-  dragOrdre(etapeModel: EtapeWorkflowModel) {
-    console.log(this.ordreEtape);
-    console.log(etapeModel);
+  dragOrdre(etapeModel: EtapeWorkflowModel, i: number) {
+    this.ordreEtape.nvOrdre = this.etape.numOrdre + i;
     this.etapeServ.changerOrdreEtape(etapeModel.id, this.ordreEtape).subscribe(
         (model) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
