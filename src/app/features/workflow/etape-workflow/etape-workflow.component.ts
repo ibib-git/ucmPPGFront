@@ -5,6 +5,7 @@ import {WorkflowService} from '../../../core/services/workflow/workflow.service'
 import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
 import {Router} from '@angular/router';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
+import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -13,11 +14,16 @@ import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll
 })
 export class EtapeWorkflowComponent implements OnInit {
   @Input() etape: EtapeWorkflowModel;
+  @Input() membreProjet: MembreProjetModel[];
+  @Input() idEtapeSuivante: bigint;
+  @Input() idDerniereEtape: bigint;
 
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
   idUtilisateur: bigint;
+
+
   constructor(
       private toastrServ: NbToastrService,
       private etapeServ: WorkflowService,
@@ -32,7 +38,8 @@ export class EtapeWorkflowComponent implements OnInit {
     // @ts-ignore
     this.idUtilisateur = 1;
     this.ordreEtape.idUtilisateur = this.idUtilisateur;
-    this.ordreEtape.nvOrdre = 3;
+    this.ordreEtape.nvOrdre = 1;
+
   }
 
   toggle(checked: boolean) {

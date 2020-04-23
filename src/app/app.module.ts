@@ -10,7 +10,15 @@ import {
     NbCardModule,
     NbToastrModule,
     NbButtonModule,
-    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule, NbSelectModule, NbListModule, NbSidebarModule
+    NbInputModule,
+    NbProgressBarModule,
+    NbIconModule,
+    NbCheckboxModule,
+    NbToggleModule,
+    NbSelectModule,
+    NbListModule,
+    NbSidebarModule,
+    NbDialogModule, NbUserModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
@@ -32,6 +40,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
+import {config} from 'rxjs';
+import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
 
 @NgModule({
   declarations: [
@@ -73,7 +83,9 @@ import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/
         NbSidebarModule.forRoot(),
         RouterModule,
         NbListModule,
-        DragDropModule
+        DragDropModule,
+        NbDialogModule.forRoot(),
+        NbUserModule
     ],
 
   providers: [
@@ -82,6 +94,7 @@ import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/
       useClass: ErreursInterceptor,
       multi: true
     }*/
+   OrdreEtapePipe
   ],
 
   bootstrap: [AppComponent]
