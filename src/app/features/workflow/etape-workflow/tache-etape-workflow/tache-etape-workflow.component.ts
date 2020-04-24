@@ -1,10 +1,11 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {TacheModel} from '../../../../core/models/TacheModel';
 import {NbDialogConfig, NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
 import {RoleModel} from '../../../../core/models/RoleModel';
 import {MembreProjetModel} from '../../../../core/models/MembreProjetModel';
 import {ValiderTacheService} from '../../../../core/services/tache/valider-tache.service';
 import {ErreurModel} from '../../../../core/models/ErreurModel';
+import {ProjetModel} from '../../../../core/models/ProjetModel';
 
 @Component({
   selector: 'app-tache-etape-workflow',
@@ -19,6 +20,8 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
 
+  @Output() outputProjet: EventEmitter<ProjetModel>;
+
   membreAssigne: MembreProjetModel;
   errosModel: ErreurModel;
   idUtilisateurConnecte: bigint;
@@ -28,7 +31,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       private dialogueService: NbDialogService,
       private toastrServ: NbToastrService,
       private tacheService: ValiderTacheService,
-  ) { }
+  ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
     this.membreAssigne = this.membresProjet.find(m => m.utilisateur.pseudo === this.tache.utilisateurAffecte.pseudo);
@@ -57,21 +60,24 @@ export class TacheEtapeWorkflowComponent implements OnInit {
           hasScroll: true});
   }
 
-  valider ()
-  {
+  valider() {
     this.tacheService.valider(this.tache.id, this.idUtilisateurConnecte).subscribe(
         (projetReturn) => {
           this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
+          this.updateProjet(projetReturn);
 
         },
         (errorComplete) => {
           this.toastrServ.danger('Impossible de valider la tache', this.tache.nom, {[status]: 'danger'});
           this.errosModel = errorComplete.error;
-          console.log(this.errosModel);
           this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
 
         }
     );
+  }
+
+  updateProjet(projet: ProjetModel) {
+    this.outputProjet.emit(projet);
   }
 
 }

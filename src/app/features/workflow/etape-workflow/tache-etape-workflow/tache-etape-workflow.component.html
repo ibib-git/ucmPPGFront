@@ -16,7 +16,7 @@
         </p>
         <p>{{tache.estimationTemps}} ({{tache.uniteDeTemps}})</p>
         <div *ngIf="estDetail">
-            <app-tache-etape-workflow *ngFor="let te of tache.tacheEnfants" [tache]="te" [estProgression]="estProgression" [estDetail]="estDetail" [membresProjet]="membresProjet"></app-tache-etape-workflow>
+            <app-tache-etape-workflow *ngFor="let te of tache.tacheEnfants" [tache]="te" [estProgression]="estProgression" [estDetail]="estDetail" [membresProjet]="membresProjet" (outputProjet)="updateProjet($event)"></app-tache-etape-workflow>
         </div>
         <button nbButton (click)="showDetails(dialog)">Detail</button>
     </nb-card-body>
@@ -25,10 +25,16 @@
     </nb-card-footer>
 </nb-card>
 
-<ng-template #dialog>
-    <nb-card accent="success" size="giant">
-        <nb-card-header>
-            <h4>{{tache.id}} : {{tache.nom}}</h4>
+<!--modal details tache-->
+<ng-template #dialog let-ref="dialogRef">
+    <nb-card style="display: flex" accent="success" size="giant">
+        <nb-card-header class="headerModal">
+            <div class="exitClass">
+                <nb-icon (click)="ref.close()"  icon="close-circle-outline"></nb-icon>
+            </div>
+            <div class="titleModal">
+                <h4>{{tache.id}} : {{tache.nom}}</h4>
+            </div>
         </nb-card-header>
         <nb-card-body>
             <table>
@@ -49,7 +55,7 @@
                 </td>
                 <td>
                     <div>
-                        <button nbButton>Modidier la tache</button>
+                        <button disabled nbButton>Modidier la tache</button>
                         <div>
                             <nb-card accent="warning" size="tiny">
                                 <nb-card-header>
@@ -81,9 +87,11 @@
                 </td>
             </table>
         </nb-card-body>
-        <nb-card-footer>
-            <button nbButton [disabled]="estValidee" (click)="valider()">Valider</button>
-            <button nbButton>Supprimer</button>
+        <nb-card-footer class="footerModal" >
+            <div class="footerButtons">
+                <button nbButton [disabled]="estValidee" (click)="valider()">Valider</button>
+                <button disabled nbButton>Supprimer</button>
+            </div>
         </nb-card-footer>
     </nb-card>
 </ng-template>

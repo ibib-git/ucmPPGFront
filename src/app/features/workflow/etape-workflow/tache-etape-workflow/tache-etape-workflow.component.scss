@@ -44,3 +44,31 @@ th{
 button{
   margin: 5px;
 }
+
+.headerModal{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.titleModal{
+  align-self: normal;
+}
+
+.exitClass{
+  align-self: flex-end;
+}
+
+.exitClass:hover{
+  cursor: pointer;
+}
+
+.footerModal{
+  display: flex;
+  flex-direction: row ;
+
+}
+
+.footerButtons{
+  align-items: center;
+}

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
@@ -6,6 +6,7 @@ import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
 import {Router} from '@angular/router';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
+import {ProjetModel} from '../../../core/models/ProjetModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -17,6 +18,8 @@ export class EtapeWorkflowComponent implements OnInit {
   @Input() membreProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
+  
+  @Output() outputProjet: EventEmitter<ProjetModel>;
 
   allDetails: boolean;
   estProgression: boolean;
@@ -28,7 +31,7 @@ export class EtapeWorkflowComponent implements OnInit {
       private toastrServ: NbToastrService,
       private etapeServ: WorkflowService,
       private routServ: Router
-  ) { }
+  ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
     this.estProgression = true;
@@ -63,6 +66,10 @@ export class EtapeWorkflowComponent implements OnInit {
         () => {
         }
     );
+  }
+
+  updateProjet(projet: ProjetModel) {
+    this.outputProjet.emit(projet);
   }
 
 }

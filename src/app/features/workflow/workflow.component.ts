@@ -21,6 +21,7 @@ export class WorkflowComponent implements OnInit {
   constructor(
       private projetService: RecuperationProjetService,
       private routServ: ActivatedRoute,
+      private routerServ: Router,
       private toastrServ: NbToastrService,
       private ordreEtapePipe: OrdreEtapePipe
   ) { }
@@ -38,19 +39,26 @@ export class WorkflowComponent implements OnInit {
         },
         () => {
           this.toastrServ.danger('Erreur dans le chargement du projet ', 'Workflow', {[status]: 'danger'});
+          this.routerServ.navigateByUrl('');
         }
     );
   }
 
   getIdEtapeSuivante(idEtapeCourante: bigint) {
     const etapesTrieeOrdre = this.ordreEtapePipe.transform(this.projet.etapeWorkflows);
+    // @ts-ignore
     const indexEtapeCourante = etapesTrieeOrdre.findIndex(i => i.id === idEtapeCourante);
     return (indexEtapeCourante + 1 >= this.getIdDerniereEtape()) ? this.getIdDerniereEtape() : etapesTrieeOrdre[indexEtapeCourante + 1].id;
   }
 
   getIdDerniereEtape() {
     const etapesTrieeOrdre = this.ordreEtapePipe.transform(this.projet.etapeWorkflows);
+    // @ts-ignore
     return etapesTrieeOrdre[etapesTrieeOrdre.length - 1].id;
+  }
+
+  updateProjet(projetOutput: ProjetModel) {
+    this.projet = projetOutput;
   }
 
 }
