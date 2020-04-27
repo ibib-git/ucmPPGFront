@@ -6,4 +6,5 @@ export interface ParticipationDetailModel {
     utilisateur: UtilisateurDetailsModel;
     projet: ProjetDetailModel;
     role: RoleModel;
+    isActif: boolean;
 }

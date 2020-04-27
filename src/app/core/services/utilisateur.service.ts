@@ -19,11 +19,11 @@ export class UtilisateurService {
   ) { }
 
   enregistrement(model: UtilisateurEnregistrementModel): Observable<UtilisateurDetailsModel> {
-    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'utilisateur/enregistrement', model);
+    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + '/utilisateur/enregistrement', model);
   }
 
   login(model: UtilisateurConnexionModel): Observable<UtilisateurDetailsModel> {
-    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + 'utilisateur/connexion', model);
+    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + '/utilisateur/connexion', model);
   }
 
   getUtilisateur(id: bigint) : Observable<UtilisateurModel>{
