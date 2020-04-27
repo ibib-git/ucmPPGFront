@@ -58,7 +58,7 @@ export class EtapeWorkflowComponent implements OnInit {
     this.etapeServ.changerOrdreEtape(etapeModel.id, this.ordreEtape).subscribe(
         (model) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
-          this.routServ.navigateByUrl('dashboard/Workflow');
+          // TODO Damien : update le projet pour le subscribe
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});
