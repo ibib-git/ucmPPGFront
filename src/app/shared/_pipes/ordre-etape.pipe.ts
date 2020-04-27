@@ -7,9 +7,9 @@ import {compareNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_v
 })
 export class OrdreEtapePipe implements PipeTransform {
 
-  transform(etapesOrd: EtapeWorkflowModel[]): unknown {
+  transform(etapesOrd: EtapeWorkflowModel[]): EtapeWorkflowModel[] {
 
-    return etapesOrd.sort(function(a,b) {
+    return etapesOrd.sort(function(a, b) {
       return a.numOrdre - b.numOrdre;
     });
   }
