@@ -27,11 +27,12 @@ export class ProjetGestionComponent implements OnInit {
 
   ngOnInit(): void {
     this.controleDeMail = new FormGroup({
-      mail : new FormControl(null,Validators.compose([
+      mail : new FormControl(null, Validators.compose([
         Validators.required,
         Validators.email,
       ]))
     });
+    this.projet = {} as ProjetModel;
     this.getProjet(1);
     this.supprimerUtilisateur = {} as UtilisateurSupprimerModel;
     this.ajouterUtilisateur = {} as UtilisateurAjouterModel;
@@ -42,7 +43,9 @@ export class ProjetGestionComponent implements OnInit {
     this.supprimerUtilisateur.mail = mail;
     this.serviceProjetGestion.supprimerCollaborateur(this.supprimerUtilisateur).subscribe(
       (model) => {
-        this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});        },
+        this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});
+        this.getProjet(1);
+        },
       () => {
         this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
       }

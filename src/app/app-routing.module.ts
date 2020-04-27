@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'projet/creation', component: CreerUnProjetComponent},
   {path: 'dashboard/Workflow/:id', component: WorkflowComponent},
   {path: 'projet/gestion', component: ProjetGestionComponent},
-  {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
+  {path: 'utilisateur/:id', component: UtilisateurInterfaceComponent},
 ];
 
 @NgModule({

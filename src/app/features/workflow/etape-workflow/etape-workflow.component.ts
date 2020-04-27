@@ -1,10 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
 import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
 import {Router} from '@angular/router';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
+import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
+import {ProjetModel} from '../../../core/models/ProjetModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -13,16 +15,23 @@ import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll
 })
 export class EtapeWorkflowComponent implements OnInit {
   @Input() etape: EtapeWorkflowModel;
+  @Input() membreProjet: MembreProjetModel[];
+  @Input() idEtapeSuivante: bigint;
+  @Input() idDerniereEtape: bigint;
+  
+  @Output() outputProjet: EventEmitter<ProjetModel>;
 
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
   idUtilisateur: bigint;
+
+
   constructor(
       private toastrServ: NbToastrService,
       private etapeServ: WorkflowService,
       private routServ: Router
-  ) { }
+  ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
     this.estProgression = true;
@@ -32,7 +41,8 @@ export class EtapeWorkflowComponent implements OnInit {
     // @ts-ignore
     this.idUtilisateur = 1;
     this.ordreEtape.idUtilisateur = this.idUtilisateur;
-    this.ordreEtape.nvOrdre = 3;
+    this.ordreEtape.nvOrdre = 1;
+
   }
 
   toggle(checked: boolean) {
@@ -48,7 +58,7 @@ export class EtapeWorkflowComponent implements OnInit {
     this.etapeServ.changerOrdreEtape(etapeModel.id, this.ordreEtape).subscribe(
         (model) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
-          this.routServ.navigateByUrl('dashboard/Workflow');
+          // TODO Damien : update le projet pour le subscribe
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});
@@ -56,6 +66,10 @@ export class EtapeWorkflowComponent implements OnInit {
         () => {
         }
     );
+  }
+
+  updateProjet(projet: ProjetModel) {
+    this.outputProjet.emit(projet);
   }
 
 }
