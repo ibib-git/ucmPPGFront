@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ProjetModel} from '../../core/models/ProjetModel';
-import {RecuperationProjetService} from '../../core/services/projet/récuperation/recuperation-projet.service';
-import {Router, ActivatedRoute} from '@angular/router';
-import {NbToastrService} from '@nebular/theme';
+import { ProjetModel} from '../../core/models/ProjetModel';
+import { RecuperationProjetService } from '../../core/services/projet/récuperation/recuperation-projet.service';
+import { ActivatedRoute } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-workflow',
@@ -12,6 +12,7 @@ import {NbToastrService} from '@nebular/theme';
 export class WorkflowComponent implements OnInit {
 
   projet: ProjetModel;
+  etapeminimun: bigint;
 
   constructor(
       private projetService: RecuperationProjetService,

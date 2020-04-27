@@ -14,12 +14,12 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CoreModule} from './core/core.module';
-import {DefaultModuleModule} from './features/default-module/default-module.module';
-import {RouterModule} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
-import {SharedModule} from './shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {CoreModule } from './core/core.module';
+import { DefaultModuleModule } from './features/default-module/default-module.module';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 import { ConnexionComponent } from './features/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
@@ -27,11 +27,12 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
 import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
-import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
+import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-tache.component';
+import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,8 @@ import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/
     ProjetGestionComponent,
     UtilisateurInterfaceComponent,
     NavBarreComponent,
+    AjouterTacheComponent,
+    TacheEnfantComponent,
   ],
     imports: [
         BrowserModule,

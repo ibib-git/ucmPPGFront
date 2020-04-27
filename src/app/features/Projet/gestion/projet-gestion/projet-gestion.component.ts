@@ -14,10 +14,10 @@ import { UtilisateurSupprimerModel } from 'src/app/core/models/UtilisateurSuppri
 })
 export class ProjetGestionComponent implements OnInit {
 
-  projet : ProjetModel;
-  nouveauMail : string;
-  controleDeMail : FormGroup;
-  ajouterUtilisateur : UtilisateurAjouterModel;
+  projet: ProjetModel;
+  nouveauMail: string;
+  controleDeMail: FormGroup;
+  ajouterUtilisateur: UtilisateurAjouterModel;
   supprimerUtilisateur: UtilisateurSupprimerModel;
 
   constructor(
@@ -32,7 +32,7 @@ export class ProjetGestionComponent implements OnInit {
         Validators.email,
       ]))
     });
-    this.getProjet(1);
+    this.getProjet(2);
     this.supprimerUtilisateur = {} as UtilisateurSupprimerModel;
     this.ajouterUtilisateur = {} as UtilisateurAjouterModel;
   }

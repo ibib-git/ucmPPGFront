@@ -7,6 +7,8 @@ import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-proj
 import {WorkflowComponent} from './features/workflow/workflow.component';
 import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
+import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-tache.component';
+import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'dashboard/Workflow/:id', component: WorkflowComponent},
   {path: 'projet/gestion', component: ProjetGestionComponent},
   {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
+  {path: 'tache/creationTache',component: AjouterTacheComponent},
+  {path: 'tache/creationEnfant',component: TacheEnfantComponent}
 ];
 
 @NgModule({

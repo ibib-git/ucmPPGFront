@@ -4,7 +4,6 @@ import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
 import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
 import {Router} from '@angular/router';
-import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -13,6 +12,8 @@ import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll
 })
 export class EtapeWorkflowComponent implements OnInit {
   @Input() etape: EtapeWorkflowModel;
+  @Input() idProjet: bigint;
+  @Input() idEtapeWorkflow: bigint;
 
   allDetails: boolean;
   estProgression: boolean;
@@ -55,7 +56,6 @@ export class EtapeWorkflowComponent implements OnInit {
         },
         () => {
         }
-    );
-  }
+    )}
 
 }

@@ -7,4 +7,5 @@ export interface ParticipationModel {
     utilisateur: UtilisateurDetailsModel;
     projet: ProjetDetailModel;
     role: RoleModel;
+    isActif: boolean;
 }

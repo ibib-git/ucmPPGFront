@@ -1,6 +1,7 @@
 import { UniteDeTempsEnum } from '../enums/UniteDeTempsEnum';
 import { HistoriqueTacheModel } from './HistoriqueTacheModel';
 import { UtilisateurModel } from './UtilisateurModel';
+import { Priorite } from '../enums/Priorite';
 
 export interface TacheModel {
     id: bigint;
@@ -12,4 +13,5 @@ export interface TacheModel {
     uniteDeTemps: UniteDeTempsEnum;
     historique: HistoriqueTacheModel[];
     utilisateurAffecte: UtilisateurModel;
+    prioriteDeLaTache: Priorite;
 }

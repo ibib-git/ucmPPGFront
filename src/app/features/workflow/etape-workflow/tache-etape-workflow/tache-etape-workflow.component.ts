@@ -10,6 +10,8 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   @Input() estDetail: boolean;
   @Input() estProgression: boolean;
   @Input() tache: TacheModel;
+  @Input() etapeEnfant: bigint;
+  @Input() idprojet: bigint;
 
   constructor() { }
 
@@ -21,4 +23,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.estDetail = clicked;
   }
 
+  creationTacheEnfant(){
+    
+  }
 }
