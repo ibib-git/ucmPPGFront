@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TacheCreationEnfantModel } from '../../models/TacheCreationEnfantModel';
 import { TacheCreationModel } from '../../models/TacheCreationModel';
+import { TacheSupprimerModel } from '../../models/TacheSupprimerModel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GestionService {
+export class GestionTacheService {
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,6 +24,10 @@ export class GestionService {
 
   getTache(id : bigint) : Observable<TacheModel> {
     return this.httpClient.get<TacheModel>(environment.apiEndPoint + "/tache/" + id);
+  }
+
+  postTacheSupprimer(tache: TacheSupprimerModel, idWorkflow: bigint): Observable<TacheSupprimerModel>{
+    return this.httpClient.post<TacheSupprimerModel>(environment.apiEndPoint+'/tache/'+idWorkflow, tache);
   }
   
 }

@@ -1,22 +1,22 @@
-<div>
+<div style="display: flex;" >
     <nb-card>
         <nb-card-header>
             Ajouter Tache Enfants
         </nb-card-header>
         <nb-card-body>
-            <form>
+            <form [formGroup]="AjouterTacheEnfant" (ngSubmit)="validationEnfant()">
                 <div>
                     <div class="carte">
                     <label>Libélé</label>
-                        <input nbInput type="text" placeholder="Nom de la tache" formControlName="libele">
+                        <input nbInput type="text" placeholder="Nom de la tache" formControlName="libeleEnfant">
                     </div>
                     <div class="carte">
                         <label>Description de la tache (*)</label>
-                        <input nbInput type="text" placeholder="Description de la tache" formControlName="description">
+                        <input nbInput type="text" placeholder="Description de la tache" formControlName="descriptionEnfant">
                     </div>
                     <div class="carte">
                         <label> Priorité </label>
-                        <nb-select placeholder="Priorité" [(selected)]="valeurPrioritaire" formControlName="priorite">
+                        <nb-select placeholder="Priorité" [(selected)]="valeurPrioritaire" formControlName="prioriteEnfant">
                             <nb-option value="minoritaire">minoritaire</nb-option>
                             <nb-option value="faible">faible</nb-option>
                             <nb-option value="moyenne">moyenne</nb-option>
@@ -26,11 +26,11 @@
                     </div>
                     <div class="carte">
                         <label>Estimation de temps</label>
-                        <input nbInput placeholder="Nombre" type="number" formControlName="estimation">
+                        <input nbInput placeholder="Nombre" type="number" formControlName="estimationEnfant">
                     </div>
                     <div class="carte">
                         <label>Unite de Temps</label>
-                        <nb-select placeholder="Unite de temps" [(selected)]="valeurUnite" formControlName="unite">
+                        <nb-select placeholder="Unite de temps" [(selected)]="valeurUnite" formControlName="uniteEnfant">
                             <nb-option value="Storypoint">Storypoint</nb-option>
                             <nb-option value="Heure">Heure</nb-option>
                             <nb-option value="Jour">Jour</nb-option>

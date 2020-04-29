@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { GestionService } from 'src/app/core/services/tache/gestion.service';
+import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.service';
 import { TacheCreationModel } from 'src/app/core/models/TacheCreationModel';
 import { NbToastrService } from '@nebular/theme';
 import { Router } from '@angular/router';
@@ -16,12 +16,12 @@ export class AjouterTacheComponent implements OnInit {
   TacheAAjouter: TacheCreationModel;
   valeurPrioritaire: string;
   valeurUnite: string;
-  @Input() idrecup:bigint[];
+  @Input() receptionId: bigint[];
   idProjet: bigint;
   idWorkflow: bigint;
 
   constructor(
-    private ajoutTacheService : GestionService,
+    private ajoutTacheService : GestionTacheService,
     private ToastService: NbToastrService,
     private route: Router
     ) {}
@@ -43,14 +43,8 @@ export class AjouterTacheComponent implements OnInit {
     });
   }
 
-  recuperationId(){
-    console.log("controler");
-  }
-
   validation(){
     this.TacheAAjouter = this.AjouterTache.value ;
-    console.log(this.TacheAAjouter);
-    console.log('coucou');
     this.ajoutTacheService.postTacheAjouter(this.TacheAAjouter,this.idWorkflow).subscribe(
        (model) => {
         this.ToastService.success('Création de la tache', 'Création de Tache', {[status]: 'success'});

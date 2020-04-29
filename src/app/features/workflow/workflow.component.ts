@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ProjetModel} from '../../core/models/ProjetModel';
 import { RecuperationProjetService } from '../../core/services/projet/récuperation/recuperation-projet.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,9 +17,9 @@ export class WorkflowComponent implements OnInit {
   projet: ProjetModel;
   etapeminimun: bigint;
   etapesTrieeOrdre: EtapeWorkflowModel[];
-  @Output() OutputId = new EventEmitter<bigint>();
-  @Input() workflowId: bigint;
-  @Input() projetId: bigint;
+  idprojet: bigint;
+  idworkflow: bigint;
+  @Output() OutputId = new EventEmitter<bigint[]>();
 
 
   constructor(
@@ -41,7 +41,7 @@ export class WorkflowComponent implements OnInit {
         (model) => {
           this.projet = model;
           this.etapesTrieeOrdre = this.ordreEtapePipe.transform(model.etapeWorkflows);
-          this.projetId = model.id
+          this.idprojet = model.id
         },
         () => {
           this.toastrServ.danger('Erreur dans le chargement du projet ', 'Workflow', {[status]: 'danger'});
@@ -64,7 +64,7 @@ export class WorkflowComponent implements OnInit {
   }
 
   envoyerId(){
-    this.OutputId.emit(this.projetId);
+    this.OutputId.emit([this.idprojet,this.idworkflow]);
   }
 
   

@@ -12,6 +12,7 @@ import { UtilisateurModel } from '../models/UtilisateurModel';
   providedIn: 'root'
 })
 export class UtilisateurService {
+  register: any;
 
 
   constructor(

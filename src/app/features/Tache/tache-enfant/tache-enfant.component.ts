@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TacheCreationEnfantModel } from 'src/app/core/models/TacheCreationEnfantModel';
+import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.service';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-tache-enfant',
@@ -16,22 +18,28 @@ export class TacheEnfantComponent implements OnInit {
   valeurUnite: string;
   AjouterTacheEnfant: FormGroup;
 
-  constructor() { }
+  constructor(
+    private TacheService: GestionTacheService,
+    private ToastService: NbToastrService
+  ) { }
 
   ngOnInit(): void {
     this.AjouterTacheEnfant = new FormGroup({
-      libele: new FormControl(null,Validators.compose([
+      libeleEnfant: new FormControl(null,Validators.compose([
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50)
       ])),
-      description: new FormControl(null,Validators.compose([
+      descriptionEnfant: new FormControl(null,Validators.compose([
         Validators.minLength(10),
         Validators.maxLength(150)
       ])),
-      estimation: new FormControl(null,null),
-      unite: new FormControl(null,null),
-      priorite: new FormControl(null,null)
+      estimationEnfant: new FormControl(null,null),
+      uniteEnfant: new FormControl(null,null),
+      prioriteEnfant: new FormControl(null,null)
     })}
 
+    validationEnfant(){
+      
+    }
 }
