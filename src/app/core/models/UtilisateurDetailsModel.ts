@@ -1,5 +1,6 @@
 export interface UtilisateurDetailsModel {
-    
+
+    id: bigint;
     mail: string;
     nom: string;
     prenom: string;

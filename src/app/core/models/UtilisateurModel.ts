@@ -11,5 +11,5 @@ export interface UtilisateurModel {
     telephone: string;
     infoSuppl: string;
     urlPhoto: string;
-    participations : ParticipationDetailModel[];
+    participations: ParticipationDetailModel[];
 }
