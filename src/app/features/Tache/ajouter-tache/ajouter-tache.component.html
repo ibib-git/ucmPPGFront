@@ -16,13 +16,26 @@
                         <input nbInput type="text" placeholder="Description de la tache" formControlName="description">
                     </div>
                     <div class="carte">
-                        <nb-select placeholder="Priorité" [(selected)]="value">
-                            <nb-option *ngFor="let item of valeur">{{item}}</nb-option>
+                        <label> Priorité </label>
+                        <nb-select placeholder="Priorité" [(selected)]="valeurPrioritaire" formControlName="priorite">
+                            <nb-option value="minoritaire">minoritaire</nb-option>
+                            <nb-option value="faible">faible</nb-option>
+                            <nb-option value="moyenne">moyenne</nb-option>
+                            <nb-option value="haute">haute</nb-option>
+                            <nb-option value="urgent">urgent</nb-option>
                         </nb-select>
                     </div>
                     <div class="carte">
+                        <label>Estimation de temps</label>
+                        <input nbInput placeholder="Nombre" type="number" formControlName="estimation">
+                    </div>
+                    <div class="carte">
                         <label>Unite de Temps</label>
-                        <input nbInput type="number" placeholder="Valeur" formControlName="unite">
+                        <nb-select placeholder="Unite de temps" [(selected)]="valeurUnite" formControlName="unite">
+                            <nb-option value="Storypoint">Storypoint</nb-option>
+                            <nb-option value="Heure">Heure</nb-option>
+                            <nb-option value="Jour">Jour</nb-option>
+                        </nb-select>
                     </div>
                     <div class="carte">
                         <label>(*) : Non requis </label>

@@ -8,7 +8,7 @@ export interface TacheModel {
     nom: string;
     description: string;
     tacheEnfants: TacheModel[];
-    tachePrecedentes: TacheModel[];
+    tachesPrecedentes: TacheModel[];
     estimationTemps: number;
     uniteDeTemps: UniteDeTempsEnum;
     historique: HistoriqueTacheModel[];

@@ -1,18 +1,18 @@
 <div class="optionClass">
-    <button nbButton>Gestion du projet</button>
+    <button disabled nbButton>Gestion du projet</button>
 </div>
 
 <nb-card>
     <nb-card-header  class="buttonsHead">
         <button nbButton>Passer en vue déroulante</button>
         <button nbButton>Voir le chemin critique</button>
-        <button nbButton routerLink="/tache/creationTache">Créer une tache</button>
+        <button nbButton (click)="envoyerId()"> Créer une tache </button>
+        <button nbButton [disabled]>Créer une Etape Workflow</button>
     </nb-card-header>
     <nb-card-body class="bodyClass" >
-
         <div *ngIf="projet.etapeWorkflows!= null">
             <div class="etape" >
-                <app-etape-workflow *ngFor="let e of projet.etapeWorkflows | ordreEtape"  [etape]="e"></app-etape-workflow>
+                <app-etape-workflow *ngFor="let e of projet.etapeWorkflows | ordreEtape"  [etape]="e" [membreProjet]="projet.utilisateurMembres" [idDerniereEtape]="getIdDerniereEtape()" [idEtapeSuivante]="getIdEtapeSuivante(e.id)" (outputProjet)="updateProjet($event)"></app-etape-workflow>
             </div>
         </div>
     </nb-card-body>

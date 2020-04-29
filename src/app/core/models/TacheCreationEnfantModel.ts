@@ -5,8 +5,8 @@ export interface TacheCreationEnfantModel {
 
     nom: string;
     description: string;
-    priorite: Priorite;
+    priorite: string;
     estimation: number;
-    unite: UniteDeTempsEnum;
+    unite: number;
     tacheParent: bigint;
 }

@@ -21,7 +21,8 @@ const routes: Routes = [
   {path: 'projet/gestion', component: ProjetGestionComponent},
   {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
   {path: 'tache/creationTache',component: AjouterTacheComponent},
-  {path: 'tache/creationEnfant',component: TacheEnfantComponent}
+  {path: 'tache/creationEnfant',component: TacheEnfantComponent},
+
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { TacheModel } from '../../models/TacheModel';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TacheCreationEnfantModel } from '../../models/TacheCreationEnfantModel';
+import { TacheCreationModel } from '../../models/TacheCreationModel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class GestionService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postTacheAjouter(tache : TacheModel,idWorkflow: bigint) : Observable<TacheModel>{
-    return this.httpClient.post<TacheModel>(environment.apiEndPoint+'/tache/'+idWorkflow+'/ajouterTacheParent', tache);
+  postTacheAjouter(tache : TacheCreationModel,idWorkflow: bigint) : Observable<TacheCreationModel>{
+    return this.httpClient.post<TacheCreationModel>(environment.apiEndPoint+'/tache/'+idWorkflow+'/ajouterTacheParent', tache);
   }
 
   postTacheAjouterEnfant(idtacheParent: bigint, idWorkflow: bigint, tacheEnfant: TacheCreationEnfantModel) : Observable<TacheCreationEnfantModel>{

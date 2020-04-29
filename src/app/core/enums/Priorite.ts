@@ -1,7 +1,7 @@
 export enum Priorite {
-    INUTILE,
-    INFERIEUR,
+    MINORITAIRE,
+    FAIBLE,
     MOYENNE,
     HAUTE,
-    PRIORITAIRE,
+    URGENT,
 }

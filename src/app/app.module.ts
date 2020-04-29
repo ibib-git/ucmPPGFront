@@ -10,7 +10,15 @@ import {
     NbCardModule,
     NbToastrModule,
     NbButtonModule,
-    NbInputModule, NbProgressBarModule, NbIconModule, NbCheckboxModule, NbToggleModule, NbSelectModule, NbListModule, NbSidebarModule
+    NbInputModule,
+    NbProgressBarModule,
+    NbIconModule,
+    NbCheckboxModule,
+    NbToggleModule,
+    NbSelectModule,
+    NbListModule,
+    NbSidebarModule,
+    NbDialogModule, NbUserModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
@@ -33,6 +41,7 @@ import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateu
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
 import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-tache.component';
 import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
+import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
 
 @NgModule({
   declarations: [
@@ -76,7 +85,9 @@ import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant
         NbSidebarModule.forRoot(),
         RouterModule,
         NbListModule,
-        DragDropModule
+        DragDropModule,
+        NbDialogModule.forRoot(),
+        NbUserModule
     ],
 
   providers: [
@@ -85,6 +96,7 @@ import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant
       useClass: ErreursInterceptor,
       multi: true
     }*/
+   OrdreEtapePipe
   ],
 
   bootstrap: [AppComponent]

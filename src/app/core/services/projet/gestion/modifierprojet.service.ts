@@ -12,12 +12,12 @@ export class ModifierprojetService {
 
   constructor(private httpclient: HttpClient) { }
 
-  public ajouterCollaborateur(model : UtilisateurAjouterModel) : Observable<UtilisateurAjouterModel>{
-    return this.httpclient.post<UtilisateurAjouterModel>(environment.apiEndPoint + '/projet/ajoutCollaborateur' , model);
+  public ajouterCollaborateur(model : UtilisateurAjouterModel) : Observable<boolean>{
+    return this.httpclient.post<boolean>(environment.apiEndPoint + '/projet/ajoutCollaborateur' , model);
   }
 
-  public supprimerCollaborateur(model : UtilisateurSupprimerModel) : Observable<UtilisateurSupprimerModel>{
-    return this.httpclient.post<UtilisateurSupprimerModel>(environment.apiEndPoint + '/projet/supprimerCollaborateur', model);
+  public supprimerCollaborateur(model : UtilisateurSupprimerModel) : Observable<boolean>{
+    return this.httpclient.post<boolean>(environment.apiEndPoint + '/projet/supprimerCollaborateur', model);
   }
 
 }

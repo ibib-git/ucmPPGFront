@@ -21,7 +21,8 @@ export class UtilisateurInterfaceComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.getUtilisateur(this.route.snapshot.params['id'])
+    this.getUtilisateur(this.route.snapshot.params['id']);
+    this.utilisateur = {} as UtilisateurModel;
   }
 
   getUtilisateur(id: any){

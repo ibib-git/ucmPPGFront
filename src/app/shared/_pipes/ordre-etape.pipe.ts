@@ -6,9 +6,9 @@ import {EtapeWorkflowModel} from '../../core/models/EtapeWorkflowModel';
 })
 export class OrdreEtapePipe implements PipeTransform {
 
-  transform(etapesOrd: EtapeWorkflowModel[]): unknown {
+  transform(etapesOrd: EtapeWorkflowModel[]): EtapeWorkflowModel[] {
 
-    return etapesOrd.sort(function(a,b) {
+    return etapesOrd.sort(function(a, b) {
       return a.numOrdre - b.numOrdre;
     });
   }
