@@ -42,6 +42,7 @@ import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/
 import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-tache.component';
 import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
 import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
+import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/supprimer-tache.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
     NavBarreComponent,
     AjouterTacheComponent,
     TacheEnfantComponent,
+    SupprimerTacheComponent,
   ],
     imports: [
         BrowserModule,

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { TacheModel } from '../../models/TacheModel';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { TacheCreationEnfantModel } from '../../models/TacheCreationEnfantModel';
 import { TacheCreationModel } from '../../models/TacheCreationModel';
 import { TacheSupprimerModel } from '../../models/TacheSupprimerModel';
 
@@ -14,20 +13,22 @@ export class GestionTacheService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postTacheAjouter(tache : TacheCreationModel,idWorkflow: bigint) : Observable<TacheCreationModel>{
-    return this.httpClient.post<TacheCreationModel>(environment.apiEndPoint+'/tache/'+idWorkflow+'/ajouterTacheParent', tache);
+  postTacheAjouter(tache : TacheCreationModel,idWorkflow: bigint,idProjet: bigint) : Observable<TacheCreationModel>{
+    return this.httpClient.post<TacheCreationModel>(environment.apiEndPoint+'/tache/'+idProjet+'/'+idWorkflow+'/ajouterTacheParent', tache);
   }
 
-  postTacheAjouterEnfant(idtacheParent: bigint, idWorkflow: bigint, tacheEnfant: TacheCreationEnfantModel) : Observable<TacheCreationEnfantModel>{
-    return this.httpClient.post<TacheCreationEnfantModel>(environment.apiEndPoint+'/tache/'+idWorkflow+'/'+idtacheParent+'/ajouterTacheEnfant', tacheEnfant); 
+  postTacheAjouterEnfant(idWorkflow: bigint, idProjet: bigint, idTache: bigint, tacheEnfant: TacheCreationModel) : Observable<TacheCreationModel>{
+    return this.httpClient.post<TacheCreationModel>(environment.apiEndPoint+'/tache/'+idProjet+'/'+idWorkflow+'/'+idTache+'/ajouterTacheEnfant', tacheEnfant); 
   }
 
   getTache(id : bigint) : Observable<TacheModel> {
     return this.httpClient.get<TacheModel>(environment.apiEndPoint + "/tache/" + id);
   }
 
-  postTacheSupprimer(tache: TacheSupprimerModel, idWorkflow: bigint): Observable<TacheSupprimerModel>{
-    return this.httpClient.post<TacheSupprimerModel>(environment.apiEndPoint+'/tache/'+idWorkflow, tache);
+  postTacheSupprimer(idtache: bigint,tacheSupprimer: TacheSupprimerModel): Observable<TacheSupprimerModel>{
+    console.log(tacheSupprimer);
+    return this.httpClient.post<TacheSupprimerModel>(environment.apiEndPoint+'/tache/'+idtache+'/supprimerTache',tacheSupprimer);
   }
+
   
 }

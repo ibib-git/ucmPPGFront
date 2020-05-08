@@ -29,7 +29,6 @@ export class EtapeWorkflowComponent implements OnInit {
   constructor(
       private toastrServ: NbToastrService,
       private etapeServ: WorkflowService,
-      private routServ: Router
   ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
@@ -41,7 +40,6 @@ export class EtapeWorkflowComponent implements OnInit {
     this.idUtilisateur = 1;
     this.ordreEtape.idUtilisateur = this.idUtilisateur;
     this.ordreEtape.nvOrdre = 1;
-
   }
 
   toggle(checked: boolean) {

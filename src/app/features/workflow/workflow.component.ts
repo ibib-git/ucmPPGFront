@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProjetModel} from '../../core/models/ProjetModel';
 import { RecuperationProjetService } from '../../core/services/projet/récuperation/recuperation-projet.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,10 +17,8 @@ export class WorkflowComponent implements OnInit {
   projet: ProjetModel;
   etapeminimun: bigint;
   etapesTrieeOrdre: EtapeWorkflowModel[];
-  idprojet: bigint;
-  idworkflow: bigint;
-  @Output() OutputId = new EventEmitter<bigint[]>();
-
+  @Input() idprojet: bigint;
+  @Input() idworkflow: bigint;
 
   constructor(
       private projetService: RecuperationProjetService,
@@ -63,9 +61,12 @@ export class WorkflowComponent implements OnInit {
     this.projet = projetOutput;
   }
 
-  envoyerId(){
-    this.OutputId.emit([this.idprojet,this.idworkflow]);
+  validerAction(){
+    for(let o of this.etapesTrieeOrdre){
+      if(o.numOrdre === 1){
+        this.idworkflow = o.id;
+      }
+    }
+    this.routerServ.navigateByUrl('tache/'+this.idprojet+'/'+this.idworkflow+'/creationTache')
   }
-
-  
 }

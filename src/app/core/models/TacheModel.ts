@@ -13,5 +13,5 @@ export interface TacheModel {
     uniteDeTemps: UniteDeTempsEnum;
     historique: HistoriqueTacheModel[];
     utilisateurAffecte: UtilisateurModel;
-    prioriteDeLaTache: Priorite;
+    priorite: Priorite;
 }

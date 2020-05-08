@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.service';
 import { TacheCreationModel } from 'src/app/core/models/TacheCreationModel';
 import { NbToastrService } from '@nebular/theme';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ajouter-tache',
@@ -13,22 +13,24 @@ import { Router } from '@angular/router';
 export class AjouterTacheComponent implements OnInit {
 
   AjouterTache: FormGroup;
-  TacheAAjouter: TacheCreationModel;
+  tacheAAjouter: TacheCreationModel;
   valeurPrioritaire: string;
   valeurUnite: string;
-  @Input() receptionId: bigint[];
   idProjet: bigint;
   idWorkflow: bigint;
 
   constructor(
     private ajoutTacheService : GestionTacheService,
-    private ToastService: NbToastrService,
-    private route: Router
+    private toastService: NbToastrService,
+    private route: Router,
+    private routeActive: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
+    this.idProjet = this.routeActive.snapshot.params['idprojet'];
+    this.idWorkflow = this.routeActive.snapshot.params['idWorkflow'];
     this.AjouterTache = new FormGroup({
-      libele: new FormControl(null,Validators.compose([
+      nom: new FormControl(null,Validators.compose([
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50)
@@ -44,18 +46,21 @@ export class AjouterTacheComponent implements OnInit {
   }
 
   validation(){
-    this.TacheAAjouter = this.AjouterTache.value ;
-    this.ajoutTacheService.postTacheAjouter(this.TacheAAjouter,this.idWorkflow).subscribe(
-       (model) => {
-        this.ToastService.success('Création de la tache', 'Création de Tache', {[status]: 'success'});
-        this.route.navigateByUrl('dashboard/Workflow/' + this.idProjet);
-       },
-       (error) => {
-          this.ToastService.danger('Erreur de création de tache', 'Création de tache', {[status]: 'danger'});
-       },
-       () => {
-       });
+    this.tacheAAjouter = this.AjouterTache.value ;
+    this.ajoutTacheService.postTacheAjouter(this.tacheAAjouter,this.idWorkflow,this.idProjet).subscribe(
+      (model) => {
+        this.toastService.success('Création de tache valider','creation Tache',{[status]: 'success'});
+      },
+      (error) => {
+        this.toastService.danger('Erreur tache', 'Erreur création tache', {[status]: 'danger'});
+      },
+      () => {});
+      console.log(this.tacheAAjouter)
+      this.route.navigateByUrl('dashboard/Workflow/'+this.idProjet);
   }
   
+  retour(){
+    this.route.navigateByUrl('dashboard/Workflow/'+this.idProjet);
+  }
 
 }

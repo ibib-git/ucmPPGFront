@@ -1,39 +1,44 @@
 <div style="display: flex;" >
      <nb-card>
         <nb-card-header>
-            Ajouter Tache
+            <div>
+                Ajouter Tache   
+              </div>
+              <div class="retour">
+                <nb-icon (click)="retour()" icon="close-circle-outline"></nb-icon>
+               </div>
         </nb-card-header>
         <nb-card-body>
             <form [formGroup]="AjouterTache" (ngSubmit)="validation()">
                 <div class="carte">
                     <div class="carte">
                         <label>Libélé</label>
-                        <input nbInput type="text" placeholder="Nom de la tache" formControlName="libele">
+                        <input nbInput type="text" placeholder="Nom de la tache" formControlName="nom">
                     </div>
                     <div class="carte">
-                        <label>Description de la tache (*)</label>
+                        <label> Description de la tache (*)</label>
                         <input nbInput type="text" placeholder="Description de la tache" formControlName="description">
                     </div>
                     <div class="carte">
-                        <label> Priorité </label>
+                        <label> Priorité (*)</label>
                         <nb-select placeholder="Priorité" [(selected)]="valeurPrioritaire" formControlName="priorite">
-                            <nb-option value="minoritaire">minoritaire</nb-option>
-                            <nb-option value="faible">faible</nb-option>
-                            <nb-option value="moyenne">moyenne</nb-option>
-                            <nb-option value="haute">haute</nb-option>
-                            <nb-option value="urgent">urgent</nb-option>
+                            <nb-option value="MINORITAIRE">minoritaire</nb-option>
+                            <nb-option value="FAIBLE">faible</nb-option>
+                            <nb-option value="MOYENNE">moyenne</nb-option>
+                            <nb-option value="HAUTE">haute</nb-option>
+                            <nb-option value="URGENT">urgent</nb-option>
                         </nb-select>
                     </div>
                     <div class="carte">
-                        <label>Estimation de temps</label>
-                        <input nbInput placeholder="Nombre" type="number" formControlName="estimation">
+                        <label> Estimation de temps (*)</label>
+                        <input nbInput placeholder="Nombre" type="number" min="0" formControlName="estimation">
                     </div>
                     <div class="carte">
-                        <label>Unite de Temps</label>
+                        <label> Unite de Temps (*)</label>
                         <nb-select placeholder="Unite de temps" [(selected)]="valeurUnite" formControlName="unite">
-                            <nb-option value="Storypoint">Storypoint</nb-option>
-                            <nb-option value="Heure">Heure</nb-option>
-                            <nb-option value="Jour">Jour</nb-option>
+                            <nb-option value="STORYPOINT">Storypoint</nb-option>
+                            <nb-option value="HEURE">Heure</nb-option>
+                            <nb-option value="JOUR">Jour</nb-option>
                         </nb-select>
                     </div>
                     <div class="carte">

@@ -24,7 +24,8 @@
         <div *ngIf="estProgression && tache.tacheEnfants.length != 0">
             <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
         </div>
-        <button nbButton routerLink='/tache/creationEnfant'> Créer une tache-enfants </button>
+        <button nbButton (click)="supprimerTache(tache.id)" >Supprimer</button>
+        <button nbButton (click)="CreationDeTacheParent(tache.id)"> Créer une tache-enfants </button>
     </nb-card-footer>
 </nb-card>
 
@@ -85,7 +86,6 @@
                                 </nb-list>
                             </nb-card>
                         </div>
-
                     </div>
                 </td>
             </table>
@@ -93,7 +93,7 @@
         <nb-card-footer class="footerModal" >
             <div class="footerButtons">
                 <button nbButton [disabled]="estValidee" (click)="valider()">Valider</button>
-                <button nbButton >Supprimer</button>
+                <button nbButton (click)="supprimerTache(tache.id)" >Supprimer</button>
             </div>
         </nb-card-footer>
     </nb-card>

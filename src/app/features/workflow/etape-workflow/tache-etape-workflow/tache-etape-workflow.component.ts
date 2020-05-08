@@ -5,6 +5,11 @@ import {MembreProjetModel} from '../../../../core/models/MembreProjetModel';
 import {ValiderTacheService} from '../../../../core/services/tache/valider-tache.service';
 import {ErreurModel} from '../../../../core/models/ErreurModel';
 import {ProjetModel} from '../../../../core/models/ProjetModel';
+import { Router } from '@angular/router';
+import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
+import { TacheSupprimerModel } from 'src/app/core/models/TacheSupprimerModel';
 
 @Component({
   selector: 'app-tache-etape-workflow',
@@ -20,6 +25,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   @Input() membresProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
+  @Input() idWorkflow: bigint;
   @Output() outputProjet: EventEmitter<ProjetModel>;
 
   membreAssigne: MembreProjetModel;
@@ -31,6 +37,8 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       private dialogueService: NbDialogService,
       private toastrServ: NbToastrService,
       private tacheService: ValiderTacheService,
+      private tacheGestionService: GestionTacheService,
+      private route: Router,
   ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
@@ -60,6 +68,19 @@ export class TacheEtapeWorkflowComponent implements OnInit {
           hasScroll: true});
   }
 
+  showSupprimer(supprimer: TemplateRef<any>){
+    this.dialogueService.open(supprimer,
+      {
+        closeOnEsc: true,
+        closeOnBackdropClick: true,
+        hasScroll: true
+      });
+  }
+
+  supprimerTache(id: bigint){
+    this.route.navigateByUrl('/tache/'+id+'/supprimer')
+  }
+
   valider() {
     this.tacheService.valider(this.tache.id, this.idUtilisateurConnecte).subscribe(
         (projetReturn) => {
@@ -80,4 +101,8 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.outputProjet.emit(projet);
   }
 
+
+  CreationDeTacheParent(tacheParent: bigint){
+    this.route.navigateByUrl('tache/'+this.idprojet+'/'+this.idWorkflow+'/'+tacheParent+'/creationEnfant');
+  }
 }
