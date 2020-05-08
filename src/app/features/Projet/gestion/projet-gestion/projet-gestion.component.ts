@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModifierprojetService } from 'src/app/core/services/projet/gestion/modifierprojet.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UtilisateurAjouterModel } from 'src/app/core/models/UtilisateurAjouterModel';
+import { ProjetAjoutCollaborateurModel } from 'src/app/core/models/ProjetAjoutCollaborateurModel';
 import { NbToastrService } from '@nebular/theme';
 import { ProjetModel } from '../../../../core/models/ProjetModel';
 import { RecuperationProjetService } from 'src/app/core/services/projet/récuperation/recuperation-projet.service';
-import { UtilisateurSupprimerModel } from 'src/app/core/models/UtilisateurSupprimerModel';
+import { SupprimerCollaborateurModel } from 'src/app/core/models/SupprimerCollaborateurModel';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -17,8 +17,8 @@ export class ProjetGestionComponent implements OnInit {
   projet : ProjetModel;
   nouveauMail : string;
   controleDeMail : FormGroup;
-  ajouterUtilisateur : UtilisateurAjouterModel;
-  supprimerUtilisateur: UtilisateurSupprimerModel;
+  ajouterUtilisateur : ProjetAjoutCollaborateurModel;
+  supprimerUtilisateur: SupprimerCollaborateurModel;
 
   constructor(
       private serviceProjetGestion : ModifierprojetService,
@@ -34,8 +34,8 @@ export class ProjetGestionComponent implements OnInit {
     });
     this.projet = {} as ProjetModel;
     this.getProjet(1);
-    this.supprimerUtilisateur = {} as UtilisateurSupprimerModel;
-    this.ajouterUtilisateur = {} as UtilisateurAjouterModel;
+    this.supprimerUtilisateur = {} as SupprimerCollaborateurModel;
+    this.ajouterUtilisateur = {} as ProjetAjoutCollaborateurModel;
   }
 
   supprimer(mail: string){
@@ -63,9 +63,9 @@ export class ProjetGestionComponent implements OnInit {
       });
   }
 
-  ajouterDesCollaborateur(){
-    this.ajouterUtilisateur.projet = this.projet;
-    this.ajouterUtilisateur.mail = this.nouveauMail;
+  ajouterDesCollaborateur() {
+    this.ajouterUtilisateur.idProjet = this.projet.id;
+    this.ajouterUtilisateur.emailUtilisateur = this.nouveauMail;
     this.serviceProjetGestion.ajouterCollaborateur(this.ajouterUtilisateur).subscribe(
       (model) => {
         this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});

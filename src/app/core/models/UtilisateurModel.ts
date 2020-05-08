@@ -1,4 +1,5 @@
 import { ParticipationDetailModel } from './ParticipationDetailModel';
+import {ParticipationModel} from './ParticipationModel';
 
 export interface UtilisateurModel {
 
@@ -11,5 +12,5 @@ export interface UtilisateurModel {
     telephone: string;
     infoSuppl: string;
     urlPhoto: string;
-    participations: ParticipationDetailModel[];
+    participations: ParticipationModel[];
 }

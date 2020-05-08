@@ -1,9 +1,30 @@
 <nb-layout>
     <nb-sidebar>
         <nb-sidebar-header><h5>Projet et Role</h5></nb-sidebar-header>
-        <app-nav-barre [participations]="utilisateur.participations"></app-nav-barre>
+        <app-nav-barre [participations]="utilisateur.participations|participationActif"></app-nav-barre>
     </nb-sidebar>
     <nb-layout-column>
-        <button (click)="valid()">Appuyer sur Moi </button>
+        <div *ngFor="let participation of (utilisateur.participations |participationActif)">
+            <nb-card>
+                <nb-card-header>
+                    {{participation.projet.nom}}
+                    {{participation.role.nom}}
+                </nb-card-header>
+                <nb-card-body>
+                    <div *ngFor="let etape of (participation.projet.etapeWorkflows|ordreEtape)">
+                        <div *ngIf="etape.taches != null">
+                            <div *ngFor="let t of etape.taches">
+                            <app-tache-etape-workflow *ngIf="t.utilisateurAffecte != null && t.utilisateurAffecte.id == utilisateur.id"
+                                                      [tache]="t" [estProgression]="false" [estDetail]="false"
+                                                      [membresProjet]="participation.projet.utilisateurMembres"
+                                                      [idEtapeSuivante]="getIdEtapeSuivante(etape.id,participation.projet.etapeWorkflows|ordreEtape)"
+                                                      [idDerniereEtape]="getIdDerniereEtape(participation.projet.etapeWorkflows|ordreEtape)"
+                            ></app-tache-etape-workflow>
+                            </div>
+                        </div>
+                    </div>
+                </nb-card-body>
+            </nb-card>
+            </div>
     </nb-layout-column>
 </nb-layout>

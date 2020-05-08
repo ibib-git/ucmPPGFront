@@ -42,6 +42,7 @@ import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateu
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
 import {config} from 'rxjs';
 import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
+import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,7 @@ import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
       useClass: ErreursInterceptor,
       multi: true
     }*/
-   OrdreEtapePipe
+   OrdreEtapePipe, ParticipationActifPipe
   ],
 
   bootstrap: [AppComponent]

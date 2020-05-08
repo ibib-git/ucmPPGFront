@@ -1,6 +1,7 @@
 import { UniteDeTempsEnum } from '../enums/UniteDeTempsEnum';
 import { HistoriqueTacheModel } from './HistoriqueTacheModel';
 import { UtilisateurModel } from './UtilisateurModel';
+import {UtilisateurDetailsModel} from './UtilisateurDetailsModel';
 
 export interface TacheModel {
     id: bigint;
@@ -11,5 +12,5 @@ export interface TacheModel {
     estimationTemps: number;
     uniteDeTemps: UniteDeTempsEnum;
     historique: HistoriqueTacheModel[];
-    utilisateurAffecte: UtilisateurModel;
+    utilisateurAffecte: UtilisateurDetailsModel;
 }
