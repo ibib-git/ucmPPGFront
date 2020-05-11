@@ -3,7 +3,10 @@ import { UtilisateurService } from 'src/app/core/services/utilisateur.service';
 import { NbToastrService } from '@nebular/theme';
 import { UtilisateurModel } from 'src/app/core/models/UtilisateurModel';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {ErreurModel} from '../../../core/models/ErreurModel';
+import {ParticipationModel} from '../../../core/models/ParticipationModel';
+import {ProjetModel} from '../../../core/models/ProjetModel';
+import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
 
 
 @Component({
@@ -14,35 +17,49 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class UtilisateurInterfaceComponent implements OnInit {
 
   utilisateur: UtilisateurModel;
+  errosModel: ErreurModel[];
 
-  constructor(private utilisateurService : UtilisateurService,
+  projet: ProjetModel;
+
+  constructor(private utilisateurService: UtilisateurService,
               private toast: NbToastrService,
-              private route : ActivatedRoute
+              private route: ActivatedRoute,
+              private routServ: Router
     ) { }
 
   ngOnInit(): void {
-    this.getUtilisateur(this.route.snapshot.params['id']);
     this.utilisateur = {} as UtilisateurModel;
+    // TODO Token : recuperer l id du token
+    this.getUtilisateur(this.route.snapshot.params.id);
+    this.errosModel = {} as ErreurModel[];
   }
 
-  getUtilisateur(id: any){
+  getUtilisateur(id: bigint) {
     this.utilisateurService.getUtilisateur(id).subscribe(
       (model) => {
         this.utilisateur = model;
-      },  
-      () => {
-        this.toast.danger('Erreur de connextion', 'Utilisateur', {[status]: 'danger'});
+      },
+      (errorComplete) => {
+        this.toast.danger('Erreur de connexion', 'Utilisateur', {[status]: 'danger'});
+        // Dans le cas d'erreurs 500 ca signifie que ce n'est pas des erreurs prévue par le system et donc non controlées
+        if (errorComplete.status < 500) {
+          this.errosModel = errorComplete.error;
+          this.errosModel.forEach(e => {
+            this.toast.danger(e.erreurMessage , e.nomDuChamps, {[status]: 'danger'});
+          });
+        }
+        this.routServ.navigateByUrl('/home');
       }
-    )
+    );
   }
 
-  valid(){
-    this.utilisateur.participations.forEach(part => {
-      console.log("Dans une méthode")
-      console.log(part.projet)
-      console.log(part.role)
-      console.log(part.utilisateur)
-    });
+  getIdEtapeSuivante(idEtapeCourante: bigint, etapesTriee: EtapeWorkflowModel[]) {
+    const indexEtapeCourante = etapesTriee.findIndex(i => i.id === idEtapeCourante);
+
+    return (etapesTriee[indexEtapeCourante].id === this.getIdDerniereEtape(etapesTriee)) ? this.getIdDerniereEtape(etapesTriee) : etapesTriee[indexEtapeCourante + 1].id;
   }
 
+  getIdDerniereEtape(etapesTriee: EtapeWorkflowModel[]) {
+    return etapesTriee[etapesTriee.length - 1].id;
+  }
 }

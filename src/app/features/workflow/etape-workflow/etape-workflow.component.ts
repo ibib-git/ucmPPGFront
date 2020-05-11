@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
 import {ProjetModel} from '../../../core/models/ProjetModel';
+import {ErreurModel} from '../../../core/models/ErreurModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -25,6 +26,8 @@ export class EtapeWorkflowComponent implements OnInit {
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
   idUtilisateur: bigint;
+  errosModel: ErreurModel;
+
 
 
   constructor(
@@ -56,15 +59,16 @@ export class EtapeWorkflowComponent implements OnInit {
   dragOrdre(etapeModel: EtapeWorkflowModel, i: number) {
     this.ordreEtape.nvOrdre = this.etape.numOrdre + i;
     this.etapeServ.changerOrdreEtape(etapeModel.id, this.ordreEtape).subscribe(
-        (model) => {
+        (projetReturn) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
-          // TODO Damien : update le projet pour le subscribe
+          this.updateProjet(projetReturn);
+
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});
+          this.errosModel = errorResponse.error;
+          this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
         },
-        () => {
-        }
     );
   }
 

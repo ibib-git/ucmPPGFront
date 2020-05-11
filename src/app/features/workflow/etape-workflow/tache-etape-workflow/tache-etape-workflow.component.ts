@@ -41,7 +41,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.checkMembreAssigne();
     // @ts-ignore en js pas de type
     this.estValidee =  this.checkValidation(this.tache);
-    // TODO Damien : a remplacer avec l id user du token
+    // TODO Token : a remplacer avec l id user du token
     // @ts-ignore
     this.idUtilisateurConnecte = 1;
     this.estSelectAssign = false;
