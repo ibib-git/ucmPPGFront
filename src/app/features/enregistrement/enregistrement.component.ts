@@ -2,10 +2,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
-import {UtilisateurService} from '../../core/services/utilisateur.service';
-import {UtilisateurEnregistrementModel} from '../../core/models/UtilisateurEnregistrementModel';
+import {UtilisateurService} from '../../core/services/utilisateur/utilisateur.service';
+import {UtilisateurEnregistrementModel} from '../../core/models/Utilisateur/UtilisateurEnregistrementModel';
 import {CustomValidators} from '../../shared/_validators/custom-validators';
-import {ErreurModel} from '../../core/models/ErreurModel';
+import {ErreurModel} from '../../core/models/erreur/ErreurModel';
 
 @Component({
   selector: 'app-register',

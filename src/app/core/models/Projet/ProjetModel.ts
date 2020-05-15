@@ -1,7 +1,7 @@
-import { EtapeWorkflowModel } from './EtapeWorkflowModel';
+import { EtapeWorkflowModel } from '../etape/EtapeWorkflowModel';
 import {MembreProjetModel} from './MembreProjetModel';
-import {UtilisateurDetailsModel} from './UtilisateurDetailsModel';
-import { RoleModel } from './RoleModel';
+import {UtilisateurDetailsModel} from '../Utilisateur/UtilisateurDetailsModel';
+import { RoleModel } from '../role/RoleModel';
 
 export interface ProjetModel {
     id: bigint;

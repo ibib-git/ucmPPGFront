@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {ParticipationModel} from '../../core/models/ParticipationModel';
+import {ParticipationModel} from '../../core/models/participation/ParticipationModel';
 
 @Pipe({
   name: 'participationActif',

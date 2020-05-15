@@ -1,6 +1,6 @@
-import { TacheModel } from './TacheModel';
-import { RoleModel } from './RoleModel';
-import { ConstrainteDAffectation } from '../enums/ContrainteDAffectionEnum';
+import { TacheModel } from '../tache/TacheModel';
+import { RoleModel } from '../role/RoleModel';
+import { ConstrainteDAffectation } from '../../enums/ContrainteDAffectionEnum';
 
 export interface EtapeWorkflowModel {
     id: bigint;

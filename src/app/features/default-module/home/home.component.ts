@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur/UtilisateurAuthentificationModel';
+import {UtilisateurService} from '../../../core/services/utilisateur/utilisateur.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  currentUser: UtilisateurAuthentificationModel;
+
+  constructor(
+      private authentificationService: UtilisateurService,
+
+  ) {
+    this.currentUser = this.authentificationService.currentUserValue;
+  }
 
   ngOnInit(): void {
   }

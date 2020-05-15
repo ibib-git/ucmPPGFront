@@ -2,8 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EnregistrementComponent } from './enregistrement.component';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {UtilisateurService} from '../../core/services/utilisateur.service';
-import {UtilisateurDetailsModel} from '../../core/models/UtilisateurDetailsModel';
+import {UtilisateurService} from '../../core/services/utilisateur/utilisateur.service';
+import {UtilisateurDetailsModel} from '../../core/models/Utilisateur/UtilisateurDetailsModel';
 import {CoreModule} from '../../core/core.module';
 
 describe('RegisterComponent', () => {

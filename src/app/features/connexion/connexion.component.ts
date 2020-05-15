@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UtilisateurConnexionModel} from '../../core/models/UtilisateurConnexionModel';
-import {UtilisateurService} from '../../core/services/utilisateur.service';
+import {UtilisateurConnexionModel} from '../../core/models/Utilisateur/UtilisateurConnexionModel';
+import {UtilisateurService} from '../../core/services/utilisateur/utilisateur.service';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 

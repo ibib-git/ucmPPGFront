@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
+import {EtapeWorkflowModel} from '../../../core/models/etape/EtapeWorkflowModel';
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
-import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
+import {OrdreEtapeModel} from '../../../core/models/etape/OrdreEtapeModel';
 import {Router} from '@angular/router';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
-import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
-import {ProjetModel} from '../../../core/models/ProjetModel';
-import {ErreurModel} from '../../../core/models/ErreurModel';
+import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
+import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
+import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
 
 @Component({
   selector: 'app-etape-workflow',

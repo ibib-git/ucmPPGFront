@@ -1,0 +1,15 @@
+<nb-actions>
+        <nb-action title="Accueil">
+                <h2 routerLink="/home">PPG project V2</h2>
+        </nb-action>
+
+        <nb-action *ngIf="!currentUser" routerLink="/login" class="fill-space" title="Mon Profile" icon="person-outline">
+        </nb-action>
+
+
+        <nb-action *ngIf="currentUser" routerLink="/utilisateur/{{currentUser.id}}" class="fill-space" title="Mon profil" icon="person-outline"></nb-action>
+        <nb-action *ngIf="currentUser" (click)="deconnexion()"  class="fill-space" title="Deconnexion" icon="log-out-outline"></nb-action>
+      <!--  <nb-action > TODO DAMIEN: voir si possibilité d utiliser un nbmenu et voir pourquoi besoin de refresh la page pour le template
+                <nb-menu [items]="menuItems"></nb-menu>
+        </nb-action>-->
+</nb-actions>
