@@ -38,6 +38,7 @@ export class UtilisateurService {
         .pipe(map(user => {
           // enregistre les info de l utilisateur et le token dans le local storage pour garder la connexion entre les refresh
           localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
           return user;
         }));
   }

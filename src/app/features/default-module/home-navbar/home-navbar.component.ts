@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NbMenuItem} from '@nebular/theme';
 import {UtilisateurService} from '../../../core/services/utilisateur/utilisateur.service';
 import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur/UtilisateurAuthentificationModel';
+import {Router, RouterLink, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-home-navbar',
@@ -25,8 +26,10 @@ export class HomeNavbarComponent implements OnInit {
       ]
     },
   ];
-  constructor(private authentificationService: UtilisateurService) {
-    this.currentUser = this.authentificationService.currentUserValue;
+  constructor(
+      private authentificationService: UtilisateurService,
+      private router: Router) {
+     this.authentificationService.currentUser.subscribe(x => this.currentUser = x);
 
   }
 
@@ -36,6 +39,7 @@ export class HomeNavbarComponent implements OnInit {
 
   deconnexion(){
     this.authentificationService.logout();
+    this.router.navigate(['/home']);
   }
 
 }

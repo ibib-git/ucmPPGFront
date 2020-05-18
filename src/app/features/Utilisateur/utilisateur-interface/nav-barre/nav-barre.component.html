@@ -1,6 +1,6 @@
 <nb-list title="Projets">
         <nb-list-item *ngFor="let a of participations">
-            <div (click)="vue(a.projet.id)" class="projetBarClass">
+            <div routerLink="/dashboard/Workflow/{{a.projet.id}}" class="projetBarClass">
                 Projet : {{a.projet.nom}}
                 <br>
                 Role : {{a.role.nom}}

@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'projet/creation', component: CreerUnProjetComponent, canActivate: [AuthentificationGuard]},
   {path: 'dashboard/Workflow/:id', component: WorkflowComponent, canActivate: [AuthentificationGuard]},
   {path: 'projet/gestion/:id', component: ProjetGestionComponent, canActivate: [AuthentificationGuard]},
-  {path: 'utilisateur/:id', component: UtilisateurInterfaceComponent, canActivate: [AuthentificationGuard]},
+  {path: 'utilisateur', component: UtilisateurInterfaceComponent, canActivate: [AuthentificationGuard]},
 
   // dans tous les autres cas revoit vers home (doit être en dernière route)
   {path: '**', redirectTo: '/home', pathMatch: 'full'},

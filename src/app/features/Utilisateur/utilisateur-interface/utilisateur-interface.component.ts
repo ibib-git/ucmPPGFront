@@ -25,12 +25,14 @@ export class UtilisateurInterfaceComponent implements OnInit {
               private toast: NbToastrService,
               private route: ActivatedRoute,
               private routServ: Router
-    ) { }
+    ) {
+    if (localStorage.getItem('currentUser')) {
+      this.getUtilisateur(this.utilisateurService.currentUserValue.id);
+    }
+  }
 
   ngOnInit(): void {
     this.utilisateur = {} as UtilisateurModel;
-    // TODO Token : recuperer l id du token
-    this.getUtilisateur(this.route.snapshot.params.id);
     this.errosModel = {} as ErreurModel[];
   }
 

@@ -13,12 +13,9 @@ export class NavBarreComponent implements OnInit {
 
   @Input() participations: ParticipationModel[];
 
-  constructor( private route: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  vue(id: bigint) {
-    this.route.navigateByUrl('/dashboard/Workflow/' + id);
-  }
 }
