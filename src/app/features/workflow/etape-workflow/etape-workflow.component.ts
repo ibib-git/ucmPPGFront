@@ -4,7 +4,6 @@ import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
 import {OrdreEtapeModel} from '../../../core/models/etape/OrdreEtapeModel';
 import {Router} from '@angular/router';
-import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
 import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
 import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
@@ -44,7 +43,6 @@ export class EtapeWorkflowComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser');
     this.ordreEtape.idUtilisateur = this.currentUser.id ;
     this.ordreEtape.nvOrdre = 1;
-
   }
 
   toggle(checked: boolean) {
@@ -61,7 +59,6 @@ export class EtapeWorkflowComponent implements OnInit {
         (projetReturn) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
           this.updateProjet(projetReturn);
-
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});
@@ -74,5 +71,4 @@ export class EtapeWorkflowComponent implements OnInit {
   updateProjet(projet: ProjetModel) {
     this.outputProjet.emit(projet);
   }
-
 }

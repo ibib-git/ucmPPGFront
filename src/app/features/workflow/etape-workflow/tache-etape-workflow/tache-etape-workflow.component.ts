@@ -1,13 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {TacheModel} from '../../../../core/models/tache/TacheModel';
 import {NbDialogConfig, NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
-import {RoleModel} from '../../../../core/models/role/RoleModel';
 import {MembreProjetModel} from '../../../../core/models/Projet/MembreProjetModel';
 import {TacheService} from '../../../../core/services/tache/tache.service';
 import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
 import {ProjetModel} from '../../../../core/models/Projet/ProjetModel';
-import {UtilisateurModel} from '../../../../core/models/Utilisateur/UtilisateurModel';
-import {UtilisateurDetailsModel} from '../../../../core/models/Utilisateur/UtilisateurDetailsModel';
+
 
 @Component({
   selector: 'app-tache-etape-workflow',
