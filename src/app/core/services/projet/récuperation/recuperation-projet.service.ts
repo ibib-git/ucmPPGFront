@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-<<<<<<< HEAD
-import {Observable} from 'rxjs';
-=======
 import {UtilisateurEnregistrementModel} from '../../../models/Utilisateur/UtilisateurEnregistrementModel';
 import {Observable} from 'rxjs';
 import {UtilisateurDetailsModel} from '../../../models/Utilisateur/UtilisateurDetailsModel';
->>>>>>> bd286a89b6dff2affb35100a2a6f5719b789be39
 import {environment} from '../../../../../environments/environment';
 import {ProjetModel} from '../../../models/Projet/ProjetModel';
 
