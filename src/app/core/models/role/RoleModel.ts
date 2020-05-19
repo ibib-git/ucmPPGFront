@@ -1,4 +1,4 @@
-import { DroitModel } from './DroitModel';
+import { DroitModel } from '../droits/DroitModel';
 
 export interface RoleModel {
     nom: string;

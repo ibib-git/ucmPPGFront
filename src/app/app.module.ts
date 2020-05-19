@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,7 +17,7 @@ import {
     NbSelectModule,
     NbListModule,
     NbSidebarModule,
-    NbDialogModule, NbUserModule
+    NbDialogModule, NbUserModule, NbActionsModule, NbMenuModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
@@ -30,7 +29,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { ConnexionComponent } from './features/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
@@ -43,6 +41,8 @@ import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-ta
 import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
 import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
 import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/supprimer-tache.component';
+import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
+import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -89,7 +89,9 @@ import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/suppri
         NbListModule,
         DragDropModule,
         NbDialogModule.forRoot(),
-        NbUserModule
+        NbUserModule,
+        NbActionsModule,
+        NbMenuModule.forRoot(),
     ],
 
   providers: [
@@ -98,7 +100,8 @@ import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/suppri
       useClass: ErreursInterceptor,
       multi: true
     }*/
-   OrdreEtapePipe
+      {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true},
+   OrdreEtapePipe, ParticipationActifPipe
   ],
 
   bootstrap: [AppComponent]

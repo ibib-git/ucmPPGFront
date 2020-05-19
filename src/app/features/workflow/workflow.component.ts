@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProjetModel} from '../../core/models/ProjetModel';
-import { RecuperationProjetService } from '../../core/services/projet/récuperation/recuperation-projet.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
-import { OrdreEtapePipe } from '../../shared/_pipes/ordre-etape.pipe';
-import { EtapeWorkflowModel } from '../../core/models/EtapeWorkflowModel';
+import {ProjetModel} from '../../core/models/Projet/ProjetModel';
+import {RecuperationProjetService} from '../../core/services/projet/récuperation/recuperation-projet.service';
+import {Router, ActivatedRoute} from '@angular/router';
+import {OrdreEtapePipe} from '../../shared/_pipes/ordre-etape.pipe';
+import {EtapeWorkflowModel} from '../../core/models/etape/EtapeWorkflowModel';
 
 
 @Component({

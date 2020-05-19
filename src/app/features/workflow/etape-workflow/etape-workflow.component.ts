@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
+import {EtapeWorkflowModel} from '../../../core/models/etape/EtapeWorkflowModel';
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
-import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
-import {Router} from '@angular/router';
-import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
-import {ProjetModel} from '../../../core/models/ProjetModel';
+import {OrdreEtapeModel} from '../../../core/models/etape/OrdreEtapeModel';
+import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
+import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
+import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
+import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur/UtilisateurAuthentificationModel';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class EtapeWorkflowComponent implements OnInit {
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
-  idUtilisateur: bigint;
+  currentUser: UtilisateurAuthentificationModel;
+  errosModel: ErreurModel;
+
 
   constructor(
       private toastrServ: NbToastrService,
@@ -35,10 +38,9 @@ export class EtapeWorkflowComponent implements OnInit {
     this.estProgression = true;
     this.allDetails = false;
     this.ordreEtape = {} as OrdreEtapeModel;
-    // TODO Damien : a remplacer avec l id user du token
     // @ts-ignore
-    this.idUtilisateur = 1;
-    this.ordreEtape.idUtilisateur = this.idUtilisateur;
+    this.currentUser = localStorage.getItem('currentUser');
+    this.ordreEtape.idUtilisateur = this.currentUser.id ;
     this.ordreEtape.nvOrdre = 1;
   }
 
@@ -53,12 +55,15 @@ export class EtapeWorkflowComponent implements OnInit {
   dragOrdre(etapeModel: EtapeWorkflowModel, i: number) {
     this.ordreEtape.nvOrdre = this.etape.numOrdre + i;
     this.etapeServ.changerOrdreEtape(etapeModel.id, this.ordreEtape).subscribe(
-        (model) => {
+        (projetReturn) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
-          // TODO Damien : update le projet pour le subscribe
+          this.updateProjet(projetReturn);
+
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});
+          this.errosModel = errorResponse.error;
+          this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
         },
         () => {
         }

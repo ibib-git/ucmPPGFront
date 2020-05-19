@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ParticipationDetailModel } from 'src/app/core/models/ParticipationDetailModel';
-import { ProjetDetailModel } from 'src/app/core/models/ProjetDetailModel';
+import { ProjetDetailModel } from 'src/app/core/models/Projet/ProjetDetailModel';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import {ParticipationModel} from '../../../../core/models/participation/ParticipationModel';
 
 @Component({
   selector: 'app-nav-barre',
@@ -11,14 +11,11 @@ import { environment } from 'src/environments/environment';
 })
 export class NavBarreComponent implements OnInit {
 
-  @Input() participations: ParticipationDetailModel[];
-  
-  constructor( private route : Router) { }
+  @Input() participations: ParticipationModel[];
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  vue(projet: ProjetDetailModel){
-    this.route.navigateByUrl('/dashboard/Workflow/' + projet.id);
-  }
 }

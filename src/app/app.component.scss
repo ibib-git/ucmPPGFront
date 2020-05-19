@@ -1,0 +1,21 @@
+.iconClass{
+  flex-grow: 8;
+  align-self: flex-end;
+  background-color: red;
+}
+
+.headerClass{
+  display: flex;
+  align-items: stretch;
+  background-color: chocolate;
+  flex-direction: row-reverse;
+
+}
+
+.headerClass > div{
+  text-decoration-color: purple;
+  text-align: center;
+  margin: 10px;
+  line-height: 75px;
+  font-size: 30px;
+}

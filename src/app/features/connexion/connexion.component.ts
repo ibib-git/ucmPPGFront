@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UtilisateurConnexionModel} from '../../core/models/UtilisateurConnexionModel';
-import {UtilisateurService} from '../../core/services/utilisateur.service';
+import {UtilisateurConnexionModel} from '../../core/models/Utilisateur/UtilisateurConnexionModel';
+import {UtilisateurService} from '../../core/services/utilisateur/utilisateur.service';
 import {Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
+import {UtilisateurAuthentificationModel} from '../../core/models/Utilisateur/UtilisateurAuthentificationModel';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +16,19 @@ export class ConnexionComponent implements OnInit {
 
   loginForm: FormGroup;
   userModel: UtilisateurConnexionModel;
+  currentUser: UtilisateurAuthentificationModel;
+
 
   get form() {return this.loginForm.controls; }
 
   constructor(
       private userServ: UtilisateurService,
       private routServ: Router,
-      private toastrServ: NbToastrService) { }
+      private toastrServ: NbToastrService) {
+    if (this.userServ.currentUserValue) {
+      this.routServ.navigate(['/home']);
+    }
+  }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({

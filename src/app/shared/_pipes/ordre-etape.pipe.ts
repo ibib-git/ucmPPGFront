@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {EtapeWorkflowModel} from '../../core/models/EtapeWorkflowModel';
+import {EtapeWorkflowModel} from '../../core/models/etape/EtapeWorkflowModel';
 
 @Pipe({
   name: 'ordreEtape'

@@ -1,5 +1,5 @@
 
-import {UtilisateurDetailsModel} from './UtilisateurDetailsModel';
+import {UtilisateurDetailsModel} from '../Utilisateur/UtilisateurDetailsModel';
 
 export interface ProjetDetailModel {
     id: bigint;

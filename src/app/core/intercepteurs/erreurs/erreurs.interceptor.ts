@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NbToastRef, NbToastrService, NbGlobalPhysicalPosition } from '@nebular/theme';
-import { GestionnaireErreurService } from '../services/gestionnaire-erreur.service';
+import { GestionnaireErreurService } from '../../services/erreur/gestionnaire-erreur.service';
 
 @Injectable()
 export class ErreursInterceptor implements HttpInterceptor {

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TacheModel } from 'src/app/core/models/TacheModel';
-import { UtilisateurDetailsModel } from 'src/app/core/models/UtilisateurDetailsModel';
 import { NbToastrService } from '@nebular/theme';
-import { TacheSupprimerModel } from 'src/app/core/models/TacheSupprimerModel';
+import { TacheSupprimerModel } from 'src/app/core/models/tache/TacheSupprimerModel';
+import { TacheModel } from 'src/app/core/models/tache/TacheModel';
+import { UtilisateurDetailsModel } from 'src/app/core/models/Utilisateur/UtilisateurDetailsModel';
 
 @Component({
   selector: 'app-supprimer-tache',

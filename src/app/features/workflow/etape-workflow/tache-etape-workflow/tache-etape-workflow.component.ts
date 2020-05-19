@@ -1,15 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {TacheModel} from '../../../../core/models/TacheModel';
+import {TacheModel} from '../../../../core/models/tache/TacheModel';
 import {NbDialogService, NbToastrService} from '@nebular/theme';
-import {MembreProjetModel} from '../../../../core/models/MembreProjetModel';
-import {ValiderTacheService} from '../../../../core/services/tache/valider-tache.service';
-import {ErreurModel} from '../../../../core/models/ErreurModel';
-import {ProjetModel} from '../../../../core/models/ProjetModel';
+import {MembreProjetModel} from '../../../../core/models/Projet/MembreProjetModel';
+import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
+import {ProjetModel} from '../../../../core/models/Projet/ProjetModel';
 import { Router } from '@angular/router';
-import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
-import { TacheSupprimerModel } from 'src/app/core/models/TacheSupprimerModel';
+import { TacheService } from 'src/app/core/services/tache/tache.service';
 
 @Component({
   selector: 'app-tache-etape-workflow',
@@ -30,24 +26,35 @@ export class TacheEtapeWorkflowComponent implements OnInit {
 
   membreAssigne: MembreProjetModel;
   errosModel: ErreurModel;
-  idUtilisateurConnecte: bigint;
   estValidee: boolean;
+  estSelectAssign: boolean;
+  estTacheAssignee: boolean;
+
 
   constructor(
       private dialogueService: NbDialogService,
       private toastrServ: NbToastrService,
-      private tacheService: ValiderTacheService,
-      private tacheGestionService: GestionTacheService,
       private route: Router,
+      private tacheService: TacheService,
   ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
-    this.membreAssigne = this.membresProjet.find(m => m.utilisateur.pseudo === this.tache.utilisateurAffecte.pseudo);
+    this.checkMembreAssigne();
     // @ts-ignore en js pas de type
     this.estValidee =  this.checkValidation(this.tache);
-    // TODO Damien : a remplacer avec l id user du token
+    // TODO Token : a remplacer avec l id user du token
     // @ts-ignore
-    this.idUtilisateurConnecte = 1;
+    this.estSelectAssign = false;
+  }
+
+  checkMembreAssigne() {
+    if (this.tache.utilisateurAffecte === null) {
+      this.membreAssigne = null;
+      this.estTacheAssignee = false;
+    } else {
+      this.membreAssigne = this.membresProjet.find(m => m.utilisateur.id === this.tache.utilisateurAffecte.id);
+      this.estTacheAssignee = true;
+    }
   }
 
   checkValidation(tacheToCheck: TacheModel) {
@@ -61,6 +68,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   }
 
   showDetails(dialog: TemplateRef<any>) {
+    this.estSelectAssign = false;
     this.dialogueService.open(dialog,
         {
           closeOnEsc: true,
@@ -82,17 +90,15 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   }
 
   valider() {
-    this.tacheService.valider(this.tache.id, this.idUtilisateurConnecte).subscribe(
+    this.tacheService.valider(this.tache.id).subscribe(
         (projetReturn) => {
           this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
           this.updateProjet(projetReturn);
-
         },
         (errorComplete) => {
           this.toastrServ.danger('Impossible de valider la tache', this.tache.nom, {[status]: 'danger'});
           this.errosModel = errorComplete.error;
           this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
-
         }
     );
   }
@@ -101,8 +107,46 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.outputProjet.emit(projet);
   }
 
-
   CreationDeTacheParent(tacheParent: bigint){
     this.route.navigateByUrl('tache/'+this.idprojet+'/'+this.idWorkflow+'/'+tacheParent+'/creationEnfant');
+  }
+  clickAssignTache(v: boolean){
+    this.estSelectAssign = v;
+  }
+
+  assignerTache(membreChoisi: MembreProjetModel) {
+    // On test si on veut assigner la tache a qqn ou a personne
+    if (membreChoisi != null) {
+      this.tacheService.assigner(this.tache.id, membreChoisi.utilisateur.id).subscribe(
+          (projetReturn) => {
+            this.toastrServ.success('Tache assignée !', this.tache.nom, {[status]: 'success'});
+            this.membreAssigne = membreChoisi;
+            this.updateProjet(projetReturn);
+          },
+          (errorComplete) => {
+            this.toastrServ.danger('Impossible d assigner la tache', this.tache.nom, {[status]: 'danger'});
+            this.errosModel = errorComplete.error;
+            this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
+          },
+      );
+    } else {
+      // on verifie si elle etait deja assignee a qqn ou non au depart
+      if (this.membreAssigne != null) {
+        // supprimer un utilisateur d une tache
+        this.tacheService.congedier(this.tache.id).subscribe(
+            (ProjetReturn) => {
+              this.toastrServ.success('Utilisateur retiré !', this.tache.nom, {[status]: 'success'});
+              this.membreAssigne = null;
+              this.updateProjet(ProjetReturn);
+            },
+            (errorComplete) => {
+              this.toastrServ.danger('Impossible de retirer l utilisateur ' + this.membreAssigne.utilisateur.pseudo + ' de la tache', this.tache.nom, {[status]: 'danger'});
+              this.errosModel = errorComplete.error;
+              this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
+            },
+        );
+      }
+    }
+    this.estSelectAssign = false;
   }
 }

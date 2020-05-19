@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { TacheModel } from '../../models/TacheModel';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { TacheCreationModel } from '../../models/TacheCreationModel';
-import { TacheSupprimerModel } from '../../models/TacheSupprimerModel';
+import { TacheCreationModel } from '../../models/etape/TacheCreationModel';
+import { TacheSupprimerModel } from '../../models/tache/TacheSupprimerModel';
+import { TacheModel } from '../../models/tache/TacheModel';
 
 @Injectable({
   providedIn: 'root'

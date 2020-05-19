@@ -3,7 +3,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {GestionTacheService} from 'src/app/core/services/tache/gestionTache.service';
 import {NbToastrService} from '@nebular/theme';
 import {Router, ActivatedRoute} from '@angular/router';
-import { TacheCreationModel } from 'src/app/core/models/TacheCreationModel';
+import { TacheCreationModel } from 'src/app/core/models/etape/TacheCreationModel';
 
 
 @Component({

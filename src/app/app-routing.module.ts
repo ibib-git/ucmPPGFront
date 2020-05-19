@@ -10,21 +10,22 @@ import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateu
 import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-tache.component';
 import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
 import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/supprimer-tache.component';
+import {AuthentificationGuard} from './core/guards/authentification.guard';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   {path: 'register', component: EnregistrementComponent},
   {path: 'login', component: ConnexionComponent},
-  {path: 'projet/creation', component: CreerUnProjetComponent},
-  {path: 'dashboard/Workflow/:id', component: WorkflowComponent},
-  {path: 'projet/gestion', component: ProjetGestionComponent},
-  {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
   {path: 'tache/:idprojet/:idWorkflow/creationTache',component: AjouterTacheComponent},
   {path: 'tache/:idprojet/:idWorkflow/:idTache/creationEnfant',component: TacheEnfantComponent},
   {path: 'tache/:idProjet/:idTache/supprimer', component: SupprimerTacheComponent},
-
+  {path: 'projet/creation', component: CreerUnProjetComponent, canActivate: [AuthentificationGuard]},
+  {path: 'dashboard/Workflow/:id', component: WorkflowComponent, canActivate: [AuthentificationGuard]},
+  {path: 'projet/gestion/:id', component: ProjetGestionComponent, canActivate: [AuthentificationGuard]},
+  {path: 'utilisateur', component: UtilisateurInterfaceComponent, canActivate: [AuthentificationGuard]},
+  // dans tous les autres cas revoit vers home (doit être en dernière route)
+  {path: '**', redirectTo: '/home', pathMatch: 'full'},
 ];
 
 @NgModule({

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ValiderTacheService } from './valider-tache.service';
+import { TacheService } from './tache.service';
 
 describe('ValiderTacheService', () => {
-  let service: ValiderTacheService;
+  let service: TacheService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ValiderTacheService);
+    service = TestBed.inject(TacheService);
   });
 
   it('should be created', () => {
