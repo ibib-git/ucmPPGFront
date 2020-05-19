@@ -1,13 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
+import {EtapeWorkflowModel} from '../../../core/models/etape/EtapeWorkflowModel';
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
-import {OrdreEtapeModel} from '../../../core/models/OrdreEtapeModel';
+import {OrdreEtapeModel} from '../../../core/models/etape/OrdreEtapeModel';
 import {Router} from '@angular/router';
 import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
-import {MembreProjetModel} from '../../../core/models/MembreProjetModel';
-import {ProjetModel} from '../../../core/models/ProjetModel';
-import {ErreurModel} from '../../../core/models/ErreurModel';
+import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
+import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
+import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
+import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur/UtilisateurAuthentificationModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -19,13 +20,12 @@ export class EtapeWorkflowComponent implements OnInit {
   @Input() membreProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
-  
   @Output() outputProjet: EventEmitter<ProjetModel>;
 
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
-  idUtilisateur: bigint;
+  currentUser: UtilisateurAuthentificationModel;
   errosModel: ErreurModel;
 
 
@@ -40,10 +40,9 @@ export class EtapeWorkflowComponent implements OnInit {
     this.estProgression = true;
     this.allDetails = false;
     this.ordreEtape = {} as OrdreEtapeModel;
-    // TODO Damien : a remplacer avec l id user du token
     // @ts-ignore
-    this.idUtilisateur = 1;
-    this.ordreEtape.idUtilisateur = this.idUtilisateur;
+    this.currentUser = localStorage.getItem('currentUser');
+    this.ordreEtape.idUtilisateur = this.currentUser.id ;
     this.ordreEtape.nvOrdre = 1;
 
   }

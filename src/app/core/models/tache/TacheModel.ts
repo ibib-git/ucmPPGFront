@@ -1,7 +1,7 @@
-import { UniteDeTempsEnum } from '../enums/UniteDeTempsEnum';
-import { HistoriqueTacheModel } from './HistoriqueTacheModel';
-import { UtilisateurModel } from './UtilisateurModel';
-import {UtilisateurDetailsModel} from './UtilisateurDetailsModel';
+import { UniteDeTempsEnum } from '../../enums/UniteDeTempsEnum';
+import { HistoriqueTacheModel } from '../historique/HistoriqueTacheModel';
+import { UtilisateurModel } from '../Utilisateur/UtilisateurModel';
+import {UtilisateurDetailsModel} from '../Utilisateur/UtilisateurDetailsModel';
 
 export interface TacheModel {
     id: bigint;

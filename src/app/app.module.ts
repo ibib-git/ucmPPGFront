@@ -18,7 +18,7 @@ import {
     NbSelectModule,
     NbListModule,
     NbSidebarModule,
-    NbDialogModule, NbUserModule
+    NbDialogModule, NbUserModule, NbActionsModule, NbMenuModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
@@ -30,7 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from './shared/shared.module';
 import { ConnexionComponent } from './features/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErreursInterceptor } from './core/intercepteurs/erreurs.interceptor';
+import { ErreursInterceptor } from './core/intercepteurs/erreurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
@@ -43,6 +43,7 @@ import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/
 import {config} from 'rxjs';
 import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
 import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
+import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,9 @@ import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
         NbListModule,
         DragDropModule,
         NbDialogModule.forRoot(),
-        NbUserModule
+        NbUserModule,
+        NbActionsModule,
+        NbMenuModule.forRoot(),
     ],
 
   providers: [
@@ -95,6 +98,7 @@ import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
       useClass: ErreursInterceptor,
       multi: true
     }*/
+      {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true},
    OrdreEtapePipe, ParticipationActifPipe
   ],
 

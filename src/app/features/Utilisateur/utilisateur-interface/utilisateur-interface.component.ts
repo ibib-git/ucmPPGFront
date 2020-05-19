@@ -1,12 +1,12 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { UtilisateurService } from 'src/app/core/services/utilisateur.service';
+import { UtilisateurService } from 'src/app/core/services/utilisateur/utilisateur.service';
 import { NbToastrService } from '@nebular/theme';
-import { UtilisateurModel } from 'src/app/core/models/UtilisateurModel';
+import { UtilisateurModel } from 'src/app/core/models/Utilisateur/UtilisateurModel';
 import { Router, ActivatedRoute } from '@angular/router';
-import {ErreurModel} from '../../../core/models/ErreurModel';
-import {ParticipationModel} from '../../../core/models/ParticipationModel';
-import {ProjetModel} from '../../../core/models/ProjetModel';
-import {EtapeWorkflowModel} from '../../../core/models/EtapeWorkflowModel';
+import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
+import {ParticipationModel} from '../../../core/models/participation/ParticipationModel';
+import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
+import {EtapeWorkflowModel} from '../../../core/models/etape/EtapeWorkflowModel';
 
 
 @Component({
@@ -25,12 +25,14 @@ export class UtilisateurInterfaceComponent implements OnInit {
               private toast: NbToastrService,
               private route: ActivatedRoute,
               private routServ: Router
-    ) { }
+    ) {
+    if (localStorage.getItem('currentUser')) {
+      this.getUtilisateur(this.utilisateurService.currentUserValue.id);
+    }
+  }
 
   ngOnInit(): void {
     this.utilisateur = {} as UtilisateurModel;
-    // TODO Token : recuperer l id du token
-    this.getUtilisateur(this.route.snapshot.params.id);
     this.errosModel = {} as ErreurModel[];
   }
 

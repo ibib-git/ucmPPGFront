@@ -1,5 +1,5 @@
-import { ParticipationDetailModel } from './ParticipationDetailModel';
-import {ParticipationModel} from './ParticipationModel';
+import { ParticipationDetailModel } from '../participation/ParticipationDetailModel';
+import {ParticipationModel} from '../participation/ParticipationModel';
 
 export interface UtilisateurModel {
 

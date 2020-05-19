@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ModifierprojetService } from 'src/app/core/services/projet/gestion/modifierprojet.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ProjetAjoutCollaborateurModel } from 'src/app/core/models/ProjetAjoutCollaborateurModel';
+import { ProjetAjoutCollaborateurModel } from 'src/app/core/models/Projet/ProjetAjoutCollaborateurModel';
 import { NbToastrService } from '@nebular/theme';
-import { ProjetModel } from '../../../../core/models/ProjetModel';
+import { ProjetModel } from '../../../../core/models/Projet/ProjetModel';
 import { RecuperationProjetService } from 'src/app/core/services/projet/récuperation/recuperation-projet.service';
-import { SupprimerCollaborateurModel } from 'src/app/core/models/SupprimerCollaborateurModel';
+import { SupprimerCollaborateurModel } from 'src/app/core/models/Projet/SupprimerCollaborateurModel';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-projet-gestion',
@@ -23,7 +24,8 @@ export class ProjetGestionComponent implements OnInit {
   constructor(
       private serviceProjetGestion : ModifierprojetService,
       private toastservice : NbToastrService,
-      private serviceRecuperation : RecuperationProjetService) { }
+      private serviceRecuperation : RecuperationProjetService,
+      private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.controleDeMail = new FormGroup({
@@ -33,7 +35,7 @@ export class ProjetGestionComponent implements OnInit {
       ]))
     });
     this.projet = {} as ProjetModel;
-    this.getProjet(1);
+    this.getProjet(this.route.snapshot.params.id);
     this.supprimerUtilisateur = {} as SupprimerCollaborateurModel;
     this.ajouterUtilisateur = {} as ProjetAjoutCollaborateurModel;
   }
@@ -44,13 +46,12 @@ export class ProjetGestionComponent implements OnInit {
     this.serviceProjetGestion.supprimerCollaborateur(this.supprimerUtilisateur).subscribe(
       (model) => {
         this.toastservice.success('Validation de la demande', 'Réussite', {[status]: 'success'});
-        this.getProjet(1);
+        this.getProjet(this.route.snapshot.params.id);
         },
       () => {
         this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
       }
     );
-    this.refresh();
   }
 
   getProjet(id : any){
@@ -73,11 +74,6 @@ export class ProjetGestionComponent implements OnInit {
       () => {
         this.toastservice.danger('Echec d enregistrement ', 'defaut', {[status]: 'danger'});
       },
-      () => {}, 
-    )
+    );
   }
-    refresh(){
-      // Encore à terminer;
-    }
-
 }
