@@ -29,8 +29,8 @@ export class UtilisateurService {
     return this.currentUserSubject.value;
   }
 
-  enregistrement(model: UtilisateurEnregistrementModel): Observable<UtilisateurDetailsModel> {
-    return this.httpClient.post<UtilisateurDetailsModel>(environment.apiEndPoint + '/utilisateur/enregistrement', model);
+  enregistrement(model: UtilisateurEnregistrementModel): Observable<any> {
+    return this.httpClient.post<any>(environment.apiEndPoint + '/utilisateur/enregistrement', model);
   }
 
   login(model: UtilisateurConnexionModel): Observable<UtilisateurAuthentificationModel> {

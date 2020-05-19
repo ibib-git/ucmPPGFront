@@ -8,6 +8,7 @@ import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll
 import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
 import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
 import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
+import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur/UtilisateurAuthentificationModel';
 
 @Component({
   selector: 'app-etape-workflow',
@@ -19,13 +20,12 @@ export class EtapeWorkflowComponent implements OnInit {
   @Input() membreProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
-  
   @Output() outputProjet: EventEmitter<ProjetModel>;
 
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
-  idUtilisateur: bigint;
+  currentUser: UtilisateurAuthentificationModel;
   errosModel: ErreurModel;
 
 
@@ -40,10 +40,9 @@ export class EtapeWorkflowComponent implements OnInit {
     this.estProgression = true;
     this.allDetails = false;
     this.ordreEtape = {} as OrdreEtapeModel;
-    // TODO Damien : a remplacer avec l id user du token
     // @ts-ignore
-    this.idUtilisateur = 1;
-    this.ordreEtape.idUtilisateur = this.idUtilisateur;
+    this.currentUser = localStorage.getItem('currentUser');
+    this.ordreEtape.idUtilisateur = this.currentUser.id ;
     this.ordreEtape.nvOrdre = 1;
 
   }

@@ -26,7 +26,6 @@ export class TacheEtapeWorkflowComponent implements OnInit {
 
   membreAssigne: MembreProjetModel;
   errosModel: ErreurModel;
-  idUtilisateurConnecte: bigint;
   estValidee: boolean;
   estSelectAssign: boolean;
   estTacheAssignee: boolean;
@@ -43,7 +42,6 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.estValidee =  this.checkValidation(this.tache);
     // TODO Token : a remplacer avec l id user du token
     // @ts-ignore
-    this.idUtilisateurConnecte = 1;
     this.estSelectAssign = false;
   }
 
@@ -77,7 +75,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   }
 
   valider() {
-    this.tacheService.valider(this.tache.id, this.idUtilisateurConnecte).subscribe(
+    this.tacheService.valider(this.tache.id).subscribe(
         (projetReturn) => {
           this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
           this.updateProjet(projetReturn);
@@ -102,7 +100,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   assignerTache(membreChoisi: MembreProjetModel) {
     // On test si on veut assigner la tache a qqn ou a personne
     if (membreChoisi != null) {
-      this.tacheService.assigner(this.tache.id, this.idUtilisateurConnecte, membreChoisi.utilisateur.id).subscribe(
+      this.tacheService.assigner(this.tache.id, membreChoisi.utilisateur.id).subscribe(
           (projetReturn) => {
             this.toastrServ.success('Tache assignée !', this.tache.nom, {[status]: 'success'});
             this.membreAssigne = membreChoisi;
@@ -118,7 +116,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       // on verifie si elle etait deja assignee a qqn ou non au depart
       if (this.membreAssigne != null) {
         // supprimer un utilisateur d une tache
-        this.tacheService.congedier(this.tache.id, this.idUtilisateurConnecte).subscribe(
+        this.tacheService.congedier(this.tache.id).subscribe(
             (ProjetReturn) => {
               this.toastrServ.success('Utilisateur retiré !', this.tache.nom, {[status]: 'success'});
               this.membreAssigne = null;
