@@ -1,3 +1,3 @@
 export interface TacheSupprimerModel {
-    EnCascade: boolean;
+    EnCascade: string;
 }

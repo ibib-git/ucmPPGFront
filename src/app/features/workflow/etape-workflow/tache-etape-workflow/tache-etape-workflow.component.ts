@@ -78,7 +78,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   }
 
   supprimerTache(id: bigint){
-    this.route.navigateByUrl('/tache/'+id+'/supprimer')
+    this.route.navigateByUrl('/tache/'+this.idprojet+'/'+id+'/supprimer')
   }
 
   valider() {

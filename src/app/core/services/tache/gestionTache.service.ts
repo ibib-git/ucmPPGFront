@@ -26,7 +26,6 @@ export class GestionTacheService {
   }
 
   postTacheSupprimer(idtache: bigint,tacheSupprimer: TacheSupprimerModel): Observable<TacheSupprimerModel>{
-    console.log(tacheSupprimer);
     return this.httpClient.post<TacheSupprimerModel>(environment.apiEndPoint+'/tache/'+idtache+'/supprimerTache',tacheSupprimer);
   }
 

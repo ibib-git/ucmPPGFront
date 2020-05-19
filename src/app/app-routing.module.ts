@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'utilisateur/:id',component: UtilisateurInterfaceComponent},
   {path: 'tache/:idprojet/:idWorkflow/creationTache',component: AjouterTacheComponent},
   {path: 'tache/:idprojet/:idWorkflow/:idTache/creationEnfant',component: TacheEnfantComponent},
-  {path: 'tache/:idTache/supprimer', component: SupprimerTacheComponent},
+  {path: 'tache/:idProjet/:idTache/supprimer', component: SupprimerTacheComponent},
 
 ];
 
