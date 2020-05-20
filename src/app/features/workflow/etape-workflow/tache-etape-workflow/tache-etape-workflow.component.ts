@@ -1,13 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {TacheModel} from '../../../../core/models/tache/TacheModel';
-import {NbDialogConfig, NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
-import {RoleModel} from '../../../../core/models/role/RoleModel';
+import {NbDialogService, NbToastrService} from '@nebular/theme';
 import {MembreProjetModel} from '../../../../core/models/Projet/MembreProjetModel';
-import {TacheService} from '../../../../core/services/tache/tache.service';
 import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
 import {ProjetModel} from '../../../../core/models/Projet/ProjetModel';
-import {UtilisateurModel} from '../../../../core/models/Utilisateur/UtilisateurModel';
-import {UtilisateurDetailsModel} from '../../../../core/models/Utilisateur/UtilisateurDetailsModel';
+import { Router } from '@angular/router';
+import { TacheService } from 'src/app/core/services/tache/tache.service';
 
 @Component({
   selector: 'app-tache-etape-workflow',
@@ -18,10 +16,12 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   @Input() estDetail: boolean;
   @Input() estProgression: boolean;
   @Input() tache: TacheModel;
+  @Input() etapeEnfant: bigint;
+  @Input() idprojet: bigint;
   @Input() membresProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
-
+  @Input() idWorkflow: bigint;
   @Output() outputProjet: EventEmitter<ProjetModel>;
 
   membreAssigne: MembreProjetModel;
@@ -30,9 +30,11 @@ export class TacheEtapeWorkflowComponent implements OnInit {
   estSelectAssign: boolean;
   estTacheAssignee: boolean;
 
+
   constructor(
       private dialogueService: NbDialogService,
       private toastrServ: NbToastrService,
+      private route: Router,
       private tacheService: TacheService,
   ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
@@ -74,12 +76,24 @@ export class TacheEtapeWorkflowComponent implements OnInit {
           hasScroll: true});
   }
 
+  showSupprimer(supprimer: TemplateRef<any>){
+    this.dialogueService.open(supprimer,
+      {
+        closeOnEsc: true,
+        closeOnBackdropClick: true,
+        hasScroll: true
+      });
+  }
+
+  supprimerTache(id: bigint){
+    this.route.navigateByUrl('/tache/'+this.idprojet+'/'+id+'/supprimer')
+  }
+
   valider() {
     this.tacheService.valider(this.tache.id).subscribe(
         (projetReturn) => {
           this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
           this.updateProjet(projetReturn);
-
         },
         (errorComplete) => {
           this.toastrServ.danger('Impossible de valider la tache', this.tache.nom, {[status]: 'danger'});
@@ -93,6 +107,9 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.outputProjet.emit(projet);
   }
 
+  CreationDeTacheParent(tacheParent: bigint){
+    this.route.navigateByUrl('tache/'+this.idprojet+'/'+this.idWorkflow+'/'+tacheParent+'/creationEnfant');
+  }
   clickAssignTache(v: boolean){
     this.estSelectAssign = v;
   }
@@ -132,5 +149,4 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     }
     this.estSelectAssign = false;
   }
-
 }

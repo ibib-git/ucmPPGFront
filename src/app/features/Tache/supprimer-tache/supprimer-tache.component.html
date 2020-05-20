@@ -1,0 +1,59 @@
+<nb-card size="medium" style="display: flex">
+    <nb-card-header>
+        <div>
+            <label>Tache :</label>
+            {{tacheASupprimer.nom}}
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="supprimer" (ngSubmit)="suppressionDeTache(tacheASupprimer.id)">
+            <div>
+                <div>
+                    <label> Information : </label>
+                    <div>
+                        <label> Id : </label>
+                        {{tacheASupprimer.id}}
+                    </div>
+                    <div>
+                        <label> Description :</label>
+                         {{tacheASupprimer.description}}
+                    </div>    
+                    <div>
+                        <label> Priorite :</label>
+                         {{tacheASupprimer.priorite}}
+                    </div>  
+                    <div>
+                        <label> Unite de temps :</label>
+                         {{tacheASupprimer.uniteDeTemps}}
+                    </div>
+                    <div>
+                        <label> Estimation de temps :</label>
+                         {{tacheASupprimer.estimationTemps}}
+                    </div>                 
+                    <div *ngIf="utilisateurDeTache != null">
+                        <label> Utilisateur :</label>
+                         {{utilisateurDeTache.pseudo}}
+                    </div>
+                </div>
+                <div>
+                    <nb-list *ngIf="tacheASupprimer.tacheEnfants.length != 0">
+                        <nb-list-item *ngFor="let item of tacheEnfants">
+                            <label> Tache-enfant => </label>
+                             {{item.nom}} 
+                        </nb-list-item>
+                    </nb-list> 
+                    <div>
+                        <nb-select [(selected)]="suppressionEnCascade" formControlName="EnCascade">
+                            <nb-option true value="true"[disabled]="suppressionEncascadePossible">valider</nb-option>
+                            <nb-option false value="false">annuler</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <input nbButton type="submit" [disabled]="!supprimer.valid" value="supprimer la tache">
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

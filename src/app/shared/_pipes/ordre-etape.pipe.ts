@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {EtapeWorkflowModel} from '../../core/models/etape/EtapeWorkflowModel';
-import {compareNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
 
 @Pipe({
   name: 'ordreEtape'

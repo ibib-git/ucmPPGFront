@@ -9,6 +9,7 @@ import {UtilisateurAuthentificationModel} from './core/models/Utilisateur/Utilis
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'ucmPPGFront';
   currentUser: UtilisateurAuthentificationModel;
 

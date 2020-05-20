@@ -13,12 +13,11 @@
     </nb-card-header>
     <nb-card-body>
         <div *ngIf="etape.taches != null">
-            <app-tache-etape-workflow *ngFor="let t of etape.taches" [tache]="t" [estProgression]="estProgression" [estDetail]="allDetails" [membresProjet]="membreProjet" [idEtapeSuivante]="idEtapeSuivante" [idDerniereEtape]="idDerniereEtape" (outputProjet)="updateProjet($event)"></app-tache-etape-workflow>
+            <app-tache-etape-workflow *ngFor="let t of etape.taches" [idprojet]="idProjet" [idWorkflow]="etape.id" [tache]="t" [estProgression]="estProgression" [estDetail]="allDetails" [membresProjet]="membreProjet" [idEtapeSuivante]="idEtapeSuivante" [idDerniereEtape]="idDerniereEtape" (outputProjet)="updateProjet($event)"></app-tache-etape-workflow>
         </div>
     </nb-card-body>
     <nb-card-footer >
         <div class="etapeFooter">
-            <button disabled nbButton>Créer une tache</button>
     <!--        TODO: Damien a supprimer au changement drag-and-drop-->
             <div>
                 <button nbButton (click)="dragOrdre(etape,-1)"><nb-icon icon="minus-square-outline"></nb-icon></button>

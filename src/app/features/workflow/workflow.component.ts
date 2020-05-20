@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { NbToastrService } from '@nebular/theme';
 import {ProjetModel} from '../../core/models/Projet/ProjetModel';
 import {RecuperationProjetService} from '../../core/services/projet/récuperation/recuperation-projet.service';
 import {Router, ActivatedRoute} from '@angular/router';
-import {NbToastrService} from '@nebular/theme';
-import {MembreProjetModel} from '../../core/models/Projet/MembreProjetModel';
-import {max} from 'rxjs/operators';
 import {OrdreEtapePipe} from '../../shared/_pipes/ordre-etape.pipe';
 import {EtapeWorkflowModel} from '../../core/models/etape/EtapeWorkflowModel';
+
 
 @Component({
   selector: 'app-workflow',
@@ -16,8 +15,9 @@ import {EtapeWorkflowModel} from '../../core/models/etape/EtapeWorkflowModel';
 export class WorkflowComponent implements OnInit {
 
   projet: ProjetModel;
+  etapeminimun: bigint;
   etapesTrieeOrdre: EtapeWorkflowModel[];
-
+  @Input() idworkflow: bigint;
 
   constructor(
       private projetService: RecuperationProjetService,
@@ -25,13 +25,12 @@ export class WorkflowComponent implements OnInit {
       private routerServ: Router,
       private toastrServ: NbToastrService,
       private ordreEtapePipe: OrdreEtapePipe
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.projet = {} as ProjetModel;
     this.etapesTrieeOrdre = {} as EtapeWorkflowModel[];
     this.getProjet(this.routServ.snapshot.params.id);
-
   }
 
   getProjet(id: any) {
@@ -39,6 +38,7 @@ export class WorkflowComponent implements OnInit {
         (model) => {
           this.projet = model;
           this.etapesTrieeOrdre = this.ordreEtapePipe.transform(model.etapeWorkflows);
+          this.idprojet = model.id
         },
         () => {
           this.toastrServ.danger('Erreur dans le chargement du projet ', 'Workflow', {[status]: 'danger'});
@@ -49,7 +49,6 @@ export class WorkflowComponent implements OnInit {
 
   getIdEtapeSuivante(idEtapeCourante: bigint) {
     const indexEtapeCourante = this.etapesTrieeOrdre.findIndex(i => i.id === idEtapeCourante);
-
     return (this.etapesTrieeOrdre[indexEtapeCourante].id === this.getIdDerniereEtape()) ? this.getIdDerniereEtape() : this.etapesTrieeOrdre[indexEtapeCourante + 1].id;
   }
 
@@ -61,4 +60,12 @@ export class WorkflowComponent implements OnInit {
     this.projet = projetOutput;
   }
 
+  CreerUneTache(){
+    for(let o of this.etapesTrieeOrdre){
+      if(o.numOrdre === 1){
+        this.idworkflow = o.id;
+      }
+    }
+    this.routerServ.navigateByUrl('tache/'+this.projet.id+'/'+this.idworkflow+'/creationTache')
+  }
 }

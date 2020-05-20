@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,26 +21,26 @@ import {
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CoreModule} from './core/core.module';
-import {DefaultModuleModule} from './features/default-module/default-module.module';
-import {RouterModule} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
-import {SharedModule} from './shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {CoreModule } from './core/core.module';
+import { DefaultModuleModule } from './features/default-module/default-module.module';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 import { ConnexionComponent } from './features/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErreursInterceptor } from './core/intercepteurs/erreurs/erreurs.interceptor';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import { WorkflowComponent } from './features/workflow/workflow.component';
 import { EtapeWorkflowComponent } from './features/workflow/etape-workflow/etape-workflow.component';
 import { TacheEtapeWorkflowComponent } from './features/workflow/etape-workflow/tache-etape-workflow/tache-etape-workflow.component';
-import {ProjetGestionComponent} from './features/Projet/gestion/projet-gestion/projet-gestion.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { ProjetGestionComponent } from './features/Projet/gestion/projet-gestion/projet-gestion.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UtilisateurInterfaceComponent } from './features/Utilisateur/utilisateur-interface/utilisateur-interface.component';
 import { NavBarreComponent } from './features/Utilisateur/utilisateur-interface/nav-barre/nav-barre.component';
-import {config} from 'rxjs';
+import { AjouterTacheComponent } from './features/Tache/ajouter-tache/ajouter-tache.component';
+import { TacheEnfantComponent } from './features/Tache/tache-enfant/tache-enfant.component';
 import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
+import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/supprimer-tache.component';
 import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
 import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-interceptor.interceptor';
 
@@ -57,6 +56,9 @@ import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-intercep
     ProjetGestionComponent,
     UtilisateurInterfaceComponent,
     NavBarreComponent,
+    AjouterTacheComponent,
+    TacheEnfantComponent,
+    SupprimerTacheComponent,
   ],
     imports: [
         BrowserModule,

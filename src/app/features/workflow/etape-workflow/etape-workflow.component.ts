@@ -3,12 +3,11 @@ import {EtapeWorkflowModel} from '../../../core/models/etape/EtapeWorkflowModel'
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
 import {OrdreEtapeModel} from '../../../core/models/etape/OrdreEtapeModel';
-import {Router} from '@angular/router';
-import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
 import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
 import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
 import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur/UtilisateurAuthentificationModel';
+
 
 @Component({
   selector: 'app-etape-workflow',
@@ -21,7 +20,6 @@ export class EtapeWorkflowComponent implements OnInit {
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
   @Output() outputProjet: EventEmitter<ProjetModel>;
-
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
@@ -29,11 +27,9 @@ export class EtapeWorkflowComponent implements OnInit {
   errosModel: ErreurModel;
 
 
-
   constructor(
       private toastrServ: NbToastrService,
       private etapeServ: WorkflowService,
-      private routServ: Router
   ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
@@ -44,7 +40,6 @@ export class EtapeWorkflowComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser');
     this.ordreEtape.idUtilisateur = this.currentUser.id ;
     this.ordreEtape.nvOrdre = 1;
-
   }
 
   toggle(checked: boolean) {
@@ -68,8 +63,9 @@ export class EtapeWorkflowComponent implements OnInit {
           this.errosModel = errorResponse.error;
           this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
         },
-    );
-  }
+        () => {
+        }
+    )}
 
   updateProjet(projet: ProjetModel) {
     this.outputProjet.emit(projet);
