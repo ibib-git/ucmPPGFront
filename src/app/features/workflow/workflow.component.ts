@@ -60,7 +60,7 @@ export class WorkflowComponent implements OnInit {
     this.projet = projetOutput;
   }
 
-  validerAction(){
+  CreerUneTache(){
     for(let o of this.etapesTrieeOrdre){
       if(o.numOrdre === 1){
         this.idworkflow = o.id;
