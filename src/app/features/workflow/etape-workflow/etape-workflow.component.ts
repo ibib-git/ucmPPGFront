@@ -16,8 +16,6 @@ import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur
 })
 export class EtapeWorkflowComponent implements OnInit {
   @Input() etape: EtapeWorkflowModel;
-  @Input() idProjet: bigint;
-  @Input() idEtapeWorkflow: bigint;
   @Input() membreProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
