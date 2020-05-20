@@ -16,6 +16,7 @@ import {UtilisateurAuthentificationModel} from '../../../core/models/Utilisateur
 })
 export class EtapeWorkflowComponent implements OnInit {
   @Input() etape: EtapeWorkflowModel;
+  @Input() idProjet: bigint;
   @Input() membreProjet: MembreProjetModel[];
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
@@ -56,7 +57,6 @@ export class EtapeWorkflowComponent implements OnInit {
         (projetReturn) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
           this.updateProjet(projetReturn);
-
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});

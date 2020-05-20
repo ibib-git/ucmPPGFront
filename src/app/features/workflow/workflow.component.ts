@@ -38,7 +38,6 @@ export class WorkflowComponent implements OnInit {
         (model) => {
           this.projet = model;
           this.etapesTrieeOrdre = this.ordreEtapePipe.transform(model.etapeWorkflows);
-          this.idprojet = model.id
         },
         () => {
           this.toastrServ.danger('Erreur dans le chargement du projet ', 'Workflow', {[status]: 'danger'});
