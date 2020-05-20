@@ -64,16 +64,16 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.estDetail = clicked;
   }
 
-/*  showDetails(dialog: TemplateRef<any>) {
+  showDetails(dialog: TemplateRef<any>) {
     this.estSelectAssign = false;
     this.dialogueService.open(dialog,
         {
           closeOnEsc: true,
           closeOnBackdropClick: true,
           hasScroll: true});
-  }*/
+  }
 
-  showDetails(dialog: TemplateRef<any>) {
+/*  showDetails(dialog: TemplateRef<any>) {
     this.estSelectAssign = false;
     this.action = this.dialogueService.open(TacheModalComponent,
         {
@@ -87,7 +87,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
           hasScroll: true});
     this.action.onClose.subscribe(value => {
       this.updateProjet(value); });
-  }
+  }*/
 
   valider() {
     this.tacheService.valider(this.tache.id).subscribe(
@@ -112,7 +112,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     this.estSelectAssign = v;
   }
 
-/*  assignerTache(membreChoisi: MembreProjetModel) {
+  assignerTache(membreChoisi: MembreProjetModel) {
     // On test si on veut assigner la tache a qqn ou a personne
     if (membreChoisi != null) {
       this.tacheService.assigner(this.tache.id, membreChoisi.utilisateur.id).subscribe(
@@ -146,6 +146,6 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       }
     }
     this.estSelectAssign = false;
-  }*/
+  }
 
 }

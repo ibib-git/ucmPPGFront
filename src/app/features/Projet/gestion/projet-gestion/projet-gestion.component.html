@@ -12,7 +12,7 @@
                     <nb-card-body>
                         <p>Liste de participant</p>
                         <div>
-                            <nb-list *ngFor='let participation of projet.utilisateurMembres'>
+                            <nb-list *ngFor='let participation of projet.utilisateurMembres |membreActif'>
                                 <nb-list-item>
                                     {{participation.utilisateur.pseudo}}
                                     <input nbButton disabled type="submit" value="Modifier">

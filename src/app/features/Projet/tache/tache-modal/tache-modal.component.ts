@@ -26,7 +26,7 @@ export class TacheModalComponent implements OnInit {
   estTacheAssignee: boolean;
   constructor( private toastrServ: NbToastrService,
                private tacheService: TacheService,
-               private ref: NbDialogRef<TacheModalComponent>) { }
+               private dialogRef: NbDialogRef<TacheModalComponent>) { }
 
   ngOnInit(): void {
     this.checkMembreAssigne();
@@ -112,7 +112,7 @@ export class TacheModalComponent implements OnInit {
   }
 
   close() {
-    this.ref.close(this.projet);
+    this.dialogRef.close(this.projet);
   }
 
 

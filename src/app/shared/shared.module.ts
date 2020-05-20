@@ -4,16 +4,18 @@ import { InputColorPipe } from './_pipes/input-color.pipe';
 import { InputErrorsPipe } from './_pipes/input-errors.pipe';
 import { OrdreEtapePipe } from './_pipes/ordre-etape.pipe';
 import { ParticipationActifPipe } from './_pipes/participation-actif.pipe';
+import { MembreActifPipe } from './_pipes/membre-actif.pipe';
 
 
 
 @NgModule({
-    declarations: [InputColorPipe, InputErrorsPipe, OrdreEtapePipe, ParticipationActifPipe],
+    declarations: [InputColorPipe, InputErrorsPipe, OrdreEtapePipe, ParticipationActifPipe, MembreActifPipe],
     exports: [
         InputColorPipe,
         InputErrorsPipe,
         OrdreEtapePipe,
-        ParticipationActifPipe
+        ParticipationActifPipe,
+        MembreActifPipe
     ],
     imports: [
         CommonModule
