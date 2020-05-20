@@ -17,7 +17,6 @@ export class WorkflowComponent implements OnInit {
   projet: ProjetModel;
   etapeminimun: bigint;
   etapesTrieeOrdre: EtapeWorkflowModel[];
-  @Input() idprojet: bigint;
   @Input() idworkflow: bigint;
 
   constructor(
@@ -67,6 +66,6 @@ export class WorkflowComponent implements OnInit {
         this.idworkflow = o.id;
       }
     }
-    this.routerServ.navigateByUrl('tache/'+this.idprojet+'/'+this.idworkflow+'/creationTache')
+    this.routerServ.navigateByUrl('tache/'+this.projet.id+'/'+this.idworkflow+'/creationTache')
   }
 }
