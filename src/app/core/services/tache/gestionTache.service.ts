@@ -13,8 +13,8 @@ export class GestionTacheService {
 
   constructor(private httpClient: HttpClient) { }
 
-  postTacheAjouter(tache : TacheCreationModel,idWorkflow: bigint,idProjet: bigint) : Observable<TacheCreationModel>{
-    return this.httpClient.post<TacheCreationModel>(environment.apiEndPoint+'/tache/'+idProjet+'/'+idWorkflow+'/ajouterTacheParent', tache);
+  postTacheAjouter(tache : TacheCreationModel,idetapeDeGauche: bigint,idProjet: bigint) : Observable<TacheCreationModel>{
+    return this.httpClient.post<TacheCreationModel>(environment.apiEndPoint+'/tache/'+idProjet+'/'+idetapeDeGauche+'/ajouterTacheParent', tache);
   }
 
   postTacheAjouterEnfant(idWorkflow: bigint, idProjet: bigint, idTache: bigint, tacheEnfant: TacheCreationModel) : Observable<TacheCreationModel>{
