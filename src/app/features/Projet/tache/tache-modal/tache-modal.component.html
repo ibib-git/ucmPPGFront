@@ -1,0 +1,81 @@
+
+    <nb-card accent="success" size="giant" style="display: flex">
+        <nb-card-header class="headerModal">
+            <div class="exitClass">
+                <nb-icon (click)="ref.close()"  icon="close-circle-outline"></nb-icon>
+            </div>
+            <div class="titleModal">
+                <h4>{{tache.id}} : {{tache.nom}}</h4>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <table>
+                <td>
+                    <div>
+                        <div (click)="clickAssignTache(true)" *ngIf="!estSelectAssign" class="membreClass">
+                            <nb-user *ngIf="membreAssigne !== null" [name]="membreAssigne.utilisateur.pseudo" [title]="membreAssigne.role.nom">
+                                <nb-icon icon="close-circle-outline"></nb-icon>
+                            </nb-user>
+                            <div *ngIf="membreAssigne === null">
+                                <label>Assigner </label>
+                                <nb-icon icon="plus-circle-outline"></nb-icon>
+                            </div>
+                        </div>
+                        <div *ngIf="estSelectAssign">
+                            <label>Responsable : </label>
+                            <nb-select (selectedChange)="assignerTache($event)" [placeholder]="estTacheAssignee? membreAssigne.utilisateur.pseudo : 'non-assignée'" shape="round" size="tiny" status="info">
+                                <nb-option [value]="null">non-assignée</nb-option>
+                                <nb-option *ngFor="let membre of membresProjet" [value]="membre">
+                                    {{membre.utilisateur.pseudo}} ({{membre.role.nom}})
+                                </nb-option>
+                            </nb-select>
+                        </div>
+                        <p>priorité a definir</p>
+                        <p>{{tache.estimationTemps}} ({{tache.uniteDeTemps}})</p>
+                        <h5>Description :</h5>
+                        <p>{{tache.description}}</p>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <button disabled nbButton>Modidier la tache</button>
+                        <div>
+                            <nb-card accent="warning" size="tiny">
+                                <nb-card-header>
+                                    Taches Precedente
+                                </nb-card-header>
+                                <nb-list title="Taches P">
+                                    <nb-list-item *ngFor="let tacheP of tache.tachesPrecedentes">
+                                        <nb-icon *ngIf="checkValidation(tacheP)" icon="checkmark-circle-outline" status="success" ></nb-icon>
+                                        {{tacheP.id}} : {{tacheP.nom}}
+                                    </nb-list-item>
+                                </nb-list>
+                            </nb-card>
+                        </div>
+                        <div>
+                            <nb-card accent="warning" size="tiny">
+                                <nb-card-header>
+                                    Taches Enfant
+                                </nb-card-header>
+                                <nb-list title="Taches Enfant">
+                                    <nb-list-item *ngFor="let tacheEnfant of tache.tacheEnfants">
+                                        <nb-icon *ngIf="checkValidation(tacheEnfant)" icon="checkmark-circle-outline" status="success" ></nb-icon>
+                                        {{tacheEnfant.id}} : {{tacheEnfant.nom}}
+                                    </nb-list-item>
+                                </nb-list>
+                            </nb-card>
+                        </div>
+
+                    </div>
+                </td>
+            </table>
+        </nb-card-body>
+        <nb-card-footer class="footerModal" >
+            <div class="footerButtons">
+                <button (click)="valider()" [disabled]="estValidee" nbButton>Valider</button>
+                <button disabled nbButton>Supprimer</button>
+            </div>
+        </nb-card-footer>
+    </nb-card>
+
+

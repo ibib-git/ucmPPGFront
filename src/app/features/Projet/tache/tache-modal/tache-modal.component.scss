@@ -1,0 +1,70 @@
+
+nb-icon{
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+.tacheClass{
+  border-color: aqua;
+}
+
+.tacheResponsableClass{
+  color: chocolate;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.tacheAucunResponsableClass{
+  color: red;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+table{
+  border-spacing: 5px;
+}
+
+th{
+  text-align: center;
+}
+
+button{
+  margin: 5px;
+}
+
+.headerModal{
+  display: flex;
+  flex-direction: column;
+
+}
+
+.titleModal{
+  align-self: normal;
+}
+
+.exitClass{
+  align-self: flex-end;
+}
+
+.exitClass:hover{
+  cursor: pointer;
+}
+
+.footerModal{
+  display: flex;
+  flex-direction: row ;
+
+}
+
+.footerButtons{
+  align-items: center;
+}
+
+.membreClass{
+
+}
+
+.membreClass:hover{
+  cursor: pointer;
+  background-color: darkslateblue;
+}

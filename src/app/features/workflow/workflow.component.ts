@@ -3,8 +3,7 @@ import {ProjetModel} from '../../core/models/Projet/ProjetModel';
 import {RecuperationProjetService} from '../../core/services/projet/récuperation/recuperation-projet.service';
 import {Router, ActivatedRoute} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
-import {MembreProjetModel} from '../../core/models/Projet/MembreProjetModel';
-import {max} from 'rxjs/operators';
+
 import {OrdreEtapePipe} from '../../shared/_pipes/ordre-etape.pipe';
 import {EtapeWorkflowModel} from '../../core/models/etape/EtapeWorkflowModel';
 

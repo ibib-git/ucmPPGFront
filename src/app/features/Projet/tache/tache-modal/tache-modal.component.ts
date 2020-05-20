@@ -1,40 +1,32 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
-import {TacheModel} from '../../../../core/models/tache/TacheModel';
-import {NbDialogConfig, NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
-import {MembreProjetModel} from '../../../../core/models/Projet/MembreProjetModel';
-import {TacheService} from '../../../../core/services/tache/tache.service';
-import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
 import {ProjetModel} from '../../../../core/models/Projet/ProjetModel';
-import {TacheModalComponent} from '../../../Projet/tache/tache-modal/tache-modal.component';
-
+import {MembreProjetModel} from '../../../../core/models/Projet/MembreProjetModel';
+import {TacheModel} from '../../../../core/models/tache/TacheModel';
+import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
+import {NbDialogRef, NbToastrService} from '@nebular/theme';
+import {TacheService} from '../../../../core/services/tache/tache.service';
 
 @Component({
-  selector: 'app-tache-etape-workflow',
-  templateUrl: './tache-etape-workflow.component.html',
-  styleUrls: ['./tache-etape-workflow.component.scss']
+  selector: 'app-tache-modal',
+  templateUrl: './tache-modal.component.html',
+  styleUrls: ['./tache-modal.component.scss']
 })
-export class TacheEtapeWorkflowComponent implements OnInit {
-  @Input() estDetail: boolean;
-  @Input() estProgression: boolean;
-  @Input() tache: TacheModel;
-  @Input() membresProjet: MembreProjetModel[];
-  @Input() idEtapeSuivante: bigint;
-  @Input() idDerniereEtape: bigint;
+export class TacheModalComponent implements OnInit {
+  tache: TacheModel;
+  membresProjet: MembreProjetModel[];
+  idEtapeSuivante: bigint;
+  idDerniereEtape: bigint;
 
-  @Output() outputProjet: EventEmitter<ProjetModel>;
+  projet: ProjetModel;
 
   membreAssigne: MembreProjetModel;
   errosModel: ErreurModel;
   estValidee: boolean;
   estSelectAssign: boolean;
   estTacheAssignee: boolean;
-  private action;
-
-  constructor(
-      private dialogueService: NbDialogService,
-      private toastrServ: NbToastrService,
-      private tacheService: TacheService,
-  ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
+  constructor( private toastrServ: NbToastrService,
+               private tacheService: TacheService,
+               private ref: NbDialogRef<TacheModalComponent>) { }
 
   ngOnInit(): void {
     this.checkMembreAssigne();
@@ -43,6 +35,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     // @ts-ignore
     this.estSelectAssign = false;
   }
+
 
   checkMembreAssigne() {
     if (this.tache.utilisateurAffecte === null) {
@@ -60,40 +53,12 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     return Boolean(tacheToCheck.historique.find(h => ((h.etapeWorkflow.id === this.idEtapeSuivante) || (h.etapeWorkflow.id === this.idDerniereEtape)) ));
   }
 
-  clickDetails(clicked: boolean) {
-    this.estDetail = clicked;
-  }
-
-/*  showDetails(dialog: TemplateRef<any>) {
-    this.estSelectAssign = false;
-    this.dialogueService.open(dialog,
-        {
-          closeOnEsc: true,
-          closeOnBackdropClick: true,
-          hasScroll: true});
-  }*/
-
-  showDetails(dialog: TemplateRef<any>) {
-    this.estSelectAssign = false;
-    this.action = this.dialogueService.open(TacheModalComponent,
-        {
-          context: {
-            tache: this.tache,
-            membresProjet: this.membresProjet,
-            idEtapeSuivante: this.idEtapeSuivante,
-            idDerniereEtape: this.idDerniereEtape},
-          closeOnEsc: true,
-          closeOnBackdropClick: true,
-          hasScroll: true});
-    this.action.onClose.subscribe(value => {
-      this.updateProjet(value); });
-  }
 
   valider() {
     this.tacheService.valider(this.tache.id).subscribe(
         (projetReturn) => {
           this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
-          this.updateProjet(projetReturn);
+          this.projet = projetReturn;
 
         },
         (errorComplete) => {
@@ -104,22 +69,19 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     );
   }
 
-  updateProjet(projet: ProjetModel) {
-    this.outputProjet.emit(projet);
-  }
 
-  clickAssignTache(v: boolean){
+  clickAssignTache(v: boolean) {
     this.estSelectAssign = v;
   }
 
-/*  assignerTache(membreChoisi: MembreProjetModel) {
+  assignerTache(membreChoisi: MembreProjetModel) {
     // On test si on veut assigner la tache a qqn ou a personne
     if (membreChoisi != null) {
       this.tacheService.assigner(this.tache.id, membreChoisi.utilisateur.id).subscribe(
           (projetReturn) => {
             this.toastrServ.success('Tache assignée !', this.tache.nom, {[status]: 'success'});
             this.membreAssigne = membreChoisi;
-            this.updateProjet(projetReturn);
+            this.projet = projetReturn;
           },
           (errorComplete) => {
             this.toastrServ.danger('Impossible d assigner la tache', this.tache.nom, {[status]: 'danger'});
@@ -135,10 +97,11 @@ export class TacheEtapeWorkflowComponent implements OnInit {
             (ProjetReturn) => {
               this.toastrServ.success('Utilisateur retiré !', this.tache.nom, {[status]: 'success'});
               this.membreAssigne = null;
-              this.updateProjet(ProjetReturn);
+              this.projet = ProjetReturn;
             },
             (errorComplete) => {
-              this.toastrServ.danger('Impossible de retirer l utilisateur ' + this.membreAssigne.utilisateur.pseudo + ' de la tache', this.tache.nom, {[status]: 'danger'});
+              this.toastrServ.danger('Impossible de retirer l utilisateur ' + this.membreAssigne.utilisateur.pseudo + ' de la tache', this.tache.nom,
+                  {[status]: 'danger'});
               this.errosModel = errorComplete.error;
               this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
             },
@@ -146,6 +109,12 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       }
     }
     this.estSelectAssign = false;
-  }*/
+  }
+
+  close() {
+    this.ref.close(this.projet);
+  }
+
+
 
 }

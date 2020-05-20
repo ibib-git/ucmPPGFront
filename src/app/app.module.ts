@@ -44,6 +44,7 @@ import {config} from 'rxjs';
 import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
 import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
 import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-interceptor.interceptor';
+import { TacheModalComponent } from './features/Projet/tache/tache-modal/tache-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-intercep
     ProjetGestionComponent,
     UtilisateurInterfaceComponent,
     NavBarreComponent,
+    TacheModalComponent,
   ],
     imports: [
         BrowserModule,

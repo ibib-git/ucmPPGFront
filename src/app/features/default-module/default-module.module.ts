@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import {NbActionsModule, NbButtonModule, NbIconModule, NbInputModule, NbMenuModule} from '@nebular/theme';
+import {NbActionsModule, NbButtonModule, NbDialogModule, NbIconModule, NbInputModule, NbMenuModule} from '@nebular/theme';
 import {RouterModule} from '@angular/router';
 import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
+import {config} from 'rxjs';
 
 
 
@@ -19,6 +20,7 @@ import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
         NbInputModule,
         NbIconModule,
         NbActionsModule,
+        NbDialogModule,
         NbMenuModule
     ]
 })
