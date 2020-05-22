@@ -7,5 +7,6 @@ export interface UtilisateurAuthentificationModel {
     pseudo: string;
     telephone: string;
     infoSuppl: string;
+    urlPhoto: string;
     token: string;
 }

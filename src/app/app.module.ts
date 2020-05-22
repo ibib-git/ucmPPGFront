@@ -20,14 +20,14 @@ import {
     NbDialogModule, NbUserModule, NbActionsModule, NbMenuModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { EnregistrementComponent } from './features/enregistrement/enregistrement.component';
+import { EnregistrementComponent } from './features/Utilisateur/enregistrement/enregistrement.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {CoreModule } from './core/core.module';
 import { DefaultModuleModule } from './features/default-module/default-module.module';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { ConnexionComponent } from './features/connexion/connexion.component';
+import { ConnexionComponent } from './features/Utilisateur/connexion/connexion.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CreerUnProjetComponent } from './features/Projet/creation/creer-un-projet/creer-un-projet.component';
 import { WorkflowComponent } from './features/workflow/workflow.component';

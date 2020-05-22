@@ -7,10 +7,11 @@
         </nb-action>
 
 
-        <nb-action *ngIf="currentUser"  class="fill-space" title="Mon profil" icon="person-outline"></nb-action>
+        <nb-action *ngIf="currentUser" title="{{currentUser.pseudo}}">
+                <nb-user name="{{currentUser.pseudo}}"
+                picture="{{currentUser.urlPhoto}}"
+                ></nb-user>
+        </nb-action>
         <nb-action *ngIf="currentUser" routerLink="/utilisateur" class="fill-space" title="Mes projets" icon="list-outline"></nb-action>
         <nb-action *ngIf="currentUser" (click)="deconnexion()"  class="fill-space" title="Deconnexion" icon="power-outline"></nb-action>
-      <!--  <nb-action > TODO DAMIEN: voir si possibilité d utiliser un nbmenu et voir pourquoi besoin de refresh la page pour le template
-                <nb-menu [items]="menuItems"></nb-menu>
-        </nb-action>-->
 </nb-actions>

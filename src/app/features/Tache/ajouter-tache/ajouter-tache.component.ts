@@ -4,6 +4,7 @@ import { GestionTacheService } from 'src/app/core/services/tache/gestionTache.se
 import { TacheCreationModel } from 'src/app/core/models/etape/TacheCreationModel';
 import { NbToastrService } from '@nebular/theme';
 import { Router, ActivatedRoute } from '@angular/router';
+import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
 
 @Component({
   selector: 'app-ajouter-tache',
@@ -18,13 +19,17 @@ export class AjouterTacheComponent implements OnInit {
   valeurUnite: string;
   idProjet: bigint;
   idWorkflow: bigint;
+  errosModel: ErreurModel[];
+
 
   constructor(
     private ajoutTacheService : GestionTacheService,
     private toastService: NbToastrService,
     private route: Router,
-    private routeActive: ActivatedRoute
-    ) {}
+    private routeActive: ActivatedRoute,
+    private toastrServ: NbToastrService,
+
+  ) {}
 
   ngOnInit(): void {
     this.idProjet = this.routeActive.snapshot.params['idprojet'];
@@ -49,14 +54,22 @@ export class AjouterTacheComponent implements OnInit {
     this.tacheAAjouter = this.AjouterTache.value ;
     this.ajoutTacheService.postTacheAjouter(this.tacheAAjouter,this.idWorkflow,this.idProjet).subscribe(
       (model) => {
-        this.toastService.success('Création de tache valider','creation Tache',{[status]: 'success'});
+        this.toastService.success('Création de tache valider', 'creation Tache',{[status]: 'success'});
+        this.route.navigateByUrl('dashboard/Workflow/'+ this.idProjet);
+
       },
-      (error) => {
+      (errorComplete) => {
         this.toastService.danger('Erreur tache', 'Erreur création tache', {[status]: 'danger'});
+        // Dans le cas d'erreurs 500 ca signifie que ce n'est pas des erreurs prévue par le system et donc non controlées
+        if (errorComplete.header.status < 500) {
+          this.errosModel = errorComplete.error;
+          this.errosModel.forEach(e => {
+            this.toastrServ.danger(e.erreurMessage , e.nomDuChamps, {[status]: 'danger'});
+          });
+        }
+        this.route.navigateByUrl('dashboard/Workflow/'+ this.idProjet);
       },
       () => {});
-      console.log(this.tacheAAjouter)
-      this.route.navigateByUrl('dashboard/Workflow/'+this.idProjet);
   }
   
   retour(){

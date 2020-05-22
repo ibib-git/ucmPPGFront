@@ -1,12 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {TacheModel} from '../../../../core/models/tache/TacheModel';
-import {NbDialogConfig, NbDialogRef, NbDialogService, NbToastrService} from '@nebular/theme';
+import { NbDialogService, NbToastrService} from '@nebular/theme';
 import {MembreProjetModel} from '../../../../core/models/Projet/MembreProjetModel';
-import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
 import {ProjetModel} from '../../../../core/models/Projet/ProjetModel';
 import {TacheModalComponent} from '../../../Projet/tache/tache-modal/tache-modal.component';
 import { Router } from '@angular/router';
-import { TacheService } from 'src/app/core/services/tache/tache.service';
 
 @Component({
   selector: 'app-tache-etape-workflow',
@@ -36,7 +34,6 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       private dialogueService: NbDialogService,
       private toastrServ: NbToastrService,
       private route: Router,
-      private tacheService: TacheService,
   ) {this.outputProjet = new EventEmitter<ProjetModel>(); }
 
   ngOnInit(): void {
@@ -88,7 +85,7 @@ export class TacheEtapeWorkflowComponent implements OnInit {
     });
   }
 
-  showSupprimer(supprimer: TemplateRef<any>){
+  showSupprimer(supprimer: TemplateRef<any>) {
     this.dialogueService.open(supprimer,
       {
         closeOnEsc: true,
@@ -97,34 +94,19 @@ export class TacheEtapeWorkflowComponent implements OnInit {
       });
   }
 
-  supprimerTache(id: bigint){
-    this.route.navigateByUrl('/tache/'+this.idprojet+'/'+id+'/supprimer')
+  supprimerTache(id: bigint) {
+    this.route.navigateByUrl('/tache/' + this.idprojet + '/' + id + '/supprimer');
   }
 
-  valider() {
-    this.tacheService.valider(this.tache.id).subscribe(
-        (projetReturn) => {
-          this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
-          this.updateProjet(projetReturn);
-        },
-        (errorComplete) => {
-          this.toastrServ.danger('Impossible de valider la tache', this.tache.nom, {[status]: 'danger'});
-          this.errosModel = errorComplete.error;
-          this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
-        }
-    );
-  }
 
   updateProjet(projet: ProjetModel) {
     this.outputProjet.emit(projet);
   }
 
-  CreationDeTacheParent(tacheParent: bigint){
-    this.route.navigateByUrl('tache/'+this.idprojet+'/'+this.idWorkflow+'/'+tacheParent+'/creationEnfant');
+  CreationDeTacheParent(tacheParent: bigint) {
+    this.route.navigateByUrl('tache/' + this.idprojet + '/' + this.idWorkflow + '/' + tacheParent + '/creationEnfant');
   }
-  clickAssignTache(v: boolean){
-    this.estSelectAssign = v;
-  }
+
   calculProgression() {
 
     if (this.tache.tacheEnfants.length !== 0) {

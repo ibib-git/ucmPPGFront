@@ -12,15 +12,15 @@
             <form [formGroup]="AjouterTache" (ngSubmit)="validation()">
                 <div class="carte">
                     <div class="carte">
-                        <label>Libélé</label>
+                        <label>Libélé (*)</label>
                         <input nbInput type="text" placeholder="Nom de la tache" formControlName="nom">
                     </div>
                     <div class="carte">
-                        <label> Description de la tache (*)</label>
+                        <label> Description de la tache</label>
                         <input nbInput type="text" placeholder="Description de la tache" formControlName="description">
                     </div>
                     <div class="carte">
-                        <label> Priorité (*)</label>
+                        <label> Priorité</label>
                         <nb-select placeholder="Priorité" [(selected)]="valeurPrioritaire" formControlName="priorite">
                             <nb-option value="MINORITAIRE">minoritaire</nb-option>
                             <nb-option value="FAIBLE">faible</nb-option>
@@ -30,11 +30,11 @@
                         </nb-select>
                     </div>
                     <div class="carte">
-                        <label> Estimation de temps (*)</label>
+                        <label> Estimation de temps</label>
                         <input nbInput placeholder="Nombre" type="number" min="0" formControlName="estimation">
                     </div>
                     <div class="carte">
-                        <label> Unite de Temps (*)</label>
+                        <label> Unite de Temps</label>
                         <nb-select placeholder="Unite de temps" [(selected)]="valeurUnite" formControlName="unite">
                             <nb-option value="STORYPOINT">Storypoint</nb-option>
                             <nb-option value="HEURE">Heure</nb-option>
@@ -42,7 +42,7 @@
                         </nb-select>
                     </div>
                     <div class="carte">
-                        <label>(*) : Non requis </label>
+                        <label>(*) : requis </label>
                     <input nbButton type="submit" [disabled]="!AjouterTache.valid" value="Valider la tache">
                     </div>
                 </div>

@@ -4,8 +4,8 @@
         <app-nav-barre [participations]="utilisateur.participations|participationActif"></app-nav-barre>
     </nb-sidebar>
     <nb-layout-column>
-        <div *ngFor="let participation of (utilisateur.participations |participationActif)">
-            <nb-card>
+        <div *ngFor="let participation of (utilisateur.participations |participationActif)" class="participationClass">
+            <nb-card >
                 <nb-card-header>
                     {{participation.projet.nom}}
                     {{participation.role.nom}}
