@@ -31,6 +31,7 @@ export class WorkflowComponent implements OnInit {
     this.projet = {} as ProjetModel;
     this.etapesTrieeOrdre = {} as EtapeWorkflowModel[];
     this.getProjet(this.routServ.snapshot.params.id);
+
   }
 
   getProjet(id: any) {
@@ -48,6 +49,7 @@ export class WorkflowComponent implements OnInit {
 
   getIdEtapeSuivante(idEtapeCourante: bigint) {
     const indexEtapeCourante = this.etapesTrieeOrdre.findIndex(i => i.id === idEtapeCourante);
+
     return (this.etapesTrieeOrdre[indexEtapeCourante].id === this.getIdDerniereEtape()) ? this.getIdDerniereEtape() : this.etapesTrieeOrdre[indexEtapeCourante + 1].id;
   }
 

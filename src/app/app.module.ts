@@ -43,6 +43,8 @@ import {OrdreEtapePipe} from './shared/_pipes/ordre-etape.pipe';
 import { SupprimerTacheComponent } from './features/Tache/supprimer-tache/supprimer-tache.component';
 import {ParticipationActifPipe} from './shared/_pipes/participation-actif.pipe';
 import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-interceptor.interceptor';
+import { TacheModalComponent } from './features/Projet/tache/tache-modal/tache-modal.component';
+import {MembreActifPipe} from './shared/_pipes/membre-actif.pipe';
 
 @NgModule({
   declarations: [
@@ -59,6 +61,7 @@ import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-intercep
     AjouterTacheComponent,
     TacheEnfantComponent,
     SupprimerTacheComponent,
+    TacheModalComponent,
   ],
     imports: [
         BrowserModule,
@@ -101,7 +104,7 @@ import {JwtInterceptorInterceptor} from './core/intercepteurs/token/jwt-intercep
       multi: true
     }*/
       {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorInterceptor, multi: true},
-   OrdreEtapePipe, ParticipationActifPipe
+   OrdreEtapePipe, ParticipationActifPipe, MembreActifPipe
   ],
 
   bootstrap: [AppComponent]

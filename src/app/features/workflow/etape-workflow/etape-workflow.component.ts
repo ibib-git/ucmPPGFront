@@ -3,6 +3,7 @@ import {EtapeWorkflowModel} from '../../../core/models/etape/EtapeWorkflowModel'
 import {NbToastrService} from '@nebular/theme';
 import {WorkflowService} from '../../../core/services/workflow/workflow.service';
 import {OrdreEtapeModel} from '../../../core/models/etape/OrdreEtapeModel';
+import {Router} from '@angular/router';
 import {MembreProjetModel} from '../../../core/models/Projet/MembreProjetModel';
 import {ProjetModel} from '../../../core/models/Projet/ProjetModel';
 import {ErreurModel} from '../../../core/models/erreur/ErreurModel';
@@ -21,11 +22,13 @@ export class EtapeWorkflowComponent implements OnInit {
   @Input() idEtapeSuivante: bigint;
   @Input() idDerniereEtape: bigint;
   @Output() outputProjet: EventEmitter<ProjetModel>;
+
   allDetails: boolean;
   estProgression: boolean;
   ordreEtape: OrdreEtapeModel;
   currentUser: UtilisateurAuthentificationModel;
   errosModel: ErreurModel;
+
 
 
   constructor(
@@ -41,6 +44,7 @@ export class EtapeWorkflowComponent implements OnInit {
     this.currentUser = localStorage.getItem('currentUser');
     this.ordreEtape.idUtilisateur = this.currentUser.id ;
     this.ordreEtape.nvOrdre = 1;
+
   }
 
   toggle(checked: boolean) {
@@ -57,18 +61,17 @@ export class EtapeWorkflowComponent implements OnInit {
         (projetReturn) => {
           this.toastrServ.success('Modification ordre etape ', 'Modification ordre', {[status]: 'success'});
           this.updateProjet(projetReturn);
+
         },
         (errorResponse) => {
           this.toastrServ.danger('Erreur du changement d ordre  ', 'Modification ordre', {[status]: 'danger'});
           this.errosModel = errorResponse.error;
           this.toastrServ.danger(this.errosModel.erreurMessage , this.errosModel.nomDuChamps, {[status]: 'danger'});
         },
-        () => {
-        }
-    )}
+    );
+  }
 
   updateProjet(projet: ProjetModel) {
     this.outputProjet.emit(projet);
   }
-
 }

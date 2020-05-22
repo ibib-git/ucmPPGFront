@@ -2,7 +2,7 @@
 <nb-card class="tacheClass">
     <nb-card-header>
         <div class="tacheHeader">
-            <h6 (click)="showDetails(dialog)" class="tacheNomClass">{{tache.id}} : {{tache.nom}}</h6>
+            <h6 (click)="showDetails()" class="tacheNomClass">{{tache.id}} : {{tache.nom}}</h6>
             <div *ngIf="tache.tacheEnfants.length != 0">
                 <nb-icon *ngIf="!estDetail" (click)="clickDetails(true)"  status="info" icon="arrow-circle-down-outline"></nb-icon>
                 <nb-icon *ngIf="estDetail" (click)="clickDetails(false)" status="warning" icon="arrow-circle-up-outline"></nb-icon>
@@ -18,94 +18,13 @@
         <div *ngIf="estDetail">
             <app-tache-etape-workflow *ngFor="let te of tache.tacheEnfants" [tache]="te" [estProgression]="estProgression" [estDetail]="estDetail" [membresProjet]="membresProjet" (outputProjet)="updateProjet($event)"></app-tache-etape-workflow>
         </div>
-        <button nbButton (click)="showDetails(dialog)">Detail</button>
+        <button (click)="showDetails()" nbButton>Detail</button>
     </nb-card-body>
     <nb-card-footer>
         <div *ngIf="estProgression && tache.tacheEnfants.length != 0">
-            <nb-progress-bar [value]="50" status="success"></nb-progress-bar>
+            <nb-progress-bar [value]="progression" status="success"></nb-progress-bar>
         </div>
         <button nbButton (click)="supprimerTache(tache.id)" >Supprimer</button>
         <button nbButton (click)="CreationDeTacheParent(tache.id)"> Créer une tache-enfants </button>
     </nb-card-footer>
 </nb-card>
-
-<!--modal details tache-->
-<ng-template #dialog let-ref="dialogRef">
-    <nb-card style="display: flex" accent="success" size="giant">
-        <nb-card-header class="headerModal">
-            <div class="exitClass">
-                <nb-icon (click)="ref.close()"  icon="close-circle-outline"></nb-icon>
-            </div>
-            <div class="titleModal">
-                <h4>{{tache.id}} : {{tache.nom}}</h4>
-            </div>
-        </nb-card-header>
-        <nb-card-body>
-            <table>
-                <td>
-                    <div>
-                        <div *ngIf="!estSelectAssign" (click)="clickAssignTache(true)" class="membreClass">
-                            <nb-user *ngIf="membreAssigne !== null" [name]="membreAssigne.utilisateur.pseudo" [title]="membreAssigne.role.nom">
-                                <nb-icon icon="close-circle-outline"></nb-icon>
-                            </nb-user>
-                            <div *ngIf="membreAssigne === null">
-                                <label>Assigner </label>
-                                <nb-icon icon="plus-circle-outline"></nb-icon>
-                            </div>
-                        </div>
-                        <div *ngIf="estSelectAssign">
-                            <label>Responsable : </label>
-                            <nb-select [placeholder]="estTacheAssignee? membreAssigne.utilisateur.pseudo : 'non-assignée'" shape="round" size="tiny" status="info" (selectedChange)="assignerTache($event)">
-                                <nb-option [value]="null">non-assignée</nb-option>
-                                <nb-option *ngFor="let membre of membresProjet" [value]="membre">
-                                        {{membre.utilisateur.pseudo}} ({{membre.role.nom}})
-                                </nb-option>
-                            </nb-select>
-                        </div>
-                        <p>priorité a definir</p>
-                        <p>{{tache.estimationTemps}} ({{tache.uniteDeTemps}})</p>
-                        <h5>Description :</h5>
-                        <p>{{tache.description}}</p>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <button disabled nbButton>Modidier la tache</button>
-                        <div>
-                            <nb-card accent="warning" size="tiny">
-                                <nb-card-header>
-                                    Taches Precedente
-                                </nb-card-header>
-                                <nb-list title="Taches P">
-                                    <nb-list-item *ngFor="let tacheP of tache.tachesPrecedentes">
-                                        <nb-icon *ngIf="checkValidation(tacheP)" status="success" icon="checkmark-circle-outline" ></nb-icon>
-                                        {{tacheP.id}} : {{tacheP.nom}}
-                                    </nb-list-item>
-                                </nb-list>
-                            </nb-card>
-                        </div>
-                        <div>
-                            <nb-card accent="warning" size="tiny">
-                                <nb-card-header>
-                                    Taches Enfant
-                                </nb-card-header>
-                                <nb-list title="Taches Enfant">
-                                    <nb-list-item *ngFor="let tacheEnfant of tache.tacheEnfants">
-                                        <nb-icon *ngIf="checkValidation(tacheEnfant)" status="success" icon="checkmark-circle-outline" ></nb-icon>
-                                        {{tacheEnfant.id}} : {{tacheEnfant.nom}}
-                                    </nb-list-item>
-                                </nb-list>
-                            </nb-card>
-                        </div>
-                    </div>
-                </td>
-            </table>
-        </nb-card-body>
-        <nb-card-footer class="footerModal" >
-            <div class="footerButtons">
-                <button nbButton [disabled]="estValidee" (click)="valider()">Valider à étape suivante</button>
-                <button nbButton (click)="supprimerTache(tache.id)" >Supprimer</button>
-            </div>
-        </nb-card-footer>
-    </nb-card>
-</ng-template>
