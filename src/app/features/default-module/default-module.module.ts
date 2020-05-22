@@ -21,7 +21,7 @@ import {config} from 'rxjs';
         NbIconModule,
         NbActionsModule,
         NbDialogModule,
-        NbMenuModule
+        NbMenuModule,
     ]
 })
 export class DefaultModuleModule { }

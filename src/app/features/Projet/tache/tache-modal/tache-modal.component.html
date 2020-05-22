@@ -2,7 +2,7 @@
     <nb-card accent="success" size="giant" style="display: flex">
         <nb-card-header class="headerModal">
             <div class="exitClass">
-                <nb-icon (click)="dialogRef.close()"  icon="close-circle-outline"></nb-icon>
+                <nb-icon (click)="close()"  icon="close-circle-outline"></nb-icon>
             </div>
             <div class="titleModal">
                 <h4>{{tache.id}} : {{tache.nom}}</h4>
@@ -72,7 +72,7 @@
         </nb-card-body>
         <nb-card-footer class="footerModal" >
             <div class="footerButtons">
-                <button (click)="valider()" [disabled]="estValidee" nbButton>Valider</button>
+                <button (click)="valider()" [disabled]="estValidee" nbButton>Valider pour cette étape</button>
                 <button disabled nbButton>Supprimer</button>
             </div>
         </nb-card-footer>

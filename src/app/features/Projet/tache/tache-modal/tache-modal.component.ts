@@ -5,6 +5,7 @@ import {TacheModel} from '../../../../core/models/tache/TacheModel';
 import {ErreurModel} from '../../../../core/models/erreur/ErreurModel';
 import {NbDialogRef, NbToastrService} from '@nebular/theme';
 import {TacheService} from '../../../../core/services/tache/tache.service';
+import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
 
 @Component({
   selector: 'app-tache-modal',
@@ -24,6 +25,8 @@ export class TacheModalComponent implements OnInit {
   estValidee: boolean;
   estSelectAssign: boolean;
   estTacheAssignee: boolean;
+  estModifie: boolean;
+
   constructor( private toastrServ: NbToastrService,
                private tacheService: TacheService,
                private dialogRef: NbDialogRef<TacheModalComponent>) { }
@@ -34,6 +37,8 @@ export class TacheModalComponent implements OnInit {
     this.estValidee =  this.checkValidation(this.tache);
     // @ts-ignore
     this.estSelectAssign = false;
+    this.estModifie = false;
+    console.log(this.tache);
   }
 
 
@@ -59,6 +64,7 @@ export class TacheModalComponent implements OnInit {
         (projetReturn) => {
           this.toastrServ.success('Tache validee !', this.tache.nom, {[status]: 'success'});
           this.projet = projetReturn;
+          this.estModifie = true;
 
         },
         (errorComplete) => {
@@ -82,6 +88,8 @@ export class TacheModalComponent implements OnInit {
             this.toastrServ.success('Tache assignée !', this.tache.nom, {[status]: 'success'});
             this.membreAssigne = membreChoisi;
             this.projet = projetReturn;
+            this.estModifie = true;
+
           },
           (errorComplete) => {
             this.toastrServ.danger('Impossible d assigner la tache', this.tache.nom, {[status]: 'danger'});
@@ -98,6 +106,8 @@ export class TacheModalComponent implements OnInit {
               this.toastrServ.success('Utilisateur retiré !', this.tache.nom, {[status]: 'success'});
               this.membreAssigne = null;
               this.projet = ProjetReturn;
+              this.estModifie = true;
+
             },
             (errorComplete) => {
               this.toastrServ.danger('Impossible de retirer l utilisateur ' + this.membreAssigne.utilisateur.pseudo + ' de la tache', this.tache.nom,
@@ -112,8 +122,10 @@ export class TacheModalComponent implements OnInit {
   }
 
   close() {
-    this.dialogRef.close(this.projet);
+    this.estModifie ? this.dialogRef.close(this.projet) : this.dialogRef.close(null);
   }
+
+ 
 
 
 
